@@ -7,18 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6075C1A22D66D0E00728A41 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C1922D66D0E00728A41 /* Helpers.swift */; };
+		B6075C1D22D6773500728A41 /* GameloopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C1C22D6773500728A41 /* GameloopVC.swift */; };
+		B6075C1F22D6796B00728A41 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C1E22D6796B00728A41 /* RoundedButton.swift */; };
+		B6075C2322D67AC800728A41 /* MainMenuHelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C2122D67AC800728A41 /* MainMenuHelpVC.swift */; };
+		B6075C2422D67AC800728A41 /* MainMenuHelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6075C2222D67AC800728A41 /* MainMenuHelpVC.xib */; };
+		B6075C2622D67B0A00728A41 /* RoundedPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C2522D67B0A00728A41 /* RoundedPopupView.swift */; };
+		B64773FF22D6626B00450B19 /* ImageClassificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64773FE22D6626B00450B19 /* ImageClassificationViewController.swift */; };
+		B647740122D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */; };
+		B647740322D6629A00450B19 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B647740222D6629A00450B19 /* MobileNetV2.mlmodel */; };
+		B647740422D662C600450B19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F9F28422C41B0C000E95A4 /* LaunchScreen.storyboard */; };
+		B647740722D663FF00450B19 /* norwester.otf in Resources */ = {isa = PBXBuildFile; fileRef = B647740622D663FF00450B19 /* norwester.otf */; };
+		B690033E22D6922000463FA3 /* PlayerTurnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690033D22D6922000463FA3 /* PlayerTurnView.swift */; };
+		B690034022D695B500463FA3 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690033F22D695B500463FA3 /* PlayerScoreView.swift */; };
+		B690034322D6AAD900463FA3 /* BeginTurnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690034122D6AAD800463FA3 /* BeginTurnVC.swift */; };
+		B690034422D6AAD900463FA3 /* BeginTurnVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B690034222D6AAD900463FA3 /* BeginTurnVC.xib */; };
 		B6F9F27922C41B09000E95A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F27822C41B09000E95A4 /* AppDelegate.swift */; };
-		B6F9F27B22C41B09000E95A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F27A22C41B09000E95A4 /* ViewController.swift */; };
+		B6F9F27B22C41B09000E95A4 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F27A22C41B09000E95A4 /* MainMenuVC.swift */; };
 		B6F9F27E22C41B09000E95A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F9F27C22C41B09000E95A4 /* Main.storyboard */; };
 		B6F9F28122C41B09000E95A4 /* VacationChallenge_ML.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F27F22C41B09000E95A4 /* VacationChallenge_ML.xcdatamodeld */; };
 		B6F9F28322C41B0C000E95A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F9F28222C41B0C000E95A4 /* Assets.xcassets */; };
-		B6F9F28622C41B0C000E95A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F9F28422C41B0C000E95A4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6075C1922D66D0E00728A41 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		B6075C1C22D6773500728A41 /* GameloopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameloopVC.swift; sourceTree = "<group>"; };
+		B6075C1E22D6796B00728A41 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		B6075C2122D67AC800728A41 /* MainMenuHelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuHelpVC.swift; sourceTree = "<group>"; };
+		B6075C2222D67AC800728A41 /* MainMenuHelpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuHelpVC.xib; sourceTree = "<group>"; };
+		B6075C2522D67B0A00728A41 /* RoundedPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedPopupView.swift; sourceTree = "<group>"; };
+		B64773FE22D6626B00450B19 /* ImageClassificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageClassificationViewController.swift; sourceTree = "<group>"; };
+		B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+UIImageOrientation.swift"; sourceTree = "<group>"; };
+		B647740222D6629A00450B19 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
+		B647740622D663FF00450B19 /* norwester.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = norwester.otf; sourceTree = "<group>"; };
+		B690033D22D6922000463FA3 /* PlayerTurnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurnView.swift; sourceTree = "<group>"; };
+		B690033F22D695B500463FA3 /* PlayerScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreView.swift; sourceTree = "<group>"; };
+		B690034122D6AAD800463FA3 /* BeginTurnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginTurnVC.swift; sourceTree = "<group>"; };
+		B690034222D6AAD900463FA3 /* BeginTurnVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BeginTurnVC.xib; path = ../Controller/BeginTurnVC.xib; sourceTree = "<group>"; };
 		B6F9F27522C41B09000E95A4 /* VacationChallenge-ML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VacationChallenge-ML.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F9F27822C41B09000E95A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6F9F27A22C41B09000E95A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B6F9F27A22C41B09000E95A4 /* MainMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
 		B6F9F27D22C41B09000E95A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B6F9F28022C41B09000E95A4 /* VacationChallenge_ML.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VacationChallenge_ML.xcdatamodel; sourceTree = "<group>"; };
 		B6F9F28222C41B0C000E95A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +65,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6075C1822D66CFC00728A41 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B6075C1922D66D0E00728A41 /* Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B6075C1B22D6732000728A41 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B6F9F27A22C41B09000E95A4 /* MainMenuVC.swift */,
+				B6075C1C22D6773500728A41 /* GameloopVC.swift */,
+				B6075C2122D67AC800728A41 /* MainMenuHelpVC.swift */,
+				B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */,
+				B64773FE22D6626B00450B19 /* ImageClassificationViewController.swift */,
+				B690034122D6AAD800463FA3 /* BeginTurnVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B6075C2022D67A8B00728A41 /* XIB's */ = {
+			isa = PBXGroup;
+			children = (
+				B6075C2222D67AC800728A41 /* MainMenuHelpVC.xib */,
+				B690034222D6AAD900463FA3 /* BeginTurnVC.xib */,
+			);
+			path = "XIB's";
+			sourceTree = "<group>";
+		};
+		B6075C2722D68D3200728A41 /* MLModels */ = {
+			isa = PBXGroup;
+			children = (
+				B647740222D6629A00450B19 /* MobileNetV2.mlmodel */,
+			);
+			path = MLModels;
+			sourceTree = "<group>";
+		};
+		B64773FD22D661F000450B19 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B6F9F28222C41B0C000E95A4 /* Assets.xcassets */,
+				B6F9F28722C41B0C000E95A4 /* Info.plist */,
+				B6F9F28422C41B0C000E95A4 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B647740522D663BF00450B19 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B647740622D663FF00450B19 /* norwester.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B647740A22D6666400450B19 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B6075C1E22D6796B00728A41 /* RoundedButton.swift */,
+				B6075C2522D67B0A00728A41 /* RoundedPopupView.swift */,
+				B690033D22D6922000463FA3 /* PlayerTurnView.swift */,
+				B690033F22D695B500463FA3 /* PlayerScoreView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B6F9F26C22C41B09000E95A4 = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +151,15 @@
 		B6F9F27722C41B09000E95A4 /* VacationChallenge-ML */ = {
 			isa = PBXGroup;
 			children = (
+				B6075C2722D68D3200728A41 /* MLModels */,
+				B6075C2022D67A8B00728A41 /* XIB's */,
+				B6075C1B22D6732000728A41 /* Controller */,
+				B6075C1822D66CFC00728A41 /* Helpers */,
+				B647740A22D6666400450B19 /* View */,
+				B647740522D663BF00450B19 /* Fonts */,
+				B64773FD22D661F000450B19 /* Supporting Files */,
 				B6F9F27822C41B09000E95A4 /* AppDelegate.swift */,
-				B6F9F27A22C41B09000E95A4 /* ViewController.swift */,
 				B6F9F27C22C41B09000E95A4 /* Main.storyboard */,
-				B6F9F28222C41B0C000E95A4 /* Assets.xcassets */,
-				B6F9F28422C41B0C000E95A4 /* LaunchScreen.storyboard */,
-				B6F9F28722C41B0C000E95A4 /* Info.plist */,
 				B6F9F27F22C41B09000E95A4 /* VacationChallenge_ML.xcdatamodeld */,
 			);
 			path = "VacationChallenge-ML";
@@ -125,8 +223,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F9F28622C41B0C000E95A4 /* LaunchScreen.storyboard in Resources */,
+				B647740422D662C600450B19 /* LaunchScreen.storyboard in Resources */,
+				B647740722D663FF00450B19 /* norwester.otf in Resources */,
 				B6F9F28322C41B0C000E95A4 /* Assets.xcassets in Resources */,
+				B690034422D6AAD900463FA3 /* BeginTurnVC.xib in Resources */,
+				B6075C2422D67AC800728A41 /* MainMenuHelpVC.xib in Resources */,
 				B6F9F27E22C41B09000E95A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +239,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F9F27B22C41B09000E95A4 /* ViewController.swift in Sources */,
+				B647740322D6629A00450B19 /* MobileNetV2.mlmodel in Sources */,
+				B64773FF22D6626B00450B19 /* ImageClassificationViewController.swift in Sources */,
+				B690034022D695B500463FA3 /* PlayerScoreView.swift in Sources */,
+				B6075C1D22D6773500728A41 /* GameloopVC.swift in Sources */,
+				B6F9F27B22C41B09000E95A4 /* MainMenuVC.swift in Sources */,
+				B690033E22D6922000463FA3 /* PlayerTurnView.swift in Sources */,
+				B6075C2322D67AC800728A41 /* MainMenuHelpVC.swift in Sources */,
+				B690034322D6AAD900463FA3 /* BeginTurnVC.swift in Sources */,
+				B6075C1A22D66D0E00728A41 /* Helpers.swift in Sources */,
 				B6F9F28122C41B09000E95A4 /* VacationChallenge_ML.xcdatamodeld in Sources */,
+				B6075C1F22D6796B00728A41 /* RoundedButton.swift in Sources */,
+				B6075C2622D67B0A00728A41 /* RoundedPopupView.swift in Sources */,
 				B6F9F27922C41B09000E95A4 /* AppDelegate.swift in Sources */,
+				B647740122D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +400,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87G2Y58K9U;
-				INFOPLIST_FILE = "VacationChallenge-ML/Info.plist";
+				INFOPLIST_FILE = "VacationChallenge-ML/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,7 +418,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87G2Y58K9U;
-				INFOPLIST_FILE = "VacationChallenge-ML/Info.plist";
+				INFOPLIST_FILE = "VacationChallenge-ML/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
