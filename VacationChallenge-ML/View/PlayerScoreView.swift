@@ -17,7 +17,6 @@ class PlayerScoreView: UIView {
         didSet {
             setNeedsDisplay()
             updateSize()
-            self.scoreLabel?.text = "\(score) pts"
         }
     }
 
@@ -29,6 +28,15 @@ class PlayerScoreView: UIView {
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setLayout()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setLayout()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     func setLayout() {
@@ -58,9 +66,36 @@ class PlayerScoreView: UIView {
     func updateSize() {
         let value = CGFloat(1 + self.score / 10)
         
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 1.15, delay: 0.5, options: [.curveEaseInOut], animations: {
             self.frame = self.frame.offsetBy(dx: 0, dy: -value)
             self.frame.size.height += value
+            self.scoreLabel?.text = "\(self.score)" // pts"
         }, completion: nil)
+    }
+    
+    func shake() {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: [.curveEaseInOut], animations: {
+            self.transform = CGAffineTransform(translationX: 10, y: 0)
+        }) { (completed) in
+            
+            UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut], animations: {
+                self.transform = CGAffineTransform(translationX: -10, y: 0)
+            }) { (completed) in
+                
+                UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut], animations: {
+                    self.transform = CGAffineTransform(translationX: 10, y: 0)
+                }) { (completed) in
+                    
+                    UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut], animations: {
+                        self.transform = CGAffineTransform(translationX: -10, y: 0)
+                    }) { (completed) in
+                        
+                        UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut], animations: {
+                            self.transform = CGAffineTransform(translationX: 0, y: 0)
+                        }, completion: nil)
+                    }
+                }
+            }
+        }
     }
 }
