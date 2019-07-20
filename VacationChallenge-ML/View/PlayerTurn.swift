@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class PlayerTurnView: UIView {
+class PlayerTurn: UIView {
     var nameLabel: UILabel?
     var colorView: UIView?
     

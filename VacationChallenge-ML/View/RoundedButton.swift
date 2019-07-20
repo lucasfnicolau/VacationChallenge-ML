@@ -1,5 +1,5 @@
 //
-//  HelpButton.swift
+//  RoundedButton.swift
 //  VacationChallenge-ML
 //
 //  Created by Lucas Fernandez Nicolau on 10/07/19.

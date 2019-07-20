@@ -21,7 +21,6 @@ class RoundedPopupView: UIView {
     }
     
     func setLayout() {
-//        self.layer.cornerRadius = self.bounds.height / 8
         self.layer.cornerRadius = 20
         self.backgroundColor = #colorLiteral(red: 0.3921568627, green: 0.7490196078, blue: 0.7098039216, alpha: 1)
     }

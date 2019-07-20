@@ -17,18 +17,32 @@ class GameloopVC: UIViewController {
         return true
     }
     
-    @IBOutlet var playerTurnView: PlayerTurnView!
+    @IBOutlet var playerTurnView: PlayerTurn!
     @IBOutlet var testLabel: UILabel!
     @IBOutlet var baseView: UIView!
     @IBOutlet var beginTurnButton: RoundedButton!
     
     var playersNumber = 2
-    var playersScoreViews = [PlayerScoreView]()
+    var players = [PlayerScore]()
     var playersColors = [#colorLiteral(red: 0.9490196078, green: 0.3529411765, blue: 0.3529411765, alpha: 1), #colorLiteral(red: 0.3960784314, green: 0.3215686275, blue: 0.3019607843, alpha: 1), #colorLiteral(red: 0.6666666667, green: 0.6509803922, blue: 0.5803921569, alpha: 1), #colorLiteral(red: 0.3450980392, green: 0.4823529412, blue: 0.4980392157, alpha: 1)]
     var currentPlayer = 0 {
         didSet {
             self.playerTurnView.nameLabel?.text = "player \(self.currentPlayer + 1) turn"
             self.playerTurnView.colorView?.backgroundColor = self.playersColors[self.currentPlayer]
+            
+            if players.count > 0 {
+                for i in 0 ... players.count - 1 {
+                    if i != currentPlayer {
+                        self.players[i].fade()
+                    } else {
+                        self.players[i].focus()
+                    }
+                }
+            }
+            
+            if beginTurnButton != nil {
+                beginTurnButton.focus()
+            }
         }
     }
     
@@ -39,30 +53,34 @@ class GameloopVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentPlayer = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        var offsetX: CGFloat = 20
-        let width = UIScreen.main.bounds.width / CGFloat(playersNumber) - 40
-        for i in 0 ..< playersNumber {
-            let frame = CGRect(x: offsetX, y: baseView.frame.midY - 40, width: width, height: 50)
-            let playerScoreView = PlayerScoreView(frame: frame)
-            playerScoreView.alpha = 0
-            
-            playersScoreViews.append(playerScoreView)
-            playersScoreViews[i].backgroundColor = playersColors[i]
-            playersScoreViews[i].layer.zPosition = -1
-            
-            self.view.addSubview(playersScoreViews[i])
-            
-            offsetX += frame.width + 40
-            
-            UIView.animate(withDuration: 0.5) {
-                self.playersScoreViews[i].alpha = 1
+        if players.count == 0 {
+        
+            var offsetX: CGFloat = 20
+            let width = UIScreen.main.bounds.width / CGFloat(playersNumber) - 40
+            for i in 0 ..< playersNumber {
+                let frame = CGRect(x: offsetX, y: baseView.frame.midY - 40, width: width, height: 50)
+                let player = PlayerScore(frame: frame)
+                player.alpha = 0
+                
+                players.append(player)
+                players[i].backgroundColor = playersColors[i]
+                players[i].layer.zPosition = -1
+                
+                self.view.addSubview(players[i])
+                
+                offsetX += frame.width + 40
+                
+                UIView.animate(withDuration: 0.35, animations: {
+                    self.players[i].alpha = (i == 0 ? 1 : 0.5)
+                })
             }
+            
+            currentPlayer = 0
         }
     }
     
@@ -144,15 +162,15 @@ class GameloopVC: UIViewController {
                 for description in descriptions {
                 
                     if description.contains(self.r1) {
-                        self.playersScoreViews[self.currentPlayer].score += 100
+                        self.players[self.currentPlayer].score += 100
                         print("\nr1 - OK\n")
                         break
                     } else if description.contains(self.r0) {
-                        self.playersScoreViews[self.currentPlayer].score += 20
+                        self.players[self.currentPlayer].score += 20
                         print("\nr0 - OK\n")
                         break
                     } else {
-                        self.playersScoreViews[self.currentPlayer].shake()
+                        self.players[self.currentPlayer].shake()
                     }
                 }
                 
@@ -164,6 +182,8 @@ class GameloopVC: UIViewController {
     // MARK: - Photo Actions
     
     @IBAction func takePicture() {
+        beginTurnButton.fade()
+        
         r0 = lowScore.randomElement() ?? ""
         r1 = highScore.randomElement() ?? ""
         print("\n\(r0) - 20 pts")
@@ -218,3 +238,4 @@ extension GameloopVC: UIImagePickerControllerDelegate, UINavigationControllerDel
 fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
     return input.rawValue
 }
+

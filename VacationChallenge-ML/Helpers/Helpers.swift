@@ -7,8 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 var darkTranslucentBG: UIView?
+
+enum Difficulty: Int16 {
+    case easy = 0
+    case medium = 1
+    case hard = 2
+}
+
+enum CVClass: String {
+    case CVObject = "CVObject"
+}
 
 enum Image: String {
     case cameraFrame = "camera_frame"
@@ -39,4 +50,12 @@ func dismissDarkTranslucentBG() {
     }) { (completed) in
         darkTranslucentBG?.removeFromSuperview()
     }
+}
+
+func getAppDelegate() -> AppDelegate {
+    return (UIApplication.shared.delegate as? AppDelegate) ?? AppDelegate()
+}
+
+func getContext() -> NSManagedObjectContext {
+    return getAppDelegate().persistentContainer.viewContext
 }

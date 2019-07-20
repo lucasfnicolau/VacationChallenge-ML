@@ -1,16 +1,16 @@
 //
-//  PlayerScoreView.swift
+//  PlayerScore.swift
 //  VacationChallenge-ML
 //
-//  Created by Lucas Fernandez Nicolau on 10/07/19.
+//  Created by Lucas Fernandez Nicolau on 17/07/19.
 //  Copyright © 2019 Academy. All rights reserved.
 //
 
 import UIKit
 
 @IBDesignable
-class PlayerScoreView: UIView {
-
+class PlayerScore: UIView {
+    
     var nameLabel: UILabel?
     var scoreLabel: UILabel?
     var score: Int = 0 {
@@ -19,7 +19,7 @@ class PlayerScoreView: UIView {
             updateSize()
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setLayout()
