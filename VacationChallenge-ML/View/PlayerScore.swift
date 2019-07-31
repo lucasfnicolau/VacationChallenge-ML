@@ -13,10 +13,11 @@ class PlayerScore: UIView {
     
     var nameLabel: UILabel?
     var scoreLabel: UILabel?
+    var imageView: UIImageView?
+    var gameLoopDelegate: GameloopVCDelegate?
     var score: Int = 0 {
         didSet {
             setNeedsDisplay()
-            updateSize()
         }
     }
     
@@ -44,56 +45,106 @@ class PlayerScore: UIView {
         self.layer.borderColor = #colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)
         self.layer.borderWidth = 4
         
-        let frame = CGRect(x: 0, y: 5, width: self.bounds.width, height: 30)
+        var frame = CGRect(x: 0, y: 5, width: self.bounds.width, height: 30)
         nameLabel = UILabel(frame: frame)
         guard let nameLabel = nameLabel else { return }
         nameLabel.font = UIFont(name: "norwester", size: 20)
         nameLabel.textColor = #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1)
         nameLabel.textAlignment = .center
+        nameLabel.isHidden = true
         
-        scoreLabel = UILabel(frame: CGRect(x: 0, y: -25, width: self.bounds.width, height: 20))
+        frame = CGRect(x: 0, y: -95, width: self.bounds.width, height: 55)
+        imageView = UIImageView(frame: frame)
+        guard let imageView = imageView else { return }
+        imageView.contentMode = .scaleAspectFit
+        
+        frame = CGRect(x: 0, y: -32, width: self.bounds.width, height: 20)
+        scoreLabel = UILabel(frame: frame)
         guard let scoreLabel = scoreLabel else { return }
         scoreLabel.font = UIFont(name: "norwester", size: 20)
         scoreLabel.textColor = #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1)
         scoreLabel.textAlignment = .center
         
         self.addSubview(nameLabel)
+        self.addSubview(imageView)
         self.addSubview(scoreLabel)
         
         self.score = 0
     }
     
-    func updateSize() {
-        let value = CGFloat(1 + self.score / 10)
+    func addScore(_ score: Int) {
+        self.score += score
+        updateSize(withValue: score)
+    }
+    
+    func setImage(number: Int) {
+        if number == 1 || number == 2 {
+            imageView?.frame.size.height -= 7
+        }
+        
+        imageView?.image = UIImage(named: "\(number)")
+    }
+    
+    func updateSize(withValue: Int) {
+        let value = CGFloat(1 + withValue * 15 / 10)
         
         UIView.animate(withDuration: 1.15, delay: 0.5, options: [.curveEaseInOut], animations: {
             self.frame = self.frame.offsetBy(dx: 0, dy: -value)
             self.frame.size.height += value
             self.scoreLabel?.text = "\(self.score)" // pts"
-        }, completion: nil)
+        }, completion: { (completed) in
+            if self.score >= 250 { // Alterar antes do lançamento
+                self.gameLoopDelegate?.showWinner(player: Int(self.nameLabel?.text ?? "\(0)") ?? 0)
+            }
+        })
     }
     
     func shake() {
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: [.curveLinear, .beginFromCurrentState], animations: {
             self.transform = CGAffineTransform(translationX: 10, y: 0)
         }) { (completed) in
             
-            UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut], animations: {
+            UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveLinear, .beginFromCurrentState], animations: {
                 self.transform = CGAffineTransform(translationX: -10, y: 0)
             }) { (completed) in
                 
-                UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut], animations: {
+                UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveLinear, .beginFromCurrentState], animations: {
                     self.transform = CGAffineTransform(translationX: 10, y: 0)
                 }) { (completed) in
                     
-                    UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut], animations: {
+                    UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveLinear, .beginFromCurrentState], animations: {
                         self.transform = CGAffineTransform(translationX: -10, y: 0)
                     }) { (completed) in
                         
-                        UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut], animations: {
+                        UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveLinear, .beginFromCurrentState], animations: {
                             self.transform = CGAffineTransform(translationX: 0, y: 0)
                         }, completion: nil)
                     }
+                }
+            }
+        }
+    }
+    
+    func celebrate() {
+        UIView.animate(withDuration: 0.15, delay: 1.65, options: [.curveEaseInOut, .beginFromCurrentState], animations: {
+            self.imageView?.transform = CGAffineTransform(translationX: 0, y: 7)
+        
+        }) { (completed) in
+            
+            UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut, .beginFromCurrentState], animations: {
+                self.imageView?.transform = CGAffineTransform(translationX: 0, y: 0)
+            
+            }) { (completed) in
+                
+                UIView.animate(withDuration: 0.15, delay: 0.0, options: [.curveEaseInOut, .beginFromCurrentState], animations: {
+                    self.imageView?.transform = CGAffineTransform(translationX: 0, y: 7)
+                
+                }) { (completed) in
+                    
+                    UIView.animate(withDuration: 0.15, delay: 0.15, options: [.curveEaseInOut, .beginFromCurrentState], animations: {
+                        self.imageView?.transform = CGAffineTransform(translationX: 0, y: 0)
+                    
+                    }, completion: nil)
                 }
             }
         }

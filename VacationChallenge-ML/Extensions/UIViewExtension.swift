@@ -17,7 +17,7 @@ extension UIView {
     
     func fade() {
         UIView.animate(withDuration: 0.30, delay: 1.65, options: [.curveEaseInOut], animations: {
-            self.alpha = 0.5
+            self.alpha = 0.3
         }, completion: nil)
     }
 }

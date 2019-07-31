@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+//var allWords: [String] = []
+
 class MainMenuVC: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
@@ -30,8 +32,6 @@ class MainMenuVC: UIViewController {
         defaults = UserDefaults()
         guard let defaults = defaults else { return }
         appHasBeenOpenedBefore = defaults.bool(forKey: "theAppHasBeenOpenedBefore")
-        
-        print(appHasBeenOpenedBefore)
         
         if !appHasBeenOpenedBefore {
             
@@ -88,5 +88,7 @@ class MainMenuVC: UIViewController {
             gameloopVC.playersNumber = Int(playersNumberLabel.text ?? "2") ?? 2
         }
     }
+    
+    @IBAction func unwindToMainMenu(segue:UIStoryboardSegue) { }
 }
 

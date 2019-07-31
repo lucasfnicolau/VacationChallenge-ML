@@ -21,11 +21,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKW-oV-ONe" customClass="RoundedPopupView" customModule="VacationChallenge_ML" customModuleProvider="target">
-                    <rect key="frame" x="20" y="285.5" width="374" height="325"/>
+                    <rect key="frame" x="20" y="298" width="374" height="300"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQV-1a-RQh">
-                            <rect key="frame" x="20" y="20" width="334" height="285"/>
-                            <string key="text">This is a virtual board game that uses Machine Learning in its core.
+                            <rect key="frame" x="20" y="20" width="334" height="260"/>
+                            <string key="text">This is a game that uses Machine Learning in its core.
 You’ll compete against your friends, and to be able to score you’ll have to take pictures of real world objects.</string>
                             <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
                             <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -35,7 +35,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                     <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="NQV-1a-RQh" firstAttribute="top" secondItem="PKW-oV-ONe" secondAttribute="top" constant="20" id="7yC-XT-Ze2"/>
-                        <constraint firstAttribute="height" constant="325" id="GbA-F4-UKi"/>
+                        <constraint firstAttribute="height" constant="300" id="GbA-F4-UKi"/>
                         <constraint firstAttribute="bottom" secondItem="NQV-1a-RQh" secondAttribute="bottom" constant="20" id="dux-Yv-WLW"/>
                         <constraint firstItem="NQV-1a-RQh" firstAttribute="leading" secondItem="PKW-oV-ONe" secondAttribute="leading" constant="20" id="rya-BQ-H09"/>
                         <constraint firstAttribute="trailing" secondItem="NQV-1a-RQh" secondAttribute="trailing" constant="20" id="twz-Lv-Q9e"/>

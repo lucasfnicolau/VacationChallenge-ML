@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="norwester.otf">
+            <string>Norwester-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeginTurnVC" customModule="VacationChallenge_ML" customModuleProvider="target">
             <connections>
@@ -21,51 +26,68 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOA-yH-9jm" customClass="RoundedPopupView" customModule="VacationChallenge_ML" customModuleProvider="target">
-                    <rect key="frame" x="20" y="151" width="335" height="365"/>
+                    <rect key="frame" x="20" y="63.5" width="335" height="540"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="42" translatesAutoresizingMaskIntoConstraints="NO" id="l2Z-I3-fsJ">
-                            <rect key="frame" x="10" y="20" width="315" height="224"/>
+                            <rect key="frame" x="10" y="20" width="315" height="447"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n50-gb-ucK">
-                                    <rect key="frame" x="31.5" y="0.0" width="252.5" height="114"/>
-                                    <string key="text">Lucas, it’s time to take a picture!
+                                    <rect key="frame" x="16" y="0.0" width="283.5" height="85.5"/>
+                                    <string key="text">It’s time to take a picture!
 
-You have two options:</string>
+You have three options:</string>
                                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
                                     <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0eS-bQ-G2u">
-                                    <rect key="frame" x="3.5" y="156" width="308" height="68"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="0eS-bQ-G2u">
+                                    <rect key="frame" x="83" y="127.5" width="149" height="319.5"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IRw-d0-IsK">
-                                            <rect key="frame" x="0.0" y="0.0" width="308" height="26.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZYX-yG-Zlz">
+                                            <rect key="frame" x="0.0" y="0.0" width="149" height="68"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• Water bottle:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtc-fR-C8G">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Water bottle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtc-fR-C8G">
                                                     <rect key="frame" x="0.0" y="0.0" width="149" height="26.5"/>
-                                                    <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="23"/>
+                                                    <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="23"/>
                                                     <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 points" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VK4-t4-cMU">
-                                                    <rect key="frame" x="159" y="0.0" width="149" height="26.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 points" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwJ-VC-O6l">
+                                                    <rect key="frame" x="19.5" y="41.5" width="110.5" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="23"/>
                                                     <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3gr-Jt-tmS">
-                                            <rect key="frame" x="0.0" y="41.5" width="308" height="26.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ufu-Uo-wQq">
+                                            <rect key="frame" x="0.0" y="126" width="149" height="68"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• Joystick:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXp-99-CZF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Water bottle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHH-FX-eZH">
                                                     <rect key="frame" x="0.0" y="0.0" width="149" height="26.5"/>
-                                                    <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="23"/>
+                                                    <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="23"/>
                                                     <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 points" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwJ-VC-O6l">
-                                                    <rect key="frame" x="159" y="0.0" width="149" height="26.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 points" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIA-yj-9vi">
+                                                    <rect key="frame" x="19.5" y="41.5" width="110.5" height="26.5"/>
+                                                    <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="23"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="W1B-Sn-Ach">
+                                            <rect key="frame" x="0.0" y="251.5" width="149" height="68"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Water bottle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spI-lb-uor">
+                                                    <rect key="frame" x="0.0" y="0.0" width="149" height="26.5"/>
+                                                    <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="23"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 points" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FQ-zl-fL3">
+                                                    <rect key="frame" x="19.5" y="41.5" width="110.5" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="23"/>
                                                     <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -73,42 +95,38 @@ You have two options:</string>
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="3gr-Jt-tmS" firstAttribute="leading" secondItem="0eS-bQ-G2u" secondAttribute="leading" id="6Bb-ZQ-E1u"/>
-                                        <constraint firstAttribute="trailing" secondItem="3gr-Jt-tmS" secondAttribute="trailing" id="YBo-CB-dny"/>
-                                        <constraint firstAttribute="trailing" secondItem="IRw-d0-IsK" secondAttribute="trailing" id="iLh-9M-hnh"/>
-                                        <constraint firstItem="IRw-d0-IsK" firstAttribute="leading" secondItem="0eS-bQ-G2u" secondAttribute="leading" id="yko-b9-QX9"/>
-                                    </constraints>
                                 </stackView>
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgD-DS-UDt">
-                            <rect key="frame" x="0.0" y="274" width="335" height="2"/>
+                            <rect key="frame" x="0.0" y="497" width="335" height="2"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="edN-7M-hvu"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bu8-gK-gER">
-                            <rect key="frame" x="139" y="301" width="57" height="41"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="41" id="7uh-w2-z8E"/>
-                                <constraint firstAttribute="width" constant="57" id="lBS-Yr-JZn"/>
-                            </constraints>
-                            <state key="normal" image="camera_full"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLB-BY-nnN">
+                            <rect key="frame" x="0.0" y="499" width="335" height="41"/>
+                            <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="24"/>
+                            <state key="normal" title="START!">
+                                <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="365" id="AeN-XK-7OQ"/>
+                        <constraint firstAttribute="height" constant="540" id="AeN-XK-7OQ"/>
                         <constraint firstItem="l2Z-I3-fsJ" firstAttribute="top" secondItem="bOA-yH-9jm" secondAttribute="top" constant="20" id="BJ9-v6-JrO"/>
+                        <constraint firstItem="GLB-BY-nnN" firstAttribute="leading" secondItem="bOA-yH-9jm" secondAttribute="leading" id="IK8-AL-5oE"/>
+                        <constraint firstAttribute="trailing" secondItem="GLB-BY-nnN" secondAttribute="trailing" id="Lbu-XJ-gkI"/>
+                        <constraint firstItem="GLB-BY-nnN" firstAttribute="top" secondItem="PgD-DS-UDt" secondAttribute="bottom" id="POa-oQ-hba"/>
                         <constraint firstAttribute="trailing" secondItem="l2Z-I3-fsJ" secondAttribute="trailing" constant="10" id="THY-VT-VnQ"/>
                         <constraint firstAttribute="trailing" secondItem="PgD-DS-UDt" secondAttribute="trailing" id="X3G-nh-8y8"/>
                         <constraint firstItem="PgD-DS-UDt" firstAttribute="top" secondItem="l2Z-I3-fsJ" secondAttribute="bottom" constant="30" id="aeb-MI-vWe"/>
+                        <constraint firstItem="GLB-BY-nnN" firstAttribute="centerX" secondItem="bOA-yH-9jm" secondAttribute="centerX" id="kUX-FX-8WO"/>
                         <constraint firstItem="PgD-DS-UDt" firstAttribute="leading" secondItem="bOA-yH-9jm" secondAttribute="leading" id="kXv-wA-Oll"/>
-                        <constraint firstItem="bu8-gK-gER" firstAttribute="top" secondItem="PgD-DS-UDt" secondAttribute="bottom" constant="25" id="ovR-2y-g5a"/>
-                        <constraint firstItem="bu8-gK-gER" firstAttribute="centerX" secondItem="bOA-yH-9jm" secondAttribute="centerX" id="rkC-uj-lZF"/>
                         <constraint firstItem="l2Z-I3-fsJ" firstAttribute="leading" secondItem="bOA-yH-9jm" secondAttribute="leading" constant="10" id="xNq-ka-Vyq"/>
+                        <constraint firstAttribute="bottom" secondItem="GLB-BY-nnN" secondAttribute="bottom" id="zHy-ON-Fki"/>
                     </constraints>
                 </view>
             </subviews>
@@ -123,7 +141,4 @@ You have two options:</string>
             <point key="canvasLocation" x="136.80000000000001" y="117.39130434782609"/>
         </view>
     </objects>
-    <resources>
-        <image name="camera_full" width="236" height="171"/>
-    </resources>
 </document>

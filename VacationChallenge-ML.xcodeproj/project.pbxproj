@@ -18,7 +18,6 @@
 		B64594E322E294B000A6D12F /* CVObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64594E122E294B000A6D12F /* CVObject+CoreDataProperties.swift */; };
 		B64594E522E2951300A6D12F /* RawStringArrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64594E422E2951300A6D12F /* RawStringArrays.swift */; };
 		B647740122D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */; };
-		B647740322D6629A00450B19 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B647740222D6629A00450B19 /* MobileNetV2.mlmodel */; };
 		B647740422D662C600450B19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F9F28422C41B0C000E95A4 /* LaunchScreen.storyboard */; };
 		B647740722D663FF00450B19 /* norwester.otf in Resources */ = {isa = PBXBuildFile; fileRef = B647740622D663FF00450B19 /* norwester.otf */; };
 		B690033E22D6922000463FA3 /* PlayerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690033D22D6922000463FA3 /* PlayerTurn.swift */; };
@@ -30,6 +29,11 @@
 		B6F9F27E22C41B09000E95A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F9F27C22C41B09000E95A4 /* Main.storyboard */; };
 		B6F9F28122C41B09000E95A4 /* VacationChallenge_ML.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F27F22C41B09000E95A4 /* VacationChallenge_ML.xcdatamodeld */; };
 		B6F9F28322C41B0C000E95A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F9F28222C41B0C000E95A4 /* Assets.xcassets */; };
+		B6FFD31A22EE0B5F006631FC /* WinnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FFD31822EE0B5F006631FC /* WinnerVC.swift */; };
+		B6FFD32122F11569006631FC /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6FFD32022F11569006631FC /* SqueezeNet.mlmodel */; };
+		B6FFD32322F116FD006631FC /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6FFD32222F116FD006631FC /* Inceptionv3.mlmodel */; };
+		B6FFD32722F12204006631FC /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6FFD32622F12204006631FC /* MobileNetV2.mlmodel */; };
+		B6FFD32B22F1388B006631FC /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6FFD32A22F1388B006631FC /* Resnet50.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +48,6 @@
 		B64594E122E294B000A6D12F /* CVObject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B64594E422E2951300A6D12F /* RawStringArrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawStringArrays.swift; sourceTree = "<group>"; };
 		B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+UIImageOrientation.swift"; sourceTree = "<group>"; };
-		B647740222D6629A00450B19 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
 		B647740622D663FF00450B19 /* norwester.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = norwester.otf; sourceTree = "<group>"; };
 		B690033D22D6922000463FA3 /* PlayerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurn.swift; sourceTree = "<group>"; };
 		B690034122D6AAD800463FA3 /* BeginTurnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginTurnVC.swift; sourceTree = "<group>"; };
@@ -58,6 +61,11 @@
 		B6F9F28222C41B0C000E95A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6F9F28522C41B0C000E95A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6F9F28722C41B0C000E95A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6FFD31822EE0B5F006631FC /* WinnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerVC.swift; sourceTree = "<group>"; };
+		B6FFD32022F11569006631FC /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
+		B6FFD32222F116FD006631FC /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		B6FFD32622F12204006631FC /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
+		B6FFD32A22F1388B006631FC /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,7 @@
 				B6075C2122D67AC800728A41 /* MainMenuHelpVC.swift */,
 				B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */,
 				B690034122D6AAD800463FA3 /* BeginTurnVC.swift */,
+				B6FFD31822EE0B5F006631FC /* WinnerVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -104,7 +113,10 @@
 		B6075C2722D68D3200728A41 /* MLModels */ = {
 			isa = PBXGroup;
 			children = (
-				B647740222D6629A00450B19 /* MobileNetV2.mlmodel */,
+				B6FFD32A22F1388B006631FC /* Resnet50.mlmodel */,
+				B6FFD32622F12204006631FC /* MobileNetV2.mlmodel */,
+				B6FFD32222F116FD006631FC /* Inceptionv3.mlmodel */,
+				B6FFD32022F11569006631FC /* SqueezeNet.mlmodel */,
 			);
 			path = MLModels;
 			sourceTree = "<group>";
@@ -264,13 +276,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6FFD32722F12204006631FC /* MobileNetV2.mlmodel in Sources */,
 				B64594E522E2951300A6D12F /* RawStringArrays.swift in Sources */,
-				B647740322D6629A00450B19 /* MobileNetV2.mlmodel in Sources */,
+				B6FFD32B22F1388B006631FC /* Resnet50.mlmodel in Sources */,
+				B6FFD32122F11569006631FC /* SqueezeNet.mlmodel in Sources */,
 				B6075C1D22D6773500728A41 /* GameloopVC.swift in Sources */,
 				B6F9F27B22C41B09000E95A4 /* MainMenuVC.swift in Sources */,
 				B6416DCD22DFC47E00620C43 /* UIViewExtension.swift in Sources */,
+				B6FFD31A22EE0B5F006631FC /* WinnerVC.swift in Sources */,
 				B64594E222E294B000A6D12F /* CVObject+CoreDataClass.swift in Sources */,
 				B64594E322E294B000A6D12F /* CVObject+CoreDataProperties.swift in Sources */,
+				B6FFD32322F116FD006631FC /* Inceptionv3.mlmodel in Sources */,
 				B690033E22D6922000463FA3 /* PlayerTurn.swift in Sources */,
 				B6075C2322D67AC800728A41 /* MainMenuHelpVC.swift in Sources */,
 				B690034322D6AAD900463FA3 /* BeginTurnVC.swift in Sources */,
@@ -429,6 +445,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87G2Y58K9U;
 				INFOPLIST_FILE = "VacationChallenge-ML/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -447,6 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87G2Y58K9U;
 				INFOPLIST_FILE = "VacationChallenge-ML/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
