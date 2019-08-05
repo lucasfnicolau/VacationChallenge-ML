@@ -21,7 +21,7 @@ class MainMenuVC: UIViewController {
     
     var appHasBeenOpenedBefore = false
     var defaults: UserDefaults?
-    var cvObjects = [CVObject]()
+    var cdPlayers = [CDPlayer]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,26 +35,10 @@ class MainMenuVC: UIViewController {
         
         if !appHasBeenOpenedBefore {
             
-            for i in 0 ..< easy.count {
-                guard let obj = NSEntityDescription.insertNewObject(forEntityName: CVClass.CVObject.rawValue, into: getContext()) as? CVObject else { return }
-                obj.objName = easy[i]
-                obj.difficulty = Difficulty.easy.rawValue
-                
-                getAppDelegate().saveContext()
-            }
-            
-            for i in 0 ..< medium.count {
-                guard let obj = NSEntityDescription.insertNewObject(forEntityName: CVClass.CVObject.rawValue, into: getContext()) as? CVObject else { return }
-                obj.objName = medium[i]
-                obj.difficulty = Difficulty.medium.rawValue
-                
-                getAppDelegate().saveContext()
-            }
-            
-            for i in 0 ..< hard.count {
-                guard let obj = NSEntityDescription.insertNewObject(forEntityName: "CVObject", into: getContext()) as? CVObject else { return }
-                obj.objName = hard[i]
-                obj.difficulty = Difficulty.hard.rawValue
+            for i in 0 ..< 4 {
+                guard let cdPlayer = NSEntityDescription.insertNewObject(forEntityName: CVClass.CDPlayer.rawValue, into: getContext()) as? CDPlayer else { return }
+                cdPlayer.imageName = "\(i)"
+                cdPlayer.victories = 0
                 
                 getAppDelegate().saveContext()
             }
@@ -63,8 +47,7 @@ class MainMenuVC: UIViewController {
 
         } else {
             do {
-                cvObjects = try getContext().fetch(CVObject.fetchRequest())
-                print(cvObjects)
+                cdPlayers = try getContext().fetch(CDPlayer.fetchRequest())
             } catch let error {
                 print(error)
             }
@@ -77,7 +60,7 @@ class MainMenuVC: UIViewController {
     
     @IBAction func showHelp(_ sender: RoundedButton) {
         showDarkTranslucentBG(on: self)
-        let mainMenuHelpVC = MainMenuHelpVC()
+        let mainMenuHelpVC = HelpVC()
         mainMenuHelpVC.modalPresentationStyle = .custom
         mainMenuHelpVC.modalTransitionStyle = .crossDissolve
         self.present(mainMenuHelpVC, animated: true, completion: nil)
@@ -89,6 +72,6 @@ class MainMenuVC: UIViewController {
         }
     }
     
-    @IBAction func unwindToMainMenu(segue:UIStoryboardSegue) { }
+    @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) { }
 }
 

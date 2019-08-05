@@ -27,6 +27,7 @@ class RoundedButton: UIButton {
         self.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.7490196078, blue: 0.7098039216, alpha: 1), for: .highlighted)
         self.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.7490196078, blue: 0.7098039216, alpha: 1), for: .focused)
         self.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.7490196078, blue: 0.7098039216, alpha: 1), for: .selected)
+        self.imageView?.contentMode = .scaleAspectFit
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

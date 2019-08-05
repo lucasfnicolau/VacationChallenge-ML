@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainMenuHelpVC: UIViewController {
+class HelpVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

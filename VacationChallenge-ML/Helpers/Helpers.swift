@@ -18,7 +18,7 @@ enum Difficulty: Int16 {
 }
 
 enum CVClass: String {
-    case CVObject = "CVObject"
+    case CDPlayer = "CDPlayer"
 }
 
 enum Image: String {

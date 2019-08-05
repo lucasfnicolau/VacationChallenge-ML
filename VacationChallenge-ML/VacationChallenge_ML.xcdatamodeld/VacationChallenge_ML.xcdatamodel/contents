@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G84" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDPlayer" representedClassName="CDPlayer" syncable="YES" codeGenerationType="class">
+        <attribute name="imageName" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="victories" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="CVObject" representedClassName="CVObject" syncable="YES">
         <attribute name="difficulty" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" customClassName="Difficulty" syncable="YES"/>
         <attribute name="objDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -7,5 +11,6 @@
     </entity>
     <elements>
         <element name="CVObject" positionX="-54" positionY="-9" width="128" height="90"/>
+        <element name="CDPlayer" positionX="-54" positionY="18" width="128" height="75"/>
     </elements>
 </model>

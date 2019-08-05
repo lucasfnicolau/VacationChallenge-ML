@@ -30,6 +30,7 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     @IBOutlet var beginTurnButton: RoundedButton!
     @IBOutlet var exitButton: UIButton!
     
+    var cdPlayers = [CDPlayer]()
     var playersNumber = 2
     var players = [PlayerScore]()
     var playersColors = [#colorLiteral(red: 0.9490196078, green: 0.3529411765, blue: 0.3529411765, alpha: 1), #colorLiteral(red: 0.3960784314, green: 0.3215686275, blue: 0.3019607843, alpha: 1), #colorLiteral(red: 0.6666666667, green: 0.6509803922, blue: 0.5803921569, alpha: 1), #colorLiteral(red: 1, green: 0.7843137255, blue: 0.4509803922, alpha: 1)]
@@ -82,6 +83,12 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         self.testLabel.text = "\(self.hardWord.replacingOccurrences(of: "_", with: " ")) – 50 pts"
         self.testLabel1.text = "\(self.mediumWord.replacingOccurrences(of: "_", with: " ")) – 25 pts"
         self.testLabel2.text = "\(self.easyWord.replacingOccurrences(of: "_", with: " ")) – 10 pts"
+        
+        do {
+            cdPlayers = try getContext().fetch(CDPlayer.fetchRequest())
+        } catch let error {
+            print(error)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -126,12 +133,6 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
             self.beginTurnButton.focus()
         }
     }
-    
-    @IBAction func beginTurn() {
-        easyWord = allWords.randomElement() ?? ""
-//        mediumWord = medium.randomElement() ?? ""
-        hardWord = allWords.randomElement() ?? ""
-    }
 
     // MARK: - Image Classification
     
@@ -152,7 +153,6 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     
     /// - Tag: PerformRequests
     func updateClassifications(for image: UIImage) {
-        // classificationLabel.text = "Classifying..."
         
         let orientation = CGImagePropertyOrientation(image.imageOrientation)
         guard let ciImage = CIImage(image: image) else { fatalError("Unable to create \(CIImage.self) from \(image).") }
@@ -183,32 +183,39 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                 let classifications = results as! [VNClassificationObservation]
                 
                 if classifications.isEmpty {
-                    // self.classificationLabel.text = "Nothing recognized."
+                    self.players[self.currentPlayer].shake()
+                    self.setNewTurn()
                 } else {
+                    
                     // Display top classifications ranked by confidence in the UI.
-                    let topClassifications = classifications.prefix(10)
+                    let topClassifications = classifications.prefix(5)
                     let descriptions = topClassifications.map { classification in
                         // Formats the classification for display; e.g. "(0.37) cliff, drop, drop-off".
                         return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                     }
-                    // self.classificationLabel.text = "Classification:\n" + descriptions.joined(separator: "\n")
                     
                     print(descriptions)
                     
+                    var matched = false
                     for description in descriptions {
                         
                         if description.lowercased().contains(self.hardWord.lowercased()) {
                             self.players[self.currentPlayer].addScore(50)
+                            matched = true
                             break
                         } else if description.lowercased().contains(self.mediumWord.lowercased()) {
                             self.players[self.currentPlayer].addScore(25)
+                            matched = true
                             break
                         } else if description.lowercased().contains(self.easyWord.lowercased()) {
                             self.players[self.currentPlayer].addScore(10)
+                            matched = true
                             break
-                        } else {
-                            self.players[self.currentPlayer].shake()
                         }
+                    }
+                    
+                    if !matched {
+                        self.players[self.currentPlayer].shake()
                     }
                     
                     self.setNewTurn()
@@ -230,9 +237,9 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         
         self.hardWord = tempWords.randomElement() ?? ""
         
-        self.testLabel.text = "\(self.hardWord.replacingOccurrences(of: "_", with: " ")) – 50 pts"
-        self.testLabel1.text = "\(self.mediumWord.replacingOccurrences(of: "_", with: " ")) – 25 pts"
-        self.testLabel2.text = "\(self.easyWord.replacingOccurrences(of: "_", with: " ")) – 10 pts"
+        self.testLabel.text = "\(self.hardWord.replacingOccurrences(of: "_", with: " ").lowercased()) – 50 pts"
+        self.testLabel1.text = "\(self.mediumWord.replacingOccurrences(of: "_", with: " ").lowercased()) – 25 pts"
+        self.testLabel2.text = "\(self.easyWord.replacingOccurrences(of: "_", with: " ").lowercased()) – 10 pts"
     }
     
     // MARK: - Photo Actions
@@ -277,6 +284,10 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     }
     
     func showWinner(player: Int) {
+        
+        cdPlayers[player - 1].victories += 1
+        getAppDelegate().saveContext()
+        
         winner = player
         performSegue(withIdentifier: "goToWinnerVC", sender: self)
     }
@@ -302,13 +313,12 @@ extension GameloopVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         // We always expect `imagePickerController(:didFinishPickingMediaWithInfo:)` to supply the original image.
         //        let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-//        imageView.image = image
         updateClassifications(for: image)
     }
     
     @IBAction func showHelp(_ sender: RoundedButton) {
         showDarkTranslucentBG(on: self)
-        let mainMenuHelpVC = MainMenuHelpVC()
+        let mainMenuHelpVC = HelpVC()
         mainMenuHelpVC.modalPresentationStyle = .custom
         mainMenuHelpVC.modalTransitionStyle = .crossDissolve
         self.present(mainMenuHelpVC, animated: true, completion: nil)
@@ -330,15 +340,8 @@ extension GameloopVC: UNUserNotificationCenterDelegate {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.delegate = self
         
-//        let repeatAction = UNNotificationAction(identifier: Action.repeats.rawValue,
-//                                                title: "Repeat",
-//                                                options: [])
-        
-        let performSegueAction = UNNotificationAction(identifier: "myID",
-                                                      title: "Perform Segue", options: [.foreground])
-        
         let generalCategory = UNNotificationCategory(identifier: "generalCatID",
-                                                     actions: [/*repeatAction,*/ performSegueAction],
+                                                     actions: [],
                                                      intentIdentifiers: [],
                                                      options: [.customDismissAction])
         
@@ -353,12 +356,6 @@ extension GameloopVC: UNUserNotificationCenterDelegate {
                 content.sound = options[0] ? UNNotificationSound.default : nil
                 content.badge = options[1] ? 1 : 0
                 content.categoryIdentifier = "generalCatID"
-                
-//                let url = Bundle.main.url(forResource: "\(self.currentPlayer)", withExtension: ".png")
-//                do {
-//                    let attachment = try? UNNotificationAttachment(identifier: "EndTurnNotification", url: url!, options: nil)
-//                    content.attachments = [attachment!]
-//                }
                 
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
                 let request = UNNotificationRequest(identifier: "EndTurnNotification", content: content, trigger: trigger)

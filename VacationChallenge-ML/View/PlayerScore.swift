@@ -85,6 +85,11 @@ class PlayerScore: UIView {
         imageView?.image = UIImage(named: "\(number)")
     }
     
+    func showRankingVictories(victories: Int16) {
+        self.score += Int(victories)
+        updateSize(withValue: Int(victories) * 20)
+    }
+    
     func updateSize(withValue: Int) {
         let value = CGFloat(1 + withValue * 15 / 10)
         
