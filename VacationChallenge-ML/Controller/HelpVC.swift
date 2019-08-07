@@ -1,8 +1,8 @@
 //
-//  HelpVC.swift
+//  MainMenuHelpVC.swift
 //  VacationChallenge-ML
 //
-//  Created by Lucas Fernandez Nicolau on 05/08/19.
+//  Created by Lucas Fernandez Nicolau on 10/07/19.
 //  Copyright © 2019 Academy. All rights reserved.
 //
 
@@ -12,19 +12,13 @@ class HelpVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
+        self.view.addGestureRecognizer(tap)
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func dismissVC() {
+        self.dismiss(animated: true, completion: nil)
+        dismissDarkTranslucentBG()
     }
-    */
-
 }

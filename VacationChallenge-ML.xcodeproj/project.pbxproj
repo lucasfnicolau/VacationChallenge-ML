@@ -10,8 +10,7 @@
 		B6075C1A22D66D0E00728A41 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C1922D66D0E00728A41 /* Helpers.swift */; };
 		B6075C1D22D6773500728A41 /* GameloopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C1C22D6773500728A41 /* GameloopVC.swift */; };
 		B6075C1F22D6796B00728A41 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C1E22D6796B00728A41 /* RoundedButton.swift */; };
-		B6075C2322D67AC800728A41 /* MainMenuHelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C2122D67AC800728A41 /* MainMenuHelpVC.swift */; };
-		B6075C2422D67AC800728A41 /* MainMenuHelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6075C2222D67AC800728A41 /* MainMenuHelpVC.xib */; };
+		B6075C2322D67AC800728A41 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C2122D67AC800728A41 /* HelpVC.swift */; };
 		B6075C2622D67B0A00728A41 /* RoundedPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C2522D67B0A00728A41 /* RoundedPopupView.swift */; };
 		B6416DCD22DFC47E00620C43 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6416DCC22DFC47E00620C43 /* UIViewExtension.swift */; };
 		B64594E222E294B000A6D12F /* CVObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64594E022E294B000A6D12F /* CVObject+CoreDataClass.swift */; };
@@ -22,10 +21,10 @@
 		B647740722D663FF00450B19 /* norwester.otf in Resources */ = {isa = PBXBuildFile; fileRef = B647740622D663FF00450B19 /* norwester.otf */; };
 		B65D829B22F21C6000B2C8DD /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B65D829A22F21C6000B2C8DD /* Resnet50.mlmodel */; };
 		B65D829D22F385B500B2C8DD /* RankingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65D829C22F385B500B2C8DD /* RankingVC.swift */; };
+		B660A25222FA610500169F4B /* TutorialPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B660A25122FA610500169F4B /* TutorialPageVC.swift */; };
 		B690033E22D6922000463FA3 /* PlayerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690033D22D6922000463FA3 /* PlayerTurn.swift */; };
 		B690034322D6AAD900463FA3 /* BeginTurnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690034122D6AAD800463FA3 /* BeginTurnVC.swift */; };
 		B690034422D6AAD900463FA3 /* BeginTurnVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B690034222D6AAD900463FA3 /* BeginTurnVC.xib */; };
-		B6C9753E22F8DA3400E24579 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9753C22F8DA3400E24579 /* HelpVC.swift */; };
 		B6C9753F22F8DA3400E24579 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C9753D22F8DA3400E24579 /* HelpVC.xib */; };
 		B6CE39BF22DFC5BA00381792 /* PlayerScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */; };
 		B6F9F27922C41B09000E95A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F27822C41B09000E95A4 /* AppDelegate.swift */; };
@@ -40,8 +39,7 @@
 		B6075C1922D66D0E00728A41 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		B6075C1C22D6773500728A41 /* GameloopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameloopVC.swift; sourceTree = "<group>"; };
 		B6075C1E22D6796B00728A41 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
-		B6075C2122D67AC800728A41 /* MainMenuHelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuHelpVC.swift; sourceTree = "<group>"; };
-		B6075C2222D67AC800728A41 /* MainMenuHelpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuHelpVC.xib; sourceTree = "<group>"; };
+		B6075C2122D67AC800728A41 /* HelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		B6075C2522D67B0A00728A41 /* RoundedPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedPopupView.swift; sourceTree = "<group>"; };
 		B64035E422F39083005A5ECB /* CDPlayer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDPlayer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B64035E522F39083005A5ECB /* CDPlayer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDPlayer+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -49,14 +47,14 @@
 		B64594E022E294B000A6D12F /* CVObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B64594E122E294B000A6D12F /* CVObject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B64594E422E2951300A6D12F /* RawStringArrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawStringArrays.swift; sourceTree = "<group>"; };
-		B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+UIImageOrientation.swift"; sourceTree = "<group>"; };
+		B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGImagePropertyOrientation+UIImageOrientation.swift"; path = "../Controller/CGImagePropertyOrientation+UIImageOrientation.swift"; sourceTree = "<group>"; };
 		B647740622D663FF00450B19 /* norwester.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = norwester.otf; sourceTree = "<group>"; };
 		B65D829A22F21C6000B2C8DD /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
 		B65D829C22F385B500B2C8DD /* RankingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingVC.swift; sourceTree = "<group>"; };
+		B660A25122FA610500169F4B /* TutorialPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageVC.swift; sourceTree = "<group>"; };
 		B690033D22D6922000463FA3 /* PlayerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurn.swift; sourceTree = "<group>"; };
 		B690034122D6AAD800463FA3 /* BeginTurnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginTurnVC.swift; sourceTree = "<group>"; };
 		B690034222D6AAD900463FA3 /* BeginTurnVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BeginTurnVC.xib; path = ../Controller/BeginTurnVC.xib; sourceTree = "<group>"; };
-		B6C9753C22F8DA3400E24579 /* HelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		B6C9753D22F8DA3400E24579 /* HelpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HelpVC.xib; path = ../Controller/HelpVC.xib; sourceTree = "<group>"; };
 		B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerScore.swift; sourceTree = "<group>"; };
 		B6F9F27522C41B09000E95A4 /* VacationChallenge-ML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VacationChallenge-ML.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +82,7 @@
 		B6075C1822D66CFC00728A41 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */,
 				B6075C1922D66D0E00728A41 /* Helpers.swift */,
 				B64594E422E2951300A6D12F /* RawStringArrays.swift */,
 			);
@@ -95,12 +94,11 @@
 			children = (
 				B6F9F27A22C41B09000E95A4 /* MainMenuVC.swift */,
 				B6075C1C22D6773500728A41 /* GameloopVC.swift */,
-				B6075C2122D67AC800728A41 /* MainMenuHelpVC.swift */,
-				B647740022D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift */,
+				B6075C2122D67AC800728A41 /* HelpVC.swift */,
 				B690034122D6AAD800463FA3 /* BeginTurnVC.swift */,
 				B6FFD31822EE0B5F006631FC /* WinnerVC.swift */,
 				B65D829C22F385B500B2C8DD /* RankingVC.swift */,
-				B6C9753C22F8DA3400E24579 /* HelpVC.swift */,
+				B660A25122FA610500169F4B /* TutorialPageVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -108,7 +106,6 @@
 		B6075C2022D67A8B00728A41 /* XIB's */ = {
 			isa = PBXGroup;
 			children = (
-				B6075C2222D67AC800728A41 /* MainMenuHelpVC.xib */,
 				B690034222D6AAD900463FA3 /* BeginTurnVC.xib */,
 				B6C9753D22F8DA3400E24579 /* HelpVC.xib */,
 			);
@@ -269,7 +266,6 @@
 				B647740722D663FF00450B19 /* norwester.otf in Resources */,
 				B6F9F28322C41B0C000E95A4 /* Assets.xcassets in Resources */,
 				B690034422D6AAD900463FA3 /* BeginTurnVC.xib in Resources */,
-				B6075C2422D67AC800728A41 /* MainMenuHelpVC.xib in Resources */,
 				B6F9F27E22C41B09000E95A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B64594E522E2951300A6D12F /* RawStringArrays.swift in Sources */,
-				B6C9753E22F8DA3400E24579 /* HelpVC.swift in Sources */,
 				B6075C1D22D6773500728A41 /* GameloopVC.swift in Sources */,
 				B6F9F27B22C41B09000E95A4 /* MainMenuVC.swift in Sources */,
 				B6416DCD22DFC47E00620C43 /* UIViewExtension.swift in Sources */,
@@ -291,7 +286,8 @@
 				B64594E322E294B000A6D12F /* CVObject+CoreDataProperties.swift in Sources */,
 				B690033E22D6922000463FA3 /* PlayerTurn.swift in Sources */,
 				B65D829D22F385B500B2C8DD /* RankingVC.swift in Sources */,
-				B6075C2322D67AC800728A41 /* MainMenuHelpVC.swift in Sources */,
+				B660A25222FA610500169F4B /* TutorialPageVC.swift in Sources */,
+				B6075C2322D67AC800728A41 /* HelpVC.swift in Sources */,
 				B690034322D6AAD900463FA3 /* BeginTurnVC.swift in Sources */,
 				B65D829B22F21C6000B2C8DD /* Resnet50.mlmodel in Sources */,
 				B6075C1A22D66D0E00728A41 /* Helpers.swift in Sources */,

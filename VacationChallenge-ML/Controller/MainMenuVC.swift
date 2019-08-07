@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-//var allWords: [String] = []
-
 class MainMenuVC: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
@@ -39,6 +37,8 @@ class MainMenuVC: UIViewController {
                 guard let cdPlayer = NSEntityDescription.insertNewObject(forEntityName: CVClass.CDPlayer.rawValue, into: getContext()) as? CDPlayer else { return }
                 cdPlayer.imageName = "\(i)"
                 cdPlayer.victories = 0
+                
+                cdPlayers.append(cdPlayer)
                 
                 getAppDelegate().saveContext()
             }

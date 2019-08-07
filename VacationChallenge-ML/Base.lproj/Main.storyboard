@@ -14,22 +14,22 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Page View Controller-->
+        <scene sceneID="O39-zs-piG">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="5wL-cK-fqm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nNo-U3-Fat" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-428" y="-778"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="cI7-9U-uoB">
             <objects>
-                <viewController id="9x9-i5-6Wp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tutorial_0" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9x9-i5-6Wp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LZ6-iG-CMJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zt-Ee-kA8">
-                                <rect key="frame" x="20" y="120" width="335" height="447"/>
-                                <string key="text">CaptureML is a game that uses Machine Learning in its core.
-You’ll compete against your friends, and to be able to score you’ll have to take pictures of real world objects. Each player will have up to 90 seconds to find a object chosen by the game.</string>
-                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sc3-Yt-xSu" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
                                 <rect key="frame" x="30" y="40" width="45" height="45"/>
                                 <constraints>
@@ -42,16 +42,35 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                     <action selector="exitButtonTouched" destination="6lI-y1-tcW" eventType="touchUpInside" id="EL1-ej-5dr"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Cz4-Sc-wu5">
+                                <rect key="frame" x="20" y="177" width="335" height="353"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCE-zg-O5H">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="199"/>
+                                        <string key="text">CaptureML is a game that uses Machine Learning in its core.
+You’ll compete against your friends, and to be able to score you’ll have to take pictures of real world objects.</string>
+                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
+                                        <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Each player will have up to 90 seconds to find and capture a photo of an object chosen by the game." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cg-6n-2xv">
+                                        <rect key="frame" x="0.0" y="239" width="335" height="114"/>
+                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
+                                        <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Yq4-99-VbC" firstAttribute="trailing" secondItem="7zt-Ee-kA8" secondAttribute="trailing" constant="20" id="0rV-eX-u8Q"/>
-                            <constraint firstItem="7zt-Ee-kA8" firstAttribute="top" secondItem="Yq4-99-VbC" secondAttribute="top" constant="100" id="1AM-o8-Byu"/>
-                            <constraint firstItem="Yq4-99-VbC" firstAttribute="bottom" secondItem="7zt-Ee-kA8" secondAttribute="bottom" constant="100" id="Q5J-dZ-d1Y"/>
+                            <constraint firstItem="Cz4-Sc-wu5" firstAttribute="centerY" secondItem="LZ6-iG-CMJ" secondAttribute="centerY" constant="20" id="76e-qX-gf3"/>
                             <constraint firstItem="sc3-Yt-xSu" firstAttribute="width" secondItem="sc3-Yt-xSu" secondAttribute="height" multiplier="1:1" id="RiU-Wy-h1o"/>
+                            <constraint firstItem="Cz4-Sc-wu5" firstAttribute="centerX" secondItem="LZ6-iG-CMJ" secondAttribute="centerX" id="fBw-on-yaf"/>
                             <constraint firstItem="sc3-Yt-xSu" firstAttribute="top" secondItem="Yq4-99-VbC" secondAttribute="top" constant="20" id="gEf-cn-tTz"/>
                             <constraint firstItem="sc3-Yt-xSu" firstAttribute="leading" secondItem="Yq4-99-VbC" secondAttribute="leading" constant="30" id="hRe-w4-8Rc"/>
-                            <constraint firstItem="7zt-Ee-kA8" firstAttribute="leading" secondItem="Yq4-99-VbC" secondAttribute="leading" constant="20" id="uJF-Xo-LrK"/>
+                            <constraint firstAttribute="trailing" secondItem="Cz4-Sc-wu5" secondAttribute="trailing" constant="20" id="wDu-kw-2MT"/>
+                            <constraint firstItem="Cz4-Sc-wu5" firstAttribute="leading" secondItem="LZ6-iG-CMJ" secondAttribute="leading" constant="20" id="zGb-dk-nqY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yq4-99-VbC"/>
                     </view>
@@ -88,7 +107,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="victories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pxo-9t-EHs">
-                                <rect key="frame" x="20" y="38.5" width="335" height="48"/>
+                                <rect key="frame" x="80" y="38.5" width="215" height="48"/>
                                 <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="40"/>
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -97,9 +116,9 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                         <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ksK-Gn-162" firstAttribute="trailing" secondItem="yJU-cv-1ad" secondAttribute="trailing" id="DtQ-it-UJW"/>
-                            <constraint firstItem="ksK-Gn-162" firstAttribute="trailing" secondItem="Pxo-9t-EHs" secondAttribute="trailing" constant="20" id="FTc-5R-L97"/>
+                            <constraint firstItem="ksK-Gn-162" firstAttribute="trailing" secondItem="Pxo-9t-EHs" secondAttribute="trailing" constant="80" id="FTc-5R-L97"/>
                             <constraint firstItem="yJU-cv-1ad" firstAttribute="leading" secondItem="WIp-zx-aXF" secondAttribute="leading" id="GF8-lP-EW4"/>
-                            <constraint firstItem="Pxo-9t-EHs" firstAttribute="leading" secondItem="ksK-Gn-162" secondAttribute="leading" constant="20" id="GFb-Iv-YaG"/>
+                            <constraint firstItem="Pxo-9t-EHs" firstAttribute="leading" secondItem="ksK-Gn-162" secondAttribute="leading" constant="80" id="GFb-Iv-YaG"/>
                             <constraint firstItem="Nuc-Xl-eW4" firstAttribute="leading" secondItem="ksK-Gn-162" secondAttribute="leading" constant="30" id="hMD-Bv-8uo"/>
                             <constraint firstItem="Nuc-Xl-eW4" firstAttribute="top" secondItem="ksK-Gn-162" secondAttribute="top" constant="20" id="m8J-cY-mNc"/>
                             <constraint firstItem="Nuc-Xl-eW4" firstAttribute="width" secondItem="Nuc-Xl-eW4" secondAttribute="height" multiplier="1:1" id="mqm-5X-Lj8"/>
@@ -138,7 +157,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="973-d0-SMD">
-                                <rect key="frame" x="20" y="165" width="335" height="182"/>
+                                <rect key="frame" x="20" y="135" width="335" height="182"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CaptureML" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-1V-D8u">
                                         <rect key="frame" x="39" y="0.0" width="257.5" height="66"/>
@@ -146,7 +165,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                         <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Zhr-lX-Mg2">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Zhr-lX-Mg2">
                                         <rect key="frame" x="0.0" y="146" width="335" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOM-fc-mQP">
@@ -155,7 +174,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                                 <color key="textColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqo-XE-WOi">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqo-XE-WOi">
                                                 <rect key="frame" x="167.5" y="0.0" width="15" height="36"/>
                                                 <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="30"/>
                                                 <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -170,6 +189,9 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                                 </connections>
                                             </stepper>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bof-qk-Qpc" secondAttribute="trailing" id="DWY-PQ-aYI"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -178,7 +200,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WX1-QP-dmC">
-                                <rect key="frame" x="69.5" y="447" width="236" height="171"/>
+                                <rect key="frame" x="69.5" y="387" width="236" height="171"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_frame" translatesAutoresizingMaskIntoConstraints="NO" id="xXg-BT-yU9">
                                         <rect key="frame" x="0.0" y="0.0" width="236" height="171"/>
@@ -216,7 +238,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                     <constraint firstAttribute="width" constant="45" id="NvT-AL-cdX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="27"/>
-                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <inset key="imageEdgeInsets" minX="11" minY="11" maxX="11" maxY="11"/>
                                 <state key="normal" image="Ranking"/>
                                 <connections>
                                     <segue destination="Qho-SD-CB9" kind="show" id="GTp-h0-DQH"/>
@@ -229,11 +251,11 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                             <constraint firstItem="RcT-KW-ElC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="64y-dv-45t"/>
                             <constraint firstItem="973-d0-SMD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="J0Z-WR-epf"/>
                             <constraint firstItem="RcT-KW-ElC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="KPk-x9-wVF"/>
-                            <constraint firstItem="WX1-QP-dmC" firstAttribute="top" secondItem="973-d0-SMD" secondAttribute="bottom" constant="100" id="T37-6V-fMf"/>
+                            <constraint firstItem="WX1-QP-dmC" firstAttribute="top" secondItem="973-d0-SMD" secondAttribute="bottom" constant="70" id="T37-6V-fMf"/>
                             <constraint firstItem="RcT-KW-ElC" firstAttribute="width" secondItem="RcT-KW-ElC" secondAttribute="height" multiplier="1:1" id="cHv-st-xy2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="973-d0-SMD" secondAttribute="trailing" constant="20" id="hJ0-vf-647"/>
                             <constraint firstItem="cdc-4h-1Z7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="hau-br-UtA"/>
-                            <constraint firstItem="973-d0-SMD" firstAttribute="top" secondItem="cdc-4h-1Z7" secondAttribute="bottom" constant="80" id="oGG-jU-xS4"/>
+                            <constraint firstItem="973-d0-SMD" firstAttribute="top" secondItem="cdc-4h-1Z7" secondAttribute="bottom" constant="50" id="oGG-jU-xS4"/>
                             <constraint firstItem="WX1-QP-dmC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rzG-7C-7fh"/>
                             <constraint firstItem="973-d0-SMD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tmd-WF-gCh"/>
                         </constraints>
@@ -299,34 +321,39 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                     <constraint firstAttribute="height" constant="20" id="2Yj-jw-9PB"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-w0-lds">
-                                <rect key="frame" x="20" y="170" width="335" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="1kd-Q1-PZi"/>
-                                    <constraint firstAttribute="height" constant="30" id="c1c-9Y-wYW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="19"/>
-                                <color key="textColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Js-Dv-Xh3">
-                                <rect key="frame" x="20" y="224" width="335" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6lN-n6-F8p"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="19"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YF9-jh-Qh8">
-                                <rect key="frame" x="20" y="278" width="335" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="plY-0P-Lmw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="19"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gOS-gB-TOc">
+                                <rect key="frame" x="20" y="105" width="335" height="110"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-w0-lds">
+                                        <rect key="frame" x="162.5" y="0.0" width="10.5" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="1kd-Q1-PZi"/>
+                                            <constraint firstAttribute="height" constant="30" id="c1c-9Y-wYW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="19"/>
+                                        <color key="textColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Js-Dv-Xh3">
+                                        <rect key="frame" x="162.5" y="40" width="10.5" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="6lN-n6-F8p"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="19"/>
+                                        <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YF9-jh-Qh8">
+                                        <rect key="frame" x="162.5" y="80" width="10.5" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="plY-0P-Lmw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="19"/>
+                                        <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QzC-ka-Bl3" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
                                 <rect key="frame" x="30" y="40" width="45" height="45"/>
                                 <constraints>
@@ -343,27 +370,21 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                         <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Zro-N6-7Tj" firstAttribute="centerY" secondItem="LOq-zD-ncY" secondAttribute="centerY" id="0Ks-Jg-aCp"/>
-                            <constraint firstItem="6Js-Dv-Xh3" firstAttribute="leading" secondItem="exh-8v-vHS" secondAttribute="leading" constant="20" id="4u8-vf-8Ab"/>
                             <constraint firstItem="y5A-YL-1u3" firstAttribute="top" secondItem="xDy-7X-hzz" secondAttribute="bottom" constant="40" id="9Qx-18-aGc"/>
-                            <constraint firstItem="exh-8v-vHS" firstAttribute="trailing" secondItem="YF9-jh-Qh8" secondAttribute="trailing" constant="20" id="Bau-k3-I1k"/>
                             <constraint firstItem="Zro-N6-7Tj" firstAttribute="centerX" secondItem="XaS-lp-nbJ" secondAttribute="centerX" id="GJN-8T-SR3"/>
-                            <constraint firstItem="exh-8v-vHS" firstAttribute="trailing" secondItem="QEf-w0-lds" secondAttribute="trailing" constant="20" id="KIk-OW-nYU"/>
                             <constraint firstItem="LOq-zD-ncY" firstAttribute="width" secondItem="LOq-zD-ncY" secondAttribute="height" multiplier="1:1" id="LIC-nv-muP"/>
-                            <constraint firstItem="exh-8v-vHS" firstAttribute="trailing" secondItem="6Js-Dv-Xh3" secondAttribute="trailing" constant="20" id="LY8-pb-XQ3"/>
-                            <constraint firstItem="YF9-jh-Qh8" firstAttribute="leading" secondItem="exh-8v-vHS" secondAttribute="leading" constant="20" id="NTN-R0-3J8"/>
                             <constraint firstItem="QzC-ka-Bl3" firstAttribute="width" secondItem="QzC-ka-Bl3" secondAttribute="height" multiplier="1:1" id="Pqf-AY-Gvt"/>
-                            <constraint firstItem="QEf-w0-lds" firstAttribute="leading" secondItem="exh-8v-vHS" secondAttribute="leading" constant="20" id="Uat-Bo-2EX"/>
+                            <constraint firstItem="gOS-gB-TOc" firstAttribute="leading" secondItem="exh-8v-vHS" secondAttribute="leading" constant="20" id="U2S-20-8tK"/>
                             <constraint firstItem="y5A-YL-1u3" firstAttribute="leading" secondItem="exh-8v-vHS" secondAttribute="leading" constant="60" id="Vxz-3d-itD"/>
                             <constraint firstItem="exh-8v-vHS" firstAttribute="trailing" secondItem="y5A-YL-1u3" secondAttribute="trailing" constant="60" id="Wgf-JI-nGI"/>
-                            <constraint firstItem="YF9-jh-Qh8" firstAttribute="top" secondItem="6Js-Dv-Xh3" secondAttribute="bottom" constant="24" id="ZoG-ez-m30"/>
+                            <constraint firstItem="exh-8v-vHS" firstAttribute="trailing" secondItem="gOS-gB-TOc" secondAttribute="trailing" constant="20" id="Zda-dd-Kkd"/>
                             <constraint firstItem="LOq-zD-ncY" firstAttribute="top" secondItem="exh-8v-vHS" secondAttribute="top" constant="20" id="moU-fD-Zor"/>
+                            <constraint firstItem="gOS-gB-TOc" firstAttribute="top" secondItem="Zro-N6-7Tj" secondAttribute="bottom" constant="20" id="nCJ-2R-XAq"/>
                             <constraint firstItem="QzC-ka-Bl3" firstAttribute="top" secondItem="exh-8v-vHS" secondAttribute="top" constant="20" id="nUM-bF-1kv"/>
                             <constraint firstItem="xDy-7X-hzz" firstAttribute="leading" secondItem="exh-8v-vHS" secondAttribute="leading" id="sEq-4h-UpH"/>
                             <constraint firstItem="QzC-ka-Bl3" firstAttribute="leading" secondItem="exh-8v-vHS" secondAttribute="leading" constant="30" id="tcC-uS-QQg"/>
                             <constraint firstItem="xDy-7X-hzz" firstAttribute="trailing" secondItem="exh-8v-vHS" secondAttribute="trailing" id="uxk-MB-PD5"/>
-                            <constraint firstItem="QEf-w0-lds" firstAttribute="top" secondItem="LOq-zD-ncY" secondAttribute="bottom" constant="85" id="vE5-97-dMU"/>
                             <constraint firstItem="exh-8v-vHS" firstAttribute="trailing" secondItem="LOq-zD-ncY" secondAttribute="trailing" constant="30" id="yec-6k-8Wq"/>
-                            <constraint firstItem="6Js-Dv-Xh3" firstAttribute="top" secondItem="QEf-w0-lds" secondAttribute="bottom" constant="24" id="yvU-F6-RyI"/>
                             <constraint firstItem="exh-8v-vHS" firstAttribute="bottom" secondItem="y5A-YL-1u3" secondAttribute="bottom" constant="20" id="zBK-L5-w6W"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="exh-8v-vHS"/>
@@ -441,30 +462,127 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <point key="canvasLocation" x="1657" y="20"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="9ev-Jj-0Dr">
+        <scene sceneID="3XM-uP-czG">
             <objects>
-                <viewController id="tAB-iQ-Q6p" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vJp-Tf-Vv1">
+                <viewController storyboardIdentifier="tutorial_1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3BN-MF-QE7" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tz5-fj-owG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="fEY-Xc-bQT">
-                                <rect key="frame" x="20" y="233.5" width="335" height="200"/>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkN-Uq-zU8" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
+                                <rect key="frame" x="30" y="40" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="MaC-6M-qlx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="27"/>
+                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="exitButtonTouched" destination="6lI-y1-tcW" eventType="touchUpInside" id="QB9-9o-aJb"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_0" translatesAutoresizingMaskIntoConstraints="NO" id="tze-Tu-rfl">
+                                <rect key="frame" x="0.0" y="93" width="375" height="494"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="fEY-Xc-bQT" secondAttribute="trailing" constant="20" id="GrS-Dp-cEg"/>
-                            <constraint firstItem="fEY-Xc-bQT" firstAttribute="centerY" secondItem="vJp-Tf-Vv1" secondAttribute="centerY" id="aCQ-mC-BOT"/>
-                            <constraint firstItem="fEY-Xc-bQT" firstAttribute="centerX" secondItem="vJp-Tf-Vv1" secondAttribute="centerX" id="wdR-nC-Cbr"/>
-                            <constraint firstItem="fEY-Xc-bQT" firstAttribute="leading" secondItem="Y1o-nF-W5l" secondAttribute="leading" constant="20" id="wdm-Yf-eAm"/>
+                            <constraint firstItem="tze-Tu-rfl" firstAttribute="top" secondItem="kkN-Uq-zU8" secondAttribute="bottom" constant="8" id="1sK-f0-yxQ"/>
+                            <constraint firstItem="tze-Tu-rfl" firstAttribute="trailing" secondItem="Hon-yd-8el" secondAttribute="trailing" id="6k0-cD-iJh"/>
+                            <constraint firstItem="kkN-Uq-zU8" firstAttribute="width" secondItem="kkN-Uq-zU8" secondAttribute="height" multiplier="1:1" id="EBA-OM-idH"/>
+                            <constraint firstItem="kkN-Uq-zU8" firstAttribute="leading" secondItem="Hon-yd-8el" secondAttribute="leading" constant="30" id="Ilo-ic-xpg"/>
+                            <constraint firstItem="tze-Tu-rfl" firstAttribute="leading" secondItem="Hon-yd-8el" secondAttribute="leading" id="O6D-hB-Cyi"/>
+                            <constraint firstItem="kkN-Uq-zU8" firstAttribute="top" secondItem="Hon-yd-8el" secondAttribute="top" constant="20" id="SsK-VB-hSS"/>
+                            <constraint firstAttribute="bottom" secondItem="tze-Tu-rfl" secondAttribute="bottom" constant="80" id="u1B-dL-jbm"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Y1o-nF-W5l"/>
+                        <viewLayoutGuide key="safeArea" id="Hon-yd-8el"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rll-Rn-QkB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vVC-Ks-PuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1194" y="-776"/>
+            <point key="canvasLocation" x="1008.6956521739131" y="-776.11607142857144"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bhP-sy-5Vr">
+            <objects>
+                <viewController storyboardIdentifier="tutorial_2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sJe-A4-kHR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WBV-c5-UNv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OlP-Ae-3Yt" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
+                                <rect key="frame" x="30" y="40" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="gR6-wy-pR8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="27"/>
+                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="exitButtonTouched" destination="6lI-y1-tcW" eventType="touchUpInside" id="L5b-47-fmc"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_1" translatesAutoresizingMaskIntoConstraints="NO" id="Y4v-pF-I6Z">
+                                <rect key="frame" x="0.0" y="93" width="375" height="494"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Y4v-pF-I6Z" firstAttribute="leading" secondItem="GFQ-Se-yT9" secondAttribute="leading" id="4pN-bl-ceT"/>
+                            <constraint firstItem="OlP-Ae-3Yt" firstAttribute="width" secondItem="OlP-Ae-3Yt" secondAttribute="height" multiplier="1:1" id="7aT-Mg-oUT"/>
+                            <constraint firstAttribute="bottom" secondItem="Y4v-pF-I6Z" secondAttribute="bottom" constant="80" id="Bbu-tS-m9f"/>
+                            <constraint firstItem="Y4v-pF-I6Z" firstAttribute="top" secondItem="OlP-Ae-3Yt" secondAttribute="bottom" constant="8" id="SKs-Sr-Kls"/>
+                            <constraint firstItem="OlP-Ae-3Yt" firstAttribute="top" secondItem="GFQ-Se-yT9" secondAttribute="top" constant="20" id="UOe-Or-7IF"/>
+                            <constraint firstItem="Y4v-pF-I6Z" firstAttribute="trailing" secondItem="GFQ-Se-yT9" secondAttribute="trailing" id="g9D-8J-YCh"/>
+                            <constraint firstItem="OlP-Ae-3Yt" firstAttribute="leading" secondItem="GFQ-Se-yT9" secondAttribute="leading" constant="30" id="nLZ-oK-bKh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GFQ-Se-yT9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3d0-EQ-wVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1695" y="-777"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="s0q-oT-3KL">
+            <objects>
+                <viewController storyboardIdentifier="tutorial_3" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Eel-2G-7dx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9KR-Zp-zWC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCj-Z4-dfd" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
+                                <rect key="frame" x="30" y="40" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="ZS5-bN-fly"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="27"/>
+                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="exitButtonTouched" destination="6lI-y1-tcW" eventType="touchUpInside" id="KNz-a4-8xZ"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_2" translatesAutoresizingMaskIntoConstraints="NO" id="b3L-tk-Wi9">
+                                <rect key="frame" x="0.0" y="93" width="375" height="494"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="b3L-tk-Wi9" firstAttribute="trailing" secondItem="rNX-hY-hca" secondAttribute="trailing" id="8MC-ZF-ALj"/>
+                            <constraint firstItem="BCj-Z4-dfd" firstAttribute="width" secondItem="BCj-Z4-dfd" secondAttribute="height" multiplier="1:1" id="ABQ-pg-4sO"/>
+                            <constraint firstItem="b3L-tk-Wi9" firstAttribute="leading" secondItem="rNX-hY-hca" secondAttribute="leading" id="Hbk-5r-iGH"/>
+                            <constraint firstItem="b3L-tk-Wi9" firstAttribute="top" secondItem="BCj-Z4-dfd" secondAttribute="bottom" constant="8" id="fiz-tc-49M"/>
+                            <constraint firstItem="BCj-Z4-dfd" firstAttribute="top" secondItem="rNX-hY-hca" secondAttribute="top" constant="20" id="h4F-5G-u0X"/>
+                            <constraint firstAttribute="bottom" secondItem="b3L-tk-Wi9" secondAttribute="bottom" constant="80" id="lgM-Tw-daI"/>
+                            <constraint firstItem="BCj-Z4-dfd" firstAttribute="leading" secondItem="rNX-hY-hca" secondAttribute="leading" constant="30" id="xgS-kg-Qir"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rNX-hY-hca"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uc2-AK-3Pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2410" y="-776"/>
         </scene>
     </scenes>
     <resources>
@@ -472,5 +590,8 @@ You’ll compete against your friends, and to be able to score you’ll have to 
         <image name="camera_frame" width="236" height="171"/>
         <image name="close" width="18" height="17"/>
         <image name="start_button" width="93" height="92"/>
+        <image name="tutorial_0" width="91.666664123535156" height="141"/>
+        <image name="tutorial_1" width="91.666664123535156" height="168.33332824707031"/>
+        <image name="tutorial_2" width="91.666664123535156" height="141"/>
     </resources>
 </document>

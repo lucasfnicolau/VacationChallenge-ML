@@ -50,7 +50,7 @@ class RankingVC: UIViewController {
                 player.alpha = 0
                 
                 players.append(player)
-                players[i].setImage(number: i)
+                players[i].setImage(number: i, numOfPlayers: playersNumber)
                 players[i].backgroundColor = playersColors[i]
                 players[i].showRankingVictories(victories: cdPlayers[i].victories)
                 players[i].layer.zPosition = -1

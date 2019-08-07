@@ -60,6 +60,7 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     var mediumWord = "joystick"
     var hardWord = ""
     var winner = 0
+    var turnTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +105,7 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                 player.alpha = 0
                 
                 players.append(player)
-                players[i].setImage(number: i)
+                players[i].setImage(number: i, numOfPlayers: playersNumber)
                 players[i].backgroundColor = playersColors[i]
                 players[i].addScore(0)
                 players[i].layer.zPosition = -1
@@ -194,7 +195,7 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                         return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                     }
                     
-                    print(descriptions)
+//                    print(descriptions)
                     
                     var matched = false
                     for description in descriptions {
@@ -258,13 +259,13 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
 //            self.beginTurnButton.fade()
             self.presentPhotoPicker(sourceType: .camera)
         }
-        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
+//        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
 //            self.beginTurnButton.fade()
-            self.presentPhotoPicker(sourceType: .photoLibrary)
-        }
+//            self.presentPhotoPicker(sourceType: .photoLibrary)
+//        }
         
         photoSourcePicker.addAction(takePhoto)
-        photoSourcePicker.addAction(choosePhoto)
+//        photoSourcePicker.addAction(choosePhoto)
         photoSourcePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(photoSourcePicker, animated: true)
@@ -272,6 +273,8 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
         self.setNotification(withTitle: "Your turn is over!", andBody: "Tap here to get back to the game", inSeconds: 90, usingOptions: [true, false])
+        
+        turnTimer = Timer.scheduledTimer(timeInterval: 90, target: self, selector: #selector(endTurn), userInfo: nil, repeats: false)
         
         // PENSAR NO TEMPO
         
@@ -301,6 +304,11 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         alertController.addAction(cancelAction)
         alertController.addAction(exitAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func endTurn() {
+        setNewTurn()
+        turnTimer.invalidate()
     }
 }
 

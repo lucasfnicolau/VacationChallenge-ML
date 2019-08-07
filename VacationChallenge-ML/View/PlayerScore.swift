@@ -53,10 +53,10 @@ class PlayerScore: UIView {
         nameLabel.textAlignment = .center
         nameLabel.isHidden = true
         
-        frame = CGRect(x: 0, y: -95, width: self.bounds.width, height: 55)
+        frame = CGRect(x: 0, y: -95, width: self.bounds.width, height: 50)
         imageView = UIImageView(frame: frame)
         guard let imageView = imageView else { return }
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         
         frame = CGRect(x: 0, y: -32, width: self.bounds.width, height: 20)
         scoreLabel = UILabel(frame: frame)
@@ -72,17 +72,32 @@ class PlayerScore: UIView {
         self.score = 0
     }
     
+    func adjustHeight(numOfPlayers players: Int) {
+        
+        if UIScreen.main.bounds.width <= 414 {
+            self.imageView?.frame = CGRect(x: 0, y: -97, width: self.bounds.width, height: 0.140625 * UIScreen.main.bounds.width)
+        } else {
+            guard let imageView = self.imageView else { return }
+            let oldThings = (imageView.frame.size.height, imageView.center)
+            imageView.frame.size = SizeAdapter.getRatioSizeByBiggest(CGSize(width: 414 / players, height: 55), deviceSize: UIScreen.main.bounds.size)
+            var new = oldThings.1
+            new.y -= (imageView.frame.size.height - oldThings.0)
+            imageView.center = new
+        }
+    }
+    
     func addScore(_ score: Int) {
         self.score += score
         updateSize(withValue: score)
     }
     
-    func setImage(number: Int) {
+    func setImage(number: Int, numOfPlayers players: Int) {
         if number == 1 || number == 2 {
             imageView?.frame.size.height -= 7
         }
         
         imageView?.image = UIImage(named: "\(number)")
+        adjustHeight(numOfPlayers: players)
     }
     
     func showRankingVictories(victories: Int16) {
