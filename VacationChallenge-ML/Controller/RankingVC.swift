@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class RankingVC: UIViewController {
     
@@ -31,7 +32,17 @@ class RankingVC: UIViewController {
         do {
             self.cdPlayers = try getContext().fetch(CDPlayer.fetchRequest())
             
-            print(cdPlayers)
+            if cdPlayers.count == 0 {
+                for i in 0 ..< 4 {
+                    guard let cdPlayer = NSEntityDescription.insertNewObject(forEntityName: CVClass.CDPlayer.rawValue, into: getContext()) as? CDPlayer else { return }
+                    cdPlayer.imageName = "\(i)"
+                    cdPlayer.victories = 0
+                    
+                    cdPlayers.append(cdPlayer)
+                    
+                    getAppDelegate().saveContext()
+                }
+            }
         } catch let error {
             print(error)
         }

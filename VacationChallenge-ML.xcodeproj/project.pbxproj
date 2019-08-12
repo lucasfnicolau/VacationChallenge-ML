@@ -23,7 +23,6 @@
 		B65D829D22F385B500B2C8DD /* RankingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65D829C22F385B500B2C8DD /* RankingVC.swift */; };
 		B660A25222FA610500169F4B /* TutorialPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B660A25122FA610500169F4B /* TutorialPageVC.swift */; };
 		B690033E22D6922000463FA3 /* PlayerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690033D22D6922000463FA3 /* PlayerTurn.swift */; };
-		B690034322D6AAD900463FA3 /* BeginTurnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690034122D6AAD800463FA3 /* BeginTurnVC.swift */; };
 		B690034422D6AAD900463FA3 /* BeginTurnVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B690034222D6AAD900463FA3 /* BeginTurnVC.xib */; };
 		B6C9753F22F8DA3400E24579 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C9753D22F8DA3400E24579 /* HelpVC.xib */; };
 		B6CE39BF22DFC5BA00381792 /* PlayerScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */; };
@@ -53,7 +52,6 @@
 		B65D829C22F385B500B2C8DD /* RankingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingVC.swift; sourceTree = "<group>"; };
 		B660A25122FA610500169F4B /* TutorialPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageVC.swift; sourceTree = "<group>"; };
 		B690033D22D6922000463FA3 /* PlayerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurn.swift; sourceTree = "<group>"; };
-		B690034122D6AAD800463FA3 /* BeginTurnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginTurnVC.swift; sourceTree = "<group>"; };
 		B690034222D6AAD900463FA3 /* BeginTurnVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BeginTurnVC.xib; path = ../Controller/BeginTurnVC.xib; sourceTree = "<group>"; };
 		B6C9753D22F8DA3400E24579 /* HelpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HelpVC.xib; path = ../Controller/HelpVC.xib; sourceTree = "<group>"; };
 		B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerScore.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 				B6F9F27A22C41B09000E95A4 /* MainMenuVC.swift */,
 				B6075C1C22D6773500728A41 /* GameloopVC.swift */,
 				B6075C2122D67AC800728A41 /* HelpVC.swift */,
-				B690034122D6AAD800463FA3 /* BeginTurnVC.swift */,
 				B6FFD31822EE0B5F006631FC /* WinnerVC.swift */,
 				B65D829C22F385B500B2C8DD /* RankingVC.swift */,
 				B660A25122FA610500169F4B /* TutorialPageVC.swift */,
@@ -288,7 +285,6 @@
 				B65D829D22F385B500B2C8DD /* RankingVC.swift in Sources */,
 				B660A25222FA610500169F4B /* TutorialPageVC.swift in Sources */,
 				B6075C2322D67AC800728A41 /* HelpVC.swift in Sources */,
-				B690034322D6AAD900463FA3 /* BeginTurnVC.swift in Sources */,
 				B65D829B22F21C6000B2C8DD /* Resnet50.mlmodel in Sources */,
 				B6075C1A22D66D0E00728A41 /* Helpers.swift in Sources */,
 				B6F9F28122C41B09000E95A4 /* VacationChallenge_ML.xcdatamodeld in Sources */,

@@ -73,13 +73,13 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         
         var tempWords = allWords
         
-        self.easyWord = tempWords.randomElement() ?? ""
+        self.easyWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
         tempWords.remove(at: tempWords.firstIndex(of: self.easyWord) ?? 0)
         
-        self.mediumWord = tempWords.randomElement() ?? ""
+        self.mediumWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
         tempWords.remove(at: tempWords.firstIndex(of: self.mediumWord) ?? 0)
         
-        self.hardWord = tempWords.randomElement() ?? ""
+        self.hardWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
         
         self.testLabel.text = "\(self.hardWord.replacingOccurrences(of: "_", with: " ")) – 50 pts"
         self.testLabel1.text = "\(self.mediumWord.replacingOccurrences(of: "_", with: " ")) – 25 pts"
@@ -189,7 +189,7 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                 } else {
                     
                     // Display top classifications ranked by confidence in the UI.
-                    let topClassifications = classifications.prefix(5)
+                    let topClassifications = classifications.prefix(7)
                     let descriptions = topClassifications.map { classification in
                         // Formats the classification for display; e.g. "(0.37) cliff, drop, drop-off".
                         return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
@@ -199,6 +199,11 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                     
                     var matched = false
                     for description in descriptions {
+                        
+//                        print("\nDEBUG: DESC.: \(description.lowercased())")
+//                        print("DEBUG: hWORD: \(self.hardWord.lowercased())")
+//                        print("DEBUG: mWORD: \(self.mediumWord.lowercased())")
+//                        print("DEBUG: eWORD: \(self.easyWord.lowercased())\n")
                         
                         if description.lowercased().contains(self.hardWord.lowercased()) {
                             self.players[self.currentPlayer].addScore(50)
@@ -219,6 +224,9 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                         self.players[self.currentPlayer].shake()
                     }
                     
+                    if self.turnTimer != nil { self.turnTimer.invalidate() }
+                    self.turnTimer = nil
+                    
                     self.setNewTurn()
                 }
             }
@@ -230,13 +238,13 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         
         var tempWords = allWords
         
-        self.easyWord = tempWords.randomElement() ?? ""
+        self.easyWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
         tempWords.remove(at: tempWords.firstIndex(of: self.easyWord) ?? 0)
         
-        self.mediumWord = tempWords.randomElement() ?? ""
+        self.mediumWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
         tempWords.remove(at: tempWords.firstIndex(of: self.mediumWord) ?? 0)
         
-        self.hardWord = tempWords.randomElement() ?? ""
+        self.hardWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
         
         self.testLabel.text = "\(self.hardWord.replacingOccurrences(of: "_", with: " ").lowercased()) – 50 pts"
         self.testLabel1.text = "\(self.mediumWord.replacingOccurrences(of: "_", with: " ").lowercased()) – 25 pts"
@@ -244,34 +252,37 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     }
     
     // MARK: - Photo Actions
-    
-    @IBAction func takePicture() {
-        
+    @IBAction func takePicture(_ sender: RoundedButton) {
         // Show options for the source picker only if the camera is available.
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            presentPhotoPicker(sourceType: .photoLibrary)
-//            self.beginTurnButton.fade()
+            presentPhotoPicker(sourceType: .photoLibrary, sender: sender)
+            //            self.beginTurnButton.fade()
             return
         }
         
         let photoSourcePicker = UIAlertController()
         let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
-//            self.beginTurnButton.fade()
-            self.presentPhotoPicker(sourceType: .camera)
+            //            self.beginTurnButton.fade()
+            self.presentPhotoPicker(sourceType: .camera, sender: sender)
         }
-//        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
-//            self.beginTurnButton.fade()
-//            self.presentPhotoPicker(sourceType: .photoLibrary)
-//        }
+        //        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
+        //            self.beginTurnButton.fade()
+        //            self.presentPhotoPicker(sourceType: .photoLibrary)
+        //        }
         
         photoSourcePicker.addAction(takePhoto)
-//        photoSourcePicker.addAction(choosePhoto)
+        //        photoSourcePicker.addAction(choosePhoto)
         photoSourcePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        if let popoverController = photoSourcePicker.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
         
         present(photoSourcePicker, animated: true)
     }
     
-    func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
+    func presentPhotoPicker(sourceType: UIImagePickerController.SourceType, sender: UIView) {
         self.setNotification(withTitle: "Your turn is over!", andBody: "Tap here to get back to the game", inSeconds: 90, usingOptions: [true, false])
         
         turnTimer = Timer.scheduledTimer(timeInterval: 90, target: self, selector: #selector(endTurn), userInfo: nil, repeats: false)
@@ -283,7 +294,14 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = sourceType
-        present(picker, animated: true)
+        
+        if let popoverController = picker.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
+        self.present(picker, animated: true, completion: nil)
+        
+//        present(picker, animated: true)
     }
     
     func showWinner(player: Int) {
@@ -307,8 +325,11 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     }
     
     @objc func endTurn() {
-        setNewTurn()
-        turnTimer.invalidate()
+        if turnTimer != nil {
+            setNewTurn()
+            turnTimer.invalidate()
+            turnTimer = nil
+        }
     }
 }
 
@@ -334,7 +355,12 @@ extension GameloopVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let winnerVC = segue.destination as? WinnerVC else { return }
+        winnerVC.modalPresentationStyle = .fullScreen
         winnerVC.player = winner
+        
+        if let rankingVC = segue.destination as? RankingVC {
+            rankingVC.modalPresentationStyle = .fullScreen
+        }
     }
 }
 
@@ -397,4 +423,5 @@ extension GameloopVC: UNUserNotificationCenterDelegate {
         
         completionHandler([.alert, .sound])
     }
+    
 }

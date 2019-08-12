@@ -72,18 +72,24 @@ class PlayerScore: UIView {
         self.score = 0
     }
     
-    func adjustHeight(numOfPlayers players: Int) {
+    func adjustSizeAndPosition(numOfPlayers players: Int) {
         
-        if UIScreen.main.bounds.width <= 414 {
-            self.imageView?.frame = CGRect(x: 0, y: -97, width: self.bounds.width, height: 0.140625 * UIScreen.main.bounds.width)
+        guard let imageView = imageView, let scoreLabel = scoreLabel else { return }
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            imageView.frame = CGRect(x: 0, y: -97, width: self.bounds.width / CGFloat(players), height: 50)
+            imageView.center.y = scoreLabel.center.y - imageView.frame.height
         } else {
-            guard let imageView = self.imageView else { return }
-            let oldThings = (imageView.frame.size.height, imageView.center)
-            imageView.frame.size = SizeAdapter.getRatioSizeByBiggest(CGSize(width: 414 / players, height: 55), deviceSize: UIScreen.main.bounds.size)
-            var new = oldThings.1
-            new.y -= (imageView.frame.size.height - oldThings.0)
-            imageView.center = new
+            if players != 2 {
+                imageView.frame = CGRect(x: 0, y: -97, width: self.bounds.width / CGFloat(players), height: 50)
+                imageView.center.y = scoreLabel.center.y - imageView.frame.height - 5
+            } else {
+                imageView.frame = CGRect(x: 0, y: -97, width: self.bounds.width / CGFloat(players) / 1.5, height: 50)
+                imageView.center.y = scoreLabel.center.y - imageView.frame.height * 1.5
+            }
         }
+        
+        imageView.center.x = scoreLabel.center.x
     }
     
     func addScore(_ score: Int) {
@@ -97,7 +103,7 @@ class PlayerScore: UIView {
         }
         
         imageView?.image = UIImage(named: "\(number)")
-        adjustHeight(numOfPlayers: players)
+        adjustSizeAndPosition(numOfPlayers: players)
     }
     
     func showRankingVictories(victories: Int16) {
