@@ -10,7 +10,7 @@ import Foundation
 
 // TESTS
 
-let allWords = ["spoon",
+let allWords_OLD = ["spoon",
       "fork",
       "plate",
       "television/tv",
@@ -70,7 +70,7 @@ let allWords = ["spoon",
       "desktop_computer",
       "dishwasher"]
 
-let realTimeWords = ["person",
+let allWords = ["person",
 "bicycle",
 "car",
 "motorbike",
