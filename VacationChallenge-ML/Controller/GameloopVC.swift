@@ -200,11 +200,6 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                     var matched = false
                     for description in descriptions {
                         
-//                        print("\nDEBUG: DESC.: \(description.lowercased())")
-//                        print("DEBUG: hWORD: \(self.hardWord.lowercased())")
-//                        print("DEBUG: mWORD: \(self.mediumWord.lowercased())")
-//                        print("DEBUG: eWORD: \(self.easyWord.lowercased())\n")
-                        
                         if description.lowercased().contains(self.hardWord.lowercased()) {
                             self.players[self.currentPlayer].addScore(50)
                             matched = true
@@ -253,33 +248,30 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     
     // MARK: - Photo Actions
     @IBAction func takePicture(_ sender: RoundedButton) {
+
         // Show options for the source picker only if the camera is available.
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            presentPhotoPicker(sourceType: .photoLibrary, sender: sender)
-            //            self.beginTurnButton.fade()
-            return
-        }
-        
-        let photoSourcePicker = UIAlertController()
-        let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
-            //            self.beginTurnButton.fade()
-            self.presentPhotoPicker(sourceType: .camera, sender: sender)
-        }
-        //        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
-        //            self.beginTurnButton.fade()
-        //            self.presentPhotoPicker(sourceType: .photoLibrary)
-        //        }
-        
-        photoSourcePicker.addAction(takePhoto)
-        //        photoSourcePicker.addAction(choosePhoto)
-        photoSourcePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        if let popoverController = photoSourcePicker.popoverPresentationController {
-            popoverController.sourceView = sender
-            popoverController.sourceRect = sender.bounds
-        }
-        
-        present(photoSourcePicker, animated: true)
+//        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+//            presentPhotoPicker(sourceType: .photoLibrary, sender: sender)
+//            //            self.beginTurnButton.fade()
+//            return
+//        }
+//
+//        let photoSourcePicker = UIAlertController()
+//        let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
+//            //            self.beginTurnButton.fade()
+//            self.presentPhotoPicker(sourceType: .camera, sender: sender)
+//        }
+//
+//        photoSourcePicker.addAction(takePhoto)
+//        //        photoSourcePicker.addAction(choosePhoto)
+//        photoSourcePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//
+//        if let popoverController = photoSourcePicker.popoverPresentationController {
+//            popoverController.sourceView = sender
+//            popoverController.sourceRect = sender.bounds
+//        }
+//
+//        present(photoSourcePicker, animated: true)
     }
     
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType, sender: UIView) {
@@ -300,8 +292,6 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
             popoverController.sourceRect = sender.bounds
         }
         self.present(picker, animated: true, completion: nil)
-        
-//        present(picker, animated: true)
     }
     
     func showWinner(player: Int) {
@@ -354,12 +344,13 @@ extension GameloopVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let winnerVC = segue.destination as? WinnerVC else { return }
-        winnerVC.modalPresentationStyle = .fullScreen
-        winnerVC.player = winner
-        
-        if let rankingVC = segue.destination as? RankingVC {
+        if let winnerVC = segue.destination as? WinnerVC {
+            winnerVC.modalPresentationStyle = .fullScreen
+            winnerVC.player = winner
+        } else if let rankingVC = segue.destination as? RankingVC {
             rankingVC.modalPresentationStyle = .fullScreen
+        } else if let visualRecognitionVC = segue.destination as? VisionRecognitionVC {
+            visualRecognitionVC.currentPlayer = currentPlayer
         }
     }
 }

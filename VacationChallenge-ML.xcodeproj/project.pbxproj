@@ -26,6 +26,9 @@
 		B690034422D6AAD900463FA3 /* BeginTurnVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B690034222D6AAD900463FA3 /* BeginTurnVC.xib */; };
 		B6C9753F22F8DA3400E24579 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C9753D22F8DA3400E24579 /* HelpVC.xib */; };
 		B6CE39BF22DFC5BA00381792 /* PlayerScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */; };
+		B6DED8F123BFB58C00D42EB7 /* RealTimeGameloopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DED8F023BFB58C00D42EB7 /* RealTimeGameloopVC.swift */; };
+		B6DED8F323BFC00300D42EB7 /* VisualRecognitionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DED8F223BFC00300D42EB7 /* VisualRecognitionVC.swift */; };
+		B6DED8F523BFC59000D42EB7 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6DED8F423BFC59000D42EB7 /* YOLOv3.mlmodel */; };
 		B6F9F27922C41B09000E95A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F27822C41B09000E95A4 /* AppDelegate.swift */; };
 		B6F9F27B22C41B09000E95A4 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F27A22C41B09000E95A4 /* MainMenuVC.swift */; };
 		B6F9F27E22C41B09000E95A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F9F27C22C41B09000E95A4 /* Main.storyboard */; };
@@ -55,6 +58,9 @@
 		B690034222D6AAD900463FA3 /* BeginTurnVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BeginTurnVC.xib; path = ../Controller/BeginTurnVC.xib; sourceTree = "<group>"; };
 		B6C9753D22F8DA3400E24579 /* HelpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HelpVC.xib; path = ../Controller/HelpVC.xib; sourceTree = "<group>"; };
 		B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerScore.swift; sourceTree = "<group>"; };
+		B6DED8F023BFB58C00D42EB7 /* RealTimeGameloopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeGameloopVC.swift; sourceTree = "<group>"; };
+		B6DED8F223BFC00300D42EB7 /* VisualRecognitionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualRecognitionVC.swift; sourceTree = "<group>"; };
+		B6DED8F423BFC59000D42EB7 /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
 		B6F9F27522C41B09000E95A4 /* VacationChallenge-ML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VacationChallenge-ML.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F9F27822C41B09000E95A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F9F27A22C41B09000E95A4 /* MainMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
@@ -96,6 +102,8 @@
 				B6FFD31822EE0B5F006631FC /* WinnerVC.swift */,
 				B65D829C22F385B500B2C8DD /* RankingVC.swift */,
 				B660A25122FA610500169F4B /* TutorialPageVC.swift */,
+				B6DED8F023BFB58C00D42EB7 /* RealTimeGameloopVC.swift */,
+				B6DED8F223BFC00300D42EB7 /* VisualRecognitionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -141,6 +149,7 @@
 		B65D829922F21C4600B2C8DD /* MLModels */ = {
 			isa = PBXGroup;
 			children = (
+				B6DED8F423BFC59000D42EB7 /* YOLOv3.mlmodel */,
 				B65D829A22F21C6000B2C8DD /* Resnet50.mlmodel */,
 			);
 			path = MLModels;
@@ -290,9 +299,12 @@
 				B6F9F28122C41B09000E95A4 /* VacationChallenge_ML.xcdatamodeld in Sources */,
 				B6075C1F22D6796B00728A41 /* RoundedButton.swift in Sources */,
 				B6075C2622D67B0A00728A41 /* RoundedPopupView.swift in Sources */,
+				B6DED8F523BFC59000D42EB7 /* YOLOv3.mlmodel in Sources */,
 				B6F9F27922C41B09000E95A4 /* AppDelegate.swift in Sources */,
 				B647740122D6627200450B19 /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */,
+				B6DED8F323BFC00300D42EB7 /* VisualRecognitionVC.swift in Sources */,
 				B6CE39BF22DFC5BA00381792 /* PlayerScore.swift in Sources */,
+				B6DED8F123BFB58C00D42EB7 /* RealTimeGameloopVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
