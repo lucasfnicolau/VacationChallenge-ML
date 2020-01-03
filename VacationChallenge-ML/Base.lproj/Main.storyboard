@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Do-jj-HzV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -467,16 +467,67 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                     <view key="view" contentMode="scaleToFill" id="DFf-bV-hYD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dih-V7-OGl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xKK-h9-gsK">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t2i-xB-L9f">
+                                            <rect key="frame" x="8" y="4" width="52" height="52"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="t2i-xB-L9f" secondAttribute="height" multiplier="1:1" id="wad-Qa-Cu1"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TE-Uq-C1v">
+                                            <rect key="frame" x="154" y="12" width="67" height="36"/>
+                                            <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mo3-xo-8Hk">
+                                            <rect key="frame" x="335" y="17" width="32" height="25.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="mo3-xo-8Hk" secondAttribute="height" multiplier="1:1" id="8pu-Bd-eh2"/>
+                                            </constraints>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <state key="normal" backgroundImage="multiply" catalog="system">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1TE-Uq-C1v" firstAttribute="centerX" secondItem="xKK-h9-gsK" secondAttribute="centerX" id="4UX-6J-d90"/>
+                                        <constraint firstItem="t2i-xB-L9f" firstAttribute="leading" secondItem="xKK-h9-gsK" secondAttribute="leading" constant="8" id="4a0-2P-mqV"/>
+                                        <constraint firstAttribute="trailing" secondItem="mo3-xo-8Hk" secondAttribute="trailing" constant="8" id="6pg-g7-bRD"/>
+                                        <constraint firstItem="t2i-xB-L9f" firstAttribute="top" secondItem="xKK-h9-gsK" secondAttribute="top" constant="4" id="An2-o1-wsI"/>
+                                        <constraint firstItem="mo3-xo-8Hk" firstAttribute="top" secondItem="xKK-h9-gsK" secondAttribute="top" constant="14" id="CTl-GL-Cyy"/>
+                                        <constraint firstItem="1TE-Uq-C1v" firstAttribute="centerY" secondItem="xKK-h9-gsK" secondAttribute="centerY" id="S2H-eJ-v4I"/>
+                                        <constraint firstAttribute="bottom" secondItem="mo3-xo-8Hk" secondAttribute="bottom" constant="14" id="UDv-do-4To"/>
+                                        <constraint firstAttribute="bottom" secondItem="t2i-xB-L9f" secondAttribute="bottom" constant="4" id="cZA-RP-gm3"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Dih-V7-OGl" firstAttribute="leading" secondItem="DIZ-5o-1xn" secondAttribute="leading" id="Gah-ZT-aQq"/>
+                            <constraint firstItem="Dih-V7-OGl" firstAttribute="trailing" secondItem="DIZ-5o-1xn" secondAttribute="trailing" id="YFU-es-ZYX"/>
+                            <constraint firstItem="Dih-V7-OGl" firstAttribute="top" secondItem="DIZ-5o-1xn" secondAttribute="top" id="Z6u-1p-Qhh"/>
+                            <constraint firstItem="Dih-V7-OGl" firstAttribute="height" secondItem="DFf-bV-hYD" secondAttribute="height" multiplier="0.09" id="sa1-1d-48Z"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="DIZ-5o-1xn"/>
                     </view>
                     <connections>
+                        <outlet property="playerImageView" destination="t2i-xB-L9f" id="b83-ua-sbt"/>
                         <outlet property="previewView" destination="DFf-bV-hYD" id="ClX-fo-h8y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DIE-Ge-p4G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="772"/>
+            <point key="canvasLocation" x="1605.5999999999999" y="771.36431784107947"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3XM-uP-czG">
@@ -606,6 +657,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
         <image name="Ranking" width="287" height="363"/>
         <image name="camera_frame" width="236" height="171"/>
         <image name="close" width="18" height="17"/>
+        <image name="multiply" catalog="system" width="64" height="54"/>
         <image name="start_button" width="93" height="92"/>
         <image name="tutorial_0" width="91.666664123535156" height="141"/>
         <image name="tutorial_1" width="91.666664123535156" height="168.33332824707031"/>

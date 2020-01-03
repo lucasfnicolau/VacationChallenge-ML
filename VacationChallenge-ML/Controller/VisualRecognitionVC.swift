@@ -13,9 +13,17 @@ import Vision
 class VisionRecognitionVC: RealTimeGameloopVC {
 
     private var detectionOverlay: CALayer! = nil
+    @IBOutlet weak var playerImageView: UIImageView!
+    var currentPlayer = 0
 
     // Vision parts
     private var requests = [VNRequest]()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        playerImageView.image = UIImage(named: "\(currentPlayer)")
+    }
 
     @discardableResult
     func setupVision() -> NSError? {
