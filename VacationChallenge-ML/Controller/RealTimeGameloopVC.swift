@@ -29,7 +29,13 @@ class RealTimeGameloopVC: UIViewController, AVCaptureVideoDataOutputSampleBuffer
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         // to be implemented in the subclass
     }
-    
+
+    /**
+     Configure the AV Capture Device by setting its proprieties like mediaType and what camera will be used. This function also sets the video resolution of the camera and the camera layer.
+
+     - Version:
+     1.0
+     */
     func setupAVCapture() {
         var deviceInput: AVCaptureDeviceInput?
 
@@ -87,20 +93,37 @@ class RealTimeGameloopVC: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         rootLayer.addSublayer(previewLayer)
     }
 
+    /**
+     Starts the capture session.
+
+     - Version:
+     1.0
+     */
     func startCaptureSession() {
         session.startRunning()
     }
 
-    // Clean up capture setup
+    /**
+     Clean up the capture setup.
+
+     - Version:
+     1.0
+     */
     func teardownAVCapture() {
         previewLayer.removeFromSuperlayer()
         previewLayer = nil
     }
 
-    func captureOutput(_ captureOutput: AVCaptureOutput, didDrop didDropSampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // print("frame dropped")
-    }
+//    func captureOutput(_ captureOutput: AVCaptureOutput, didDrop didDropSampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+//        // print("frame dropped")
+//    }
 
+    /**
+     Handles the image orientation.
+
+     - Version:
+     1.0
+     */
     public func exifOrientationFromDeviceOrientation() -> CGImagePropertyOrientation {
         let curDeviceOrientation = UIDevice.current.orientation
         let exifOrientation: CGImagePropertyOrientation

@@ -37,10 +37,12 @@ class VisionRecognitionVC: RealTimeGameloopVC {
     // Vision parts
     private var requests = [VNRequest]()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    /**
+     Setup the Vision framework by choosing what ML Model will be used and by starting the image recognition features
 
+     - Version:
+     1.0
+     */
     @discardableResult
     func setupVision() -> NSError? {
         // Setup Vision parts
@@ -67,6 +69,15 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         return error
     }
 
+    /**
+     Draw on the view the boxes around the elements recognized by the ML Model.
+
+     - parameters:
+        - results: An array containing all results given by the model. Can not be empty.
+
+     - Version:
+     1.0
+     */
     func drawVisionRequestResults(_ results: [Any]) {
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
@@ -124,6 +135,12 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         startCaptureSession()
     }
 
+    /**
+     Configure the layers that will be used to show all the renderings of the observations.
+
+     - Version:
+     1.0
+     */
     func setupLayers() {
         detectionOverlay = CALayer() // container layer that has all the renderings of the observations
         detectionOverlay.name = "DetectionOverlay"
@@ -136,13 +153,16 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         detectionOverlay.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
         rootLayer.addSublayer(detectionOverlay)
 
-        setTopViewElements(on: rootLayer)
-
-        turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerHandler), userInfo: nil, repeats: true)
-        turnTimer?.fire()
+        setTopViewElements()
     }
 
-    func setTopViewElements(on layer: CALayer) {
+    /**
+     Create the elements that will be displayet at the top of the view. These elements are the current player image view, the timer label and the close button. This function also fires the turn timer after it creation.
+
+     - Version:
+     1.0
+     */
+    func setTopViewElements() {
 
         let playerImageView = UIImageView(image: UIImage(named: "\(currentPlayer)"))
         guard let image = playerImageView.image else { return }
@@ -171,8 +191,17 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         ])
 
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+
+        turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerHandler), userInfo: nil, repeats: true)
+        turnTimer?.fire()
     }
 
+    /**
+     This function handles the turn timer behaviour, updating the timer label. After the time is over, this view controller will be dismissed.
+
+     - Version:
+     1.0
+     */
     @objc func timerHandler() {
         currentTime -= 1
         self.timerLabel.text = "\(currentTime)"
@@ -183,6 +212,12 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         }
     }
 
+    /**
+     Dismiss this view controller.
+
+     - Version:
+     1.0
+     */
     @objc func close() {
         // TODO: Notificate
         self.dismiss(animated: true, completion: nil)
@@ -212,6 +247,12 @@ class VisionRecognitionVC: RealTimeGameloopVC {
 
     }
 
+    /**
+     Create the text layer to fit in the bounds of the image recognized with all the customizations of the text.
+
+     - Version:
+     1.0
+     */
     func createTextSubLayerInBounds(_ bounds: CGRect, identifier: String, confidence: VNConfidence) -> CATextLayer {
         let textLayer = CATextLayer()
         textLayer.name = "Object Label"
@@ -231,6 +272,12 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         return textLayer
     }
 
+    /**
+     Create a rounded rectangle with colored borders to highlight the recognized object.
+
+     - Version:
+     1.0
+     */
     func createRoundedRectLayerWithBounds(_ bounds: CGRect) -> CALayer {
         let shapeLayer = CAShapeLayer()
         shapeLayer.bounds = bounds
