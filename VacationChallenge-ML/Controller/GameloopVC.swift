@@ -200,11 +200,6 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                     var matched = false
                     for description in descriptions {
                         
-//                        print("\nDEBUG: DESC.: \(description.lowercased())")
-//                        print("DEBUG: hWORD: \(self.hardWord.lowercased())")
-//                        print("DEBUG: mWORD: \(self.mediumWord.lowercased())")
-//                        print("DEBUG: eWORD: \(self.easyWord.lowercased())\n")
-                        
                         if description.lowercased().contains(self.hardWord.lowercased()) {
                             self.players[self.currentPlayer].addScore(50)
                             matched = true
@@ -265,10 +260,6 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
             //            self.beginTurnButton.fade()
             self.presentPhotoPicker(sourceType: .camera, sender: sender)
         }
-        //        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
-        //            self.beginTurnButton.fade()
-        //            self.presentPhotoPicker(sourceType: .photoLibrary)
-        //        }
         
         photoSourcePicker.addAction(takePhoto)
         //        photoSourcePicker.addAction(choosePhoto)
@@ -300,8 +291,6 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
             popoverController.sourceRect = sender.bounds
         }
         self.present(picker, animated: true, completion: nil)
-        
-//        present(picker, animated: true)
     }
     
     func showWinner(player: Int) {

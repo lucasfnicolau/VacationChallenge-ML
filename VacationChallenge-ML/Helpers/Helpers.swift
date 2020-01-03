@@ -61,12 +61,12 @@ func getContext() -> NSManagedObjectContext {
 }
 
 public class SizeAdapter{
-    public static let iPhoneXRSize:CGSize = CGSize(width: 414, height: 896)
+    public static let iPhoneXRSize: CGSize = CGSize(width: 414, height: 896)
     
     private init(){
     }
     
-    public static func getRatioSizeByHeight(_ size:CGSize, deviceSize:CGSize) -> CGSize{
+    public static func getRatioSizeByHeight(_ size: CGSize, deviceSize: CGSize) -> CGSize{
         let newHeight:CGFloat = size.height * deviceSize.height / iPhoneXRSize.height
         let ratio = (size.width / size.height)
         
@@ -75,7 +75,7 @@ public class SizeAdapter{
         return CGSize(width: newWidth, height: newHeight)
     }
     
-    public static func getRatioSizeByWidth(_ size:CGSize, deviceSize:CGSize) -> CGSize{
+    public static func getRatioSizeByWidth(_ size: CGSize, deviceSize: CGSize) -> CGSize{
         let newWidth:CGFloat = size.width * deviceSize.width / iPhoneXRSize.width
         let ratio = (size.height / size.width)
         
@@ -84,7 +84,7 @@ public class SizeAdapter{
         return CGSize(width: newWidth, height: newHeight)
     }
     
-    public static func getRatioSizeByBiggest(_ size:CGSize, deviceSize:CGSize) -> CGSize{
+    public static func getRatioSizeByBiggest(_ size: CGSize, deviceSize: CGSize) -> CGSize{
         if deviceSize.height < deviceSize.width{
             return getRatioSizeByHeight(size, deviceSize: deviceSize)
         }
@@ -93,14 +93,14 @@ public class SizeAdapter{
         }
     }
     
-    public static func getProportionalSize(_ object:UIView, deviceSize:CGSize) -> CGSize{
+    public static func getProportionalSize(_ object: UIView, deviceSize: CGSize) -> CGSize{
         let newWidth:CGFloat = object.frame.size.width * deviceSize.width / iPhoneXRSize.width
         let newHeight:CGFloat  = object.frame.size.height * deviceSize.height / iPhoneXRSize.height
         
         return CGSize(width: newWidth, height: newHeight)
     }
     
-    public static func getTrebuchetProportionalFontSize(_ fontSize:CGFloat, deviceSize:CGSize) -> CGFloat{
+    public static func getTrebuchetProportionalFontSize(_ fontSize: CGFloat, deviceSize: CGSize) -> CGFloat{
         
         let newFontSize:CGFloat = fontSize * deviceSize.height / iPhoneXRSize.height
         
