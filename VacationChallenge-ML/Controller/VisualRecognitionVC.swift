@@ -13,16 +13,30 @@ import Vision
 class VisionRecognitionVC: RealTimeGameloopVC {
 
     private var detectionOverlay: CALayer! = nil
-    @IBOutlet weak var playerImageView: UIImageView!
     var currentPlayer = 0
+    var timerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = "01:00"
+        label.font = UIFont(name: Font.norwester.rawValue, size: 28)
+        return label
+    }()
+    var closeButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .white
+        if #available(iOS 13.0, *) {
+            button.setBackgroundImage(UIImage(systemName: "multiply.circle"), for: .normal)
+        } else {
+            // Fallback on earlier versions
+        }
+        return button
+    }()
 
     // Vision parts
     private var requests = [VNRequest]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        playerImageView.image = UIImage(named: "\(currentPlayer)")
     }
 
     @discardableResult
@@ -113,6 +127,36 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         guard let rootLayer = rootLayer else { return }
         detectionOverlay.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
         rootLayer.addSublayer(detectionOverlay)
+
+        setBluredView(on: rootLayer)
+    }
+
+    func setBluredView(on layer: CALayer) {
+        let blurEffect = UIBlurEffect(style: .light)
+
+        let playerImageView = UIImageView(image: UIImage(named: "\(currentPlayer)"))
+
+        self.view.addSubview(playerImageView)
+        self.view.addSubview(timerLabel)
+        self.view.addSubview(closeButton)
+
+        playerImageView.translatesAutoresizingMaskIntoConstraints = false
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            playerImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 8),
+            playerImageView.topAnchor.constraint(equalTo:  self.view.safeAreaLayoutGuide.topAnchor, constant: 4),
+            playerImageView.widthAnchor.constraint(equalToConstant: 60),
+            playerImageView.heightAnchor.constraint(equalToConstant: 60),
+
+            timerLabel.centerYAnchor.constraint(equalTo: playerImageView.centerYAnchor),
+            timerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+
+            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8),
+            closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            closeButton.widthAnchor.constraint(equalToConstant: 45),
+            closeButton.heightAnchor.constraint(equalToConstant: 45),
+        ])
     }
 
     func updateLayerGeometry() {

@@ -27,6 +27,10 @@ enum Image: String {
     case help = "help"
 }
 
+enum Font: String {
+    case norwester = "Norwester-Regular"
+}
+
 func getImage(_ image: Image) -> UIImage? {
     return UIImage(named: image.rawValue)
 }
