@@ -14,10 +14,12 @@ class VisionRecognitionVC: RealTimeGameloopVC {
 
     private var detectionOverlay: CALayer! = nil
     var currentPlayer = 0
+    var currentTime = 60
+    var turnTimer: Timer?
     var timerLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "01:00"
+        label.text = "60"
         label.font = UIFont(name: Font.norwester.rawValue, size: 28)
         return label
     }()
@@ -128,13 +130,17 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         detectionOverlay.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
         rootLayer.addSublayer(detectionOverlay)
 
-        setBluredView(on: rootLayer)
+        setTopViewElements(on: rootLayer)
+
+        turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerHandler), userInfo: nil, repeats: true)
+        turnTimer?.fire()
     }
 
-    func setBluredView(on layer: CALayer) {
-        let blurEffect = UIBlurEffect(style: .light)
+    func setTopViewElements(on layer: CALayer) {
 
         let playerImageView = UIImageView(image: UIImage(named: "\(currentPlayer)"))
+        guard let image = playerImageView.image else { return }
+        let size = (image.size.width, image.size.height)
 
         self.view.addSubview(playerImageView)
         self.view.addSubview(timerLabel)
@@ -146,8 +152,8 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         NSLayoutConstraint.activate([
             playerImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 8),
             playerImageView.topAnchor.constraint(equalTo:  self.view.safeAreaLayoutGuide.topAnchor, constant: 4),
-            playerImageView.widthAnchor.constraint(equalToConstant: 60),
-            playerImageView.heightAnchor.constraint(equalToConstant: 60),
+            playerImageView.widthAnchor.constraint(equalToConstant: size.0 * 0.95),
+            playerImageView.heightAnchor.constraint(equalToConstant: size.1 * 0.95),
 
             timerLabel.centerYAnchor.constraint(equalTo: playerImageView.centerYAnchor),
             timerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -155,8 +161,25 @@ class VisionRecognitionVC: RealTimeGameloopVC {
             closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8),
             closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16),
             closeButton.widthAnchor.constraint(equalToConstant: 45),
-            closeButton.heightAnchor.constraint(equalToConstant: 45),
+            closeButton.heightAnchor.constraint(equalToConstant: 45)
         ])
+
+        closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+    }
+
+    @objc func timerHandler() {
+        currentTime -= 1
+        self.timerLabel.text = "\(currentTime)"
+
+        if currentTime <= 0 {
+            turnTimer?.invalidate()
+            dismiss(animated: true, completion: nil)
+        }
+    }
+
+    @objc func close() {
+        // TODO: Notificate
+        self.dismiss(animated: true, completion: nil)
     }
 
     func updateLayerGeometry() {
