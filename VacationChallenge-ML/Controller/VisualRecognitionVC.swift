@@ -224,6 +224,7 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         textLayer.shadowOpacity = 0.7
         textLayer.shadowOffset = CGSize(width: 2, height: 2)
         textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+        textLayer.foregroundColor = UIColor.white.cgColor
         textLayer.contentsScale = 2.0 // retina rendering
         // rotate the layer into screen orientation and scale and mirror
         textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)).scaledBy(x: 1.0, y: -1.0))
@@ -235,7 +236,7 @@ class VisionRecognitionVC: RealTimeGameloopVC {
         shapeLayer.bounds = bounds
         shapeLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
         shapeLayer.name = "Found Object"
-        shapeLayer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 0.0])
+        shapeLayer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.0])
         shapeLayer.cornerRadius = 7
         shapeLayer.borderWidth = 1
         shapeLayer.borderColor = UIColor.green.cgColor
