@@ -20,6 +20,7 @@ class MainMenuVC: UIViewController {
     var appHasBeenOpenedBefore = false
     var defaults: UserDefaults?
     var cdPlayers = [CDPlayer]()
+    var gameHandlerDelegate: GameHandlerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,10 @@ class MainMenuVC: UIViewController {
                 print(error)
             }
         }
+    }
+
+    @IBAction func startGame() {
+        gameHandlerDelegate?.startGame(numOfPlayers: Int(playersNumberLabel.text ?? "2") ?? 2)
     }
 
     @IBAction func playersNumberChanged(_ sender: UIStepper) {
