@@ -66,7 +66,6 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         super.viewDidLoad()
         
         exitButton.tintColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
-        exitButton.setImage(#imageLiteral(resourceName: "close").withRenderingMode(.alwaysTemplate), for: .normal)
         
         self.beginTurnButton.alpha = 0.3
         self.beginTurnButton.isEnabled = false

@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class PlayerScore: UIView {
+class PlayerScore: ShadowedView {
     
     var nameLabel: UILabel?
     var scoreLabel: UILabel?
@@ -40,7 +40,7 @@ class PlayerScore: UIView {
         super.init(coder: aDecoder)
     }
     
-    func setLayout() {
+    override func setLayout() {
         self.layer.cornerRadius = 4
         self.layer.borderColor = #colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)
         self.layer.borderWidth = 4
@@ -70,6 +70,8 @@ class PlayerScore: UIView {
         self.addSubview(scoreLabel)
         
         self.score = 0
+
+        super.setLayout()
     }
     
     func adjustSizeAndPosition(numOfPlayers players: Int) {

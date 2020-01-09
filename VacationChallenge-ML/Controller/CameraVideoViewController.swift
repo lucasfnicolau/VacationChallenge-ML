@@ -1,5 +1,5 @@
 //
-//  RealTimeGameloopVC.swift
+//  CameraVideoViewController.swift
 //  VacationChallenge-ML
 //
 //  Created by Lucas Fernandez Nicolau on 03/01/20.
@@ -9,10 +9,20 @@
 import UIKit
 import AVFoundation
 
-class RealTimeGameloopVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+protocol GameHandlerDelegate {
+    func startGame(numOfPlayers: Int)
+}
+
+protocol GameStateDelegate {
+    func changeGameState(to gameState: GameState)
+}
+
+class CameraVideoViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     var bufferSize: CGSize = .zero
     var rootLayer: CALayer?
+    var gameState: GameState = .mainMenu
+    var viewControllers = [ViewController: UIViewController]()
 
     @IBOutlet weak private var previewView: UIView!
     private let session = AVCaptureSession()
@@ -24,12 +34,29 @@ class RealTimeGameloopVC: UIViewController, AVCaptureVideoDataOutputSampleBuffer
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAVCapture()
+        startCaptureSession()
+        initiateGame()
+    }
+
+    func initiateGame() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let mainMenuVC = storyboard.instantiateViewController(withIdentifier: ViewController.mainMenu.rawValue) as? MainMenuVC {
+            mainMenuVC.gameHandlerDelegate = self
+            viewControllers[.mainMenu] = mainMenuVC
+            self.add(mainMenuVC)
+        }
     }
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         // to be implemented in the subclass
     }
-    
+
+    /**
+     Configure the AV Capture Device by setting its proprieties like mediaType and what camera will be used. This function also sets the video resolution of the camera and the camera layer.
+
+     - Version:
+     1.0
+     */
     func setupAVCapture() {
         var deviceInput: AVCaptureDeviceInput?
 
@@ -87,20 +114,37 @@ class RealTimeGameloopVC: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         rootLayer.addSublayer(previewLayer)
     }
 
+    /**
+     Starts the capture session.
+
+     - Version:
+     1.0
+     */
     func startCaptureSession() {
         session.startRunning()
     }
 
-    // Clean up capture setup
+    /**
+     Clean up the capture setup.
+
+     - Version:
+     1.0
+     */
     func teardownAVCapture() {
         previewLayer.removeFromSuperlayer()
         previewLayer = nil
     }
 
-    func captureOutput(_ captureOutput: AVCaptureOutput, didDrop didDropSampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // print("frame dropped")
-    }
+//    func captureOutput(_ captureOutput: AVCaptureOutput, didDrop didDropSampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+//        // print("frame dropped")
+//    }
 
+    /**
+     Handles the image orientation.
+
+     - Version:
+     1.0
+     */
     public func exifOrientationFromDeviceOrientation() -> CGImagePropertyOrientation {
         let curDeviceOrientation = UIDevice.current.orientation
         let exifOrientation: CGImagePropertyOrientation
@@ -118,5 +162,29 @@ class RealTimeGameloopVC: UIViewController, AVCaptureVideoDataOutputSampleBuffer
             exifOrientation = .up
         }
         return exifOrientation
+    }
+}
+
+extension CameraVideoViewController: GameHandlerDelegate, GameStateDelegate {
+    func startGame(numOfPlayers: Int) {
+        // TODO
+        changeGameState(to: .gameloop)
+    }
+
+    func changeGameState(to gameState: GameState) {
+
+        switch gameState {
+        case .mainMenu:
+            // TODO
+            break
+        case .gameloop:
+            viewControllers[.mainMenu]?.view.isHidden = true
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let gameloopVC = storyboard.instantiateViewController(withIdentifier: ViewController.gameloop.rawValue) as? GameloopVC {
+                viewControllers[.gameloop] = gameloopVC
+                self.add(gameloopVC)
+            }
+            break
+        }
     }
 }
