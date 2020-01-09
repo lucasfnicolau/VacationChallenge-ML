@@ -12,7 +12,7 @@ import UIKit
 class PlayerScore: ShadowedView {
     
     var nameLabel: UILabel?
-    var scoreLabel: UILabel?
+    var scoreLabel: ShadowedLabel?
     var imageView: UIImageView?
     var gameLoopDelegate: GameloopVCDelegate?
     var score: Int = 0 {
@@ -59,7 +59,7 @@ class PlayerScore: ShadowedView {
         imageView.contentMode = .scaleAspectFill
         
         frame = CGRect(x: 0, y: -32, width: self.bounds.width, height: 20)
-        scoreLabel = UILabel(frame: frame)
+        scoreLabel = ShadowedLabel(frame: frame)
         guard let scoreLabel = scoreLabel else { return }
         scoreLabel.font = UIFont(name: "norwester", size: 20)
         scoreLabel.textColor = #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1)

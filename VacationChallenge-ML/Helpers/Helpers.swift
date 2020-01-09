@@ -34,11 +34,13 @@ enum Font: String {
 enum GameState {
     case mainMenu
     case gameloop
+    case ranking
 }
 
 enum ViewController: String {
     case mainMenu = "MainMenuVC"
     case gameloop = "GameloopVC"
+    case ranking = "RankingVC"
 }
 
 func getImage(_ image: Image) -> UIImage? {

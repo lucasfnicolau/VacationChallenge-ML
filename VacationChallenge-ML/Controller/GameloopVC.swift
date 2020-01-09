@@ -29,7 +29,8 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     @IBOutlet var baseView: UIView!
     @IBOutlet var beginTurnButton: RoundedButton!
     @IBOutlet var exitButton: UIButton!
-    
+
+    var gameHandlerDelegate: GameHandlerDelegate?
     var cdPlayers = [CDPlayer]()
     var playersNumber = 2
     var players = [PlayerScore]()
