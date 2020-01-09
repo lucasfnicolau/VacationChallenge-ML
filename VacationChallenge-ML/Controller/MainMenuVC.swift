@@ -79,6 +79,10 @@ class MainMenuVC: UIViewController {
             rankingVC.modalPresentationStyle = .fullScreen
         }
     }
+
+    @IBAction func openRanking() {
+        gameHandlerDelegate?.openRanking()
+    }
     
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) { }
 }

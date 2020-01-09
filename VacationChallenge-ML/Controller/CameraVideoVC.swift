@@ -1,5 +1,5 @@
 //
-//  CameraVideoViewController.swift
+//  CameraVideoVC.swift
 //  VacationChallenge-ML
 //
 //  Created by Lucas Fernandez Nicolau on 03/01/20.
@@ -11,13 +11,15 @@ import AVFoundation
 
 protocol GameHandlerDelegate {
     func startGame(numOfPlayers: Int)
+    func openRanking()
+    func returnToMenu()
 }
 
 protocol GameStateDelegate {
     func changeGameState(to gameState: GameState)
 }
 
-class CameraVideoViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     var bufferSize: CGSize = .zero
     var rootLayer: CALayer?
@@ -165,7 +167,15 @@ class CameraVideoViewController: UIViewController, AVCaptureVideoDataOutputSampl
     }
 }
 
-extension CameraVideoViewController: GameHandlerDelegate, GameStateDelegate {
+extension CameraVideoVC: GameHandlerDelegate, GameStateDelegate {
+    func returnToMenu() {
+        changeGameState(to: .mainMenu)
+    }
+
+    func openRanking() {
+        changeGameState(to: .ranking)
+    }
+
     func startGame(numOfPlayers: Int) {
         // TODO
         changeGameState(to: .gameloop)
@@ -175,16 +185,31 @@ extension CameraVideoViewController: GameHandlerDelegate, GameStateDelegate {
 
         switch gameState {
         case .mainMenu:
-            // TODO
-            break
+            viewControllers.values.forEach { (vc) in
+                vc.remove()
+            }
+            if let mainMenuVC = viewControllers[.mainMenu] {
+                mainMenuVC.view.isHidden = false
+                self.add(mainMenuVC)
+            }
+
         case .gameloop:
             viewControllers[.mainMenu]?.view.isHidden = true
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let gameloopVC = storyboard.instantiateViewController(withIdentifier: ViewController.gameloop.rawValue) as? GameloopVC {
+                gameloopVC.gameHandlerDelegate = self
                 viewControllers[.gameloop] = gameloopVC
                 self.add(gameloopVC)
             }
-            break
+
+        case .ranking:
+            viewControllers[.mainMenu]?.view.isHidden = true
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let rankingVC = storyboard.instantiateViewController(withIdentifier: ViewController.ranking.rawValue) as? RankingVC {
+                rankingVC.gameHandlerDelegate = self
+                viewControllers[.ranking] = rankingVC
+                self.add(rankingVC)
+            }
         }
     }
 }

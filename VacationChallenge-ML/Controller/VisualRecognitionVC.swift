@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Vision
 
-class VisionRecognitionVC: CameraVideoViewController {
+class VisionRecognitionVC: CameraVideoVC {
 
     private var detectionOverlay: CALayer! = nil
     var currentPlayer = 0
