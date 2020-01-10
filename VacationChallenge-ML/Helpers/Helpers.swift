@@ -35,12 +35,14 @@ enum GameState {
     case mainMenu
     case gameloop
     case ranking
+    case visualRecognition
 }
 
 enum ViewController: String {
     case mainMenu = "MainMenuVC"
     case gameloop = "GameloopVC"
     case ranking = "RankingVC"
+    case visionRecognition = "VisionRecognitionVC"
 }
 
 func getImage(_ image: Image) -> UIImage? {

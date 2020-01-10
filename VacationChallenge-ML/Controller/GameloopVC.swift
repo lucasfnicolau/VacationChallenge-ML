@@ -248,6 +248,7 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     
     // MARK: - Photo Actions
     @IBAction func takePicture(_ sender: RoundedButton) {
+        gameHandlerDelegate?.changeGameState(to: .visualRecognition)
 
         // Show options for the source picker only if the camera is available.
 //        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {

@@ -9,10 +9,8 @@
 import UIKit
 import AVFoundation
 
-protocol GameHandlerDelegate {
+protocol GameHandlerDelegate: GameStateDelegate {
     func startGame(numOfPlayers: Int)
-    func openRanking()
-    func returnToMenu()
 }
 
 protocol GameStateDelegate {
@@ -21,6 +19,7 @@ protocol GameStateDelegate {
 
 class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
+    var visionRecognitionVC: VisionRecognitionVC?
     var bufferSize: CGSize = .zero
     var rootLayer: CALayer?
     var gameState: GameState = .mainMenu
@@ -38,6 +37,18 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
         setupAVCapture()
         startCaptureSession()
         initiateGame()
+
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ViewController.visionRecognition.rawValue) as? VisionRecognitionVC {
+
+            visionRecognitionVC = vc
+            visionRecognitionVC?.gameHandlerDelegate = self
+            visionRecognitionVC?.cameraVideoVC = self
+            viewControllers[.visionRecognition] = visionRecognitionVC
+
+            DispatchQueue(label: "Vision", qos: .userInteractive, attributes: .concurrent, autoreleaseFrequency: .workItem, target: .main).async {
+                self.visionRecognitionVC?.setupAVCapture()
+            }
+        }
     }
 
     func initiateGame() {
@@ -50,7 +61,10 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
     }
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // to be implemented in the subclass
+
+        if gameState == .visualRecognition {
+            visionRecognitionVC?.captureOutput(output, didOutput: sampleBuffer, from: connection)
+        }
     }
 
     /**
@@ -114,6 +128,8 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
         guard let rootLayer = rootLayer else { return }
         previewLayer.frame = rootLayer.bounds
         rootLayer.addSublayer(previewLayer)
+
+//        visionRecognitionVC?.setupAVCapture()
     }
 
     /**
@@ -182,6 +198,8 @@ extension CameraVideoVC: GameHandlerDelegate, GameStateDelegate {
     }
 
     func changeGameState(to gameState: GameState) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        self.gameState = gameState
 
         switch gameState {
         case .mainMenu:
@@ -195,7 +213,6 @@ extension CameraVideoVC: GameHandlerDelegate, GameStateDelegate {
 
         case .gameloop:
             viewControllers[.mainMenu]?.view.isHidden = true
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let gameloopVC = storyboard.instantiateViewController(withIdentifier: ViewController.gameloop.rawValue) as? GameloopVC {
                 gameloopVC.gameHandlerDelegate = self
                 viewControllers[.gameloop] = gameloopVC
@@ -204,11 +221,20 @@ extension CameraVideoVC: GameHandlerDelegate, GameStateDelegate {
 
         case .ranking:
             viewControllers[.mainMenu]?.view.isHidden = true
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let rankingVC = storyboard.instantiateViewController(withIdentifier: ViewController.ranking.rawValue) as? RankingVC {
                 rankingVC.gameHandlerDelegate = self
                 viewControllers[.ranking] = rankingVC
                 self.add(rankingVC)
+            }
+
+        case .visualRecognition:
+            viewControllers[.gameloop]?.view.isHidden = true
+            if let visionRecognitionVC = viewControllers[.visionRecognition] as? VisionRecognitionVC {
+//                visionRecognitionVC.cameraVideoVC = self
+//                visionRecognitionVC.gameHandlerDelegate = self
+//                viewControllers[.visionRecognition] = visionRecognitionVC
+//                visionRecognitionVC.setupVision()
+                self.add(visionRecognitionVC)
             }
         }
     }
