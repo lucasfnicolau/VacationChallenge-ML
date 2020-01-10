@@ -81,7 +81,7 @@ class MainMenuVC: UIViewController {
     }
 
     @IBAction func openRanking() {
-        gameHandlerDelegate?.openRanking()
+        gameHandlerDelegate?.changeGameState(to: .ranking)
     }
     
     @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) { }

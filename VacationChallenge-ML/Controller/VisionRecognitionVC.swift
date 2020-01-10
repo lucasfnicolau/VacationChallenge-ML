@@ -1,5 +1,5 @@
 //
-//  VisualRecognitionVC.swift
+//  VisionRecognitionVC.swift
 //  VacationChallenge-ML
 //
 //  Created by Lucas Fernandez Nicolau on 03/01/20.
@@ -10,9 +10,11 @@ import UIKit
 import AVFoundation
 import Vision
 
-class VisionRecognitionVC: CameraVideoVC {
+class VisionRecognitionVC: UIViewController { // CameraVideoVC {
 
+    var cameraVideoVC: CameraVideoVC!
     private var detectionOverlay: CALayer! = nil
+    var gameHandlerDelegate: GameHandlerDelegate?
     var currentPlayer = 0
     var currentTime = 60
     var turnTimer: Timer?
@@ -37,8 +39,13 @@ class VisionRecognitionVC: CameraVideoVC {
     // Vision parts
     private var requests = [VNRequest]()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .clear
+    }
+
     /**
-     Setup the Vision framework by choosing what ML Model will be used and by starting the image recognition features
+     Setup the Vision framework by choosing what ML Model will be used and by starting the image recognition features.
 
      - Version:
      1.0
@@ -49,7 +56,7 @@ class VisionRecognitionVC: CameraVideoVC {
         let error: NSError! = nil
 
         guard let modelURL = Bundle.main.url(forResource: "YOLOv3", withExtension: "mlmodelc") else {
-            return NSError(domain: "VisionObjectRecognitionViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "Model file is missing"])
+            return NSError(domain: "VisionRecognitionVC", code: -1, userInfo: [NSLocalizedDescriptionKey: "Model file is missing"])
         }
         do {
             let visionModel = try VNCoreMLModel(for: MLModel(contentsOf: modelURL))
@@ -88,7 +95,7 @@ class VisionRecognitionVC: CameraVideoVC {
             }
             // Select only the label with the highest confidence.
             let topLabelObservation = objectObservation.labels[0]
-            let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
+            let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(cameraVideoVC.bufferSize.width), Int(cameraVideoVC.bufferSize.height))
 
             let shapeLayer = self.createRoundedRectLayerWithBounds(objectBounds)
 
@@ -108,12 +115,13 @@ class VisionRecognitionVC: CameraVideoVC {
         CATransaction.commit()
     }
 
-    override func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    /*override*/ func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
 
-        let exifOrientation = exifOrientationFromDeviceOrientation()
+        let exifOrientation = cameraVideoVC.exifOrientationFromDeviceOrientation()
 
         let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: exifOrientation, options: [:])
         do {
@@ -123,8 +131,8 @@ class VisionRecognitionVC: CameraVideoVC {
         }
     }
 
-    override func setupAVCapture() {
-        super.setupAVCapture()
+    /*override*/ func setupAVCapture() {
+//        super.setupAVCapture()
 
         // setup Vision parts
         setupLayers()
@@ -132,7 +140,7 @@ class VisionRecognitionVC: CameraVideoVC {
         setupVision()
 
         // start the capture
-        startCaptureSession()
+//        startCaptureSession()
     }
 
     /**
@@ -146,10 +154,10 @@ class VisionRecognitionVC: CameraVideoVC {
         detectionOverlay.name = "DetectionOverlay"
         detectionOverlay.bounds = CGRect(x: 0.0,
                                          y: 0.0,
-                                         width: bufferSize.width,
-                                         height: bufferSize.height)
+                                         width: cameraVideoVC.bufferSize.width,
+                                         height: cameraVideoVC.bufferSize.height)
 
-        guard let rootLayer = rootLayer else { return }
+        guard let rootLayer = cameraVideoVC.rootLayer else { return }
         detectionOverlay.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
         rootLayer.addSublayer(detectionOverlay)
 
@@ -224,12 +232,12 @@ class VisionRecognitionVC: CameraVideoVC {
     }
 
     func updateLayerGeometry() {
-        guard let rootLayer = rootLayer else { return }
+        guard let rootLayer = cameraVideoVC.rootLayer else { return }
         let bounds = rootLayer.bounds
         var scale: CGFloat
 
-        let xScale: CGFloat = bounds.size.width / bufferSize.height
-        let yScale: CGFloat = bounds.size.height / bufferSize.width
+        let xScale: CGFloat = bounds.size.width / cameraVideoVC.bufferSize.height
+        let yScale: CGFloat = bounds.size.height / cameraVideoVC.bufferSize.width
 
         scale = fmax(xScale, yScale)
         if scale.isInfinite {

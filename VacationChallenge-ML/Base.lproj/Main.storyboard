@@ -502,6 +502,21 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             </objects>
             <point key="canvasLocation" x="1605.5999999999999" y="771.36431784107947"/>
         </scene>
+        <!--Vision RecognitionVC-->
+        <scene sceneID="Yg9-pU-dji">
+            <objects>
+                <viewController storyboardIdentifier="VisionRecognitionVC" id="ucb-mA-nOp" customClass="VisionRecognitionVC" customModule="VacationChallenge_ML" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="clX-F3-dEN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="eng-ai-ecv"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EQV-ua-Cop" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="1436"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="3XM-uP-czG">
             <objects>

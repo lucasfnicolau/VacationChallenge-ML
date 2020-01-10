@@ -76,6 +76,6 @@ class RankingVC: UIViewController {
     }
     
     @IBAction func exitButtonTouched() {
-        gameHandlerDelegate?.returnToMenu()
+        gameHandlerDelegate?.changeGameState(to: .mainMenu)
     }
 }
