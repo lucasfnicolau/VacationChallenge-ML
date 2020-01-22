@@ -128,8 +128,6 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
         guard let rootLayer = rootLayer else { return }
         previewLayer.frame = rootLayer.bounds
         rootLayer.addSublayer(previewLayer)
-
-//        visionRecognitionVC?.setupAVCapture()
     }
 
     /**
@@ -152,10 +150,6 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
         previewLayer.removeFromSuperlayer()
         previewLayer = nil
     }
-
-//    func captureOutput(_ captureOutput: AVCaptureOutput, didDrop didDropSampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-//        // print("frame dropped")
-//    }
 
     /**
      Handles the image orientation.
@@ -184,14 +178,6 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
 }
 
 extension CameraVideoVC: GameHandlerDelegate, GameStateDelegate {
-    func returnToMenu() {
-        changeGameState(to: .mainMenu)
-    }
-
-    func openRanking() {
-        changeGameState(to: .ranking)
-    }
-
     func startGame(numOfPlayers: Int) {
         // TODO
         changeGameState(to: .gameloop)

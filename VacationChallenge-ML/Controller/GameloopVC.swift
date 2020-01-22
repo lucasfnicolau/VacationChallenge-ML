@@ -23,9 +23,9 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     }
     
     @IBOutlet var playerTurnView: PlayerTurn!
-    @IBOutlet var testLabel: UILabel!
-    @IBOutlet var testLabel1: UILabel!
-    @IBOutlet var testLabel2: UILabel!
+    @IBOutlet var easyWordLabel: UILabel!
+    @IBOutlet var mediumWordLabel: UILabel!
+    @IBOutlet var hardWordLabel: UILabel!
     @IBOutlet var baseView: UIView!
     @IBOutlet var beginTurnButton: RoundedButton!
     @IBOutlet var exitButton: UIButton!
@@ -70,20 +70,8 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         
         self.beginTurnButton.alpha = 0.3
         self.beginTurnButton.isEnabled = false
-        
-        var tempWords = allWords
-        
-        self.easyWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
-        tempWords.remove(at: tempWords.firstIndex(of: self.easyWord) ?? 0)
-        
-        self.mediumWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
-        tempWords.remove(at: tempWords.firstIndex(of: self.mediumWord) ?? 0)
-        
-        self.hardWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
-        
-        self.testLabel.text = "\(self.hardWord.replacingOccurrences(of: "_", with: " ")) – 50 pts"
-        self.testLabel1.text = "\(self.mediumWord.replacingOccurrences(of: "_", with: " ")) – 25 pts"
-        self.testLabel2.text = "\(self.easyWord.replacingOccurrences(of: "_", with: " ")) – 10 pts"
+
+        loadWords()
         
         do {
             cdPlayers = try getContext().fetch(CDPlayer.fetchRequest())
@@ -94,44 +82,71 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if players.count == 0 {
-        
-            var offsetX: CGFloat = 20
-            let width = UIScreen.main.bounds.width / CGFloat(playersNumber) - 40
-            for i in 0 ..< playersNumber {
-                let frame = CGRect(x: offsetX, y: baseView.frame.midY - 5, width: width, height: 1)
-                let player = PlayerScore(frame: frame)
-                player.alpha = 0
-                
-                players.append(player)
-                players[i].setImage(number: i, numOfPlayers: playersNumber)
-                players[i].backgroundColor = playersColors[i]
-                players[i].addScore(0)
-                players[i].layer.zPosition = -1
-                players[i].gameLoopDelegate = self
-                players[i].nameLabel?.text = "\(i + 1)"
-                
-                self.view.addSubview(players[i])
-                
-                offsetX += frame.width + 40
-                
-                UIView.animate(withDuration: 0.35, animations: {
-                    self.players[i].alpha = (i == 0 ? 1 : 0.3)
-                })
-            }
-            
-            currentPlayer = 0
-            
-            UIView.animate(withDuration: 1.65) {
-                self.beginTurnButton.alpha = 1
-                self.beginTurnButton.isEnabled = true
-            }
+            createPlayers()
         } else {
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.removeAllDeliveredNotifications()
-            notificationCenter.removeAllPendingNotificationRequests()
             self.beginTurnButton.focus()
+        }
+    }
+
+    /**
+     Loads the three words to be used in the first turn of the game.
+
+     - Version:
+     1.0
+     */
+    func loadWords() {
+        var tempWords = allWords
+
+        self.easyWord = (tempWords.randomElement() ?? "").lowercased()
+        tempWords.remove(at: tempWords.firstIndex(of: self.easyWord) ?? 0)
+
+        self.mediumWord = (tempWords.randomElement() ?? "").lowercased()
+        tempWords.remove(at: tempWords.firstIndex(of: self.mediumWord) ?? 0)
+
+        self.hardWord = (tempWords.randomElement() ?? "").lowercased()
+
+        self.easyWordLabel.text = "\(self.hardWord) – 50 pts"
+        self.mediumWordLabel.text = "\(self.mediumWord) – 25 pts"
+        self.hardWordLabel.text = "\(self.easyWord) – 10 pts"
+    }
+
+    /**
+     Creates the players and show them on the screen.
+
+     - Version:
+     1.0
+     */
+    func createPlayers() {
+        var offsetX: CGFloat = 20
+        let width = UIScreen.main.bounds.width / CGFloat(playersNumber) - 40
+        for i in 0 ..< playersNumber {
+            let frame = CGRect(x: offsetX, y: baseView.frame.midY - 5, width: width, height: 1)
+            let player = PlayerScore(frame: frame)
+            player.alpha = 0
+
+            players.append(player)
+            players[i].setImage(number: i, numOfPlayers: playersNumber)
+            players[i].backgroundColor = playersColors[i]
+            players[i].addScore(0)
+            players[i].layer.zPosition = -1
+            players[i].gameLoopDelegate = self
+            players[i].nameLabel?.text = "\(i + 1)"
+
+            self.view.addSubview(players[i])
+
+            offsetX += frame.width + 40
+
+            UIView.animate(withDuration: 0.35, animations: {
+                self.players[i].alpha = (i == 0 ? 1 : 0.3)
+            })
+        }
+
+        currentPlayer = 0
+
+        UIView.animate(withDuration: 1.65) {
+            self.beginTurnButton.alpha = 1
+            self.beginTurnButton.isEnabled = true
         }
     }
 
@@ -233,70 +248,24 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         
         var tempWords = allWords
         
-        self.easyWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
+        self.easyWord = (tempWords.randomElement() ?? "").lowercased()
         tempWords.remove(at: tempWords.firstIndex(of: self.easyWord) ?? 0)
         
-        self.mediumWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
+        self.mediumWord = (tempWords.randomElement() ?? "").lowercased()
         tempWords.remove(at: tempWords.firstIndex(of: self.mediumWord) ?? 0)
         
-        self.hardWord = (tempWords.randomElement() ?? "").replacingOccurrences(of: "_", with: " ").lowercased()
+        self.hardWord = (tempWords.randomElement() ?? "").lowercased()
         
-        self.testLabel.text = "\(self.hardWord.replacingOccurrences(of: "_", with: " ").lowercased()) – 50 pts"
-        self.testLabel1.text = "\(self.mediumWord.replacingOccurrences(of: "_", with: " ").lowercased()) – 25 pts"
-        self.testLabel2.text = "\(self.easyWord.replacingOccurrences(of: "_", with: " ").lowercased()) – 10 pts"
+        self.easyWordLabel.text = "\(self.hardWord) – 50 pts"
+        self.mediumWordLabel.text = "\(self.mediumWord) – 25 pts"
+        self.hardWordLabel.text = "\(self.easyWord) – 10 pts"
     }
-    
-    // MARK: - Photo Actions
-    @IBAction func takePicture(_ sender: RoundedButton) {
-        gameHandlerDelegate?.changeGameState(to: .visualRecognition)
 
-        // Show options for the source picker only if the camera is available.
-//        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-//            presentPhotoPicker(sourceType: .photoLibrary, sender: sender)
-//            //            self.beginTurnButton.fade()
-//            return
-//        }
-//
-//        let photoSourcePicker = UIAlertController()
-//        let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
-//            //            self.beginTurnButton.fade()
-//            self.presentPhotoPicker(sourceType: .camera, sender: sender)
-//        }
-//
-//        photoSourcePicker.addAction(takePhoto)
-//        //        photoSourcePicker.addAction(choosePhoto)
-//        photoSourcePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//
-//        if let popoverController = photoSourcePicker.popoverPresentationController {
-//            popoverController.sourceView = sender
-//            popoverController.sourceRect = sender.bounds
-//        }
-//
-//        present(photoSourcePicker, animated: true)
-    }
-    
-    func presentPhotoPicker(sourceType: UIImagePickerController.SourceType, sender: UIView) {
-        self.setNotification(withTitle: "Your turn is over!", andBody: "Tap here to get back to the game", inSeconds: 90, usingOptions: [true, false])
-        
-        turnTimer = Timer.scheduledTimer(timeInterval: 90, target: self, selector: #selector(endTurn), userInfo: nil, repeats: false)
-        
-        // PENSAR NO TEMPO
-        
-        self.beginTurnButton.fade()
-        
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = sourceType
-        
-        if let popoverController = picker.popoverPresentationController {
-            popoverController.sourceView = sender
-            popoverController.sourceRect = sender.bounds
-        }
-        self.present(picker, animated: true, completion: nil)
+    @IBAction func beginTurn(_ sender: RoundedButton) {
+        gameHandlerDelegate?.changeGameState(to: .visualRecognition)
     }
     
     func showWinner(player: Int) {
-        
         cdPlayers[player - 1].victories += 1
         getAppDelegate().saveContext()
         

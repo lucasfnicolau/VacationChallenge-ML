@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Aa-7q-dgK">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Aa-7q-dgK">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +24,7 @@
             <objects>
                 <viewController storyboardIdentifier="tutorial_0" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9x9-i5-6Wp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LZ6-iG-CMJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sc3-Yt-xSu" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
@@ -42,10 +40,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Cz4-Sc-wu5">
-                                <rect key="frame" x="20" y="177" width="335" height="353"/>
+                                <rect key="frame" x="20" y="200.5" width="560" height="239.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCE-zg-O5H">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="199"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="142.5"/>
                                         <string key="text">CaptureML is a game that uses Machine Learning in its core.
 You’ll compete against your friends, and to be able to score you’ll have to take pictures of real world objects.</string>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
@@ -53,7 +51,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Each player will have up to 90 seconds to find and capture a photo of an object chosen by the game." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cg-6n-2xv">
-                                        <rect key="frame" x="0.0" y="239" width="335" height="114"/>
+                                        <rect key="frame" x="0.0" y="182.5" width="560" height="57"/>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -83,11 +81,11 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController storyboardIdentifier="RankingVC" id="Qho-SD-CB9" customClass="RankingVC" customModule="VacationChallenge_ML" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WIp-zx-aXF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJU-cv-1ad">
-                                <rect key="frame" x="0.0" y="542" width="375" height="20"/>
+                                <rect key="frame" x="0.0" y="475" width="600" height="20"/>
                                 <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="LJa-V8-SWM"/>
@@ -106,7 +104,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="victories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pxo-9t-EHs" customClass="ShadowedLabel" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                <rect key="frame" x="80" y="18.5" width="215" height="48"/>
+                                <rect key="frame" x="80" y="19" width="440" height="47"/>
                                 <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="40"/>
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -140,11 +138,11 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController storyboardIdentifier="MainMenuVC" id="BYZ-38-t0r" customClass="MainMenuVC" customModule="VacationChallenge_ML" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdc-4h-1Z7" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                <rect key="frame" x="300" y="20" width="45" height="45"/>
+                                <rect key="frame" x="525" y="20" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="lsY-gg-xG0"/>
                                     <constraint firstAttribute="width" secondItem="cdc-4h-1Z7" secondAttribute="height" multiplier="1:1" id="xRa-5L-WPX"/>
@@ -156,31 +154,31 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="973-d0-SMD">
-                                <rect key="frame" x="20" y="115" width="335" height="182"/>
+                                <rect key="frame" x="20" y="115" width="560" height="179.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CaptureML" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-1V-D8u" customClass="ShadowedLabel" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                        <rect key="frame" x="39" y="0.0" width="257.5" height="66"/>
+                                        <rect key="frame" x="142.5" y="0.0" width="275.5" height="64.5"/>
                                         <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="55"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Zhr-lX-Mg2">
-                                        <rect key="frame" x="0.0" y="146" width="335" height="36"/>
+                                        <rect key="frame" x="0.0" y="144.5" width="560" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOM-fc-mQP" customClass="ShadowedLabel" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="109" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="105" height="35"/>
                                                 <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="30"/>
                                                 <color key="textColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqo-XE-WOi" customClass="ShadowedLabel" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                                <rect key="frame" x="167.5" y="0.0" width="15" height="36"/>
+                                                <rect key="frame" x="277" y="0.0" width="17" height="35"/>
                                                 <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="30"/>
                                                 <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" wraps="YES" value="2" minimumValue="2" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="bof-qk-Qpc" customClass="ShadowedStepper" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                                <rect key="frame" x="241" y="2" width="94" height="32"/>
+                                                <rect key="frame" x="466" y="1.5" width="94" height="32"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
@@ -199,16 +197,16 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WX1-QP-dmC">
-                                <rect key="frame" x="69.5" y="367" width="236" height="171"/>
+                                <rect key="frame" x="100" y="364.5" width="400" height="290"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_frame" translatesAutoresizingMaskIntoConstraints="NO" id="xXg-BT-yU9">
-                                        <rect key="frame" x="0.0" y="0.0" width="236" height="171"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="290"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="xXg-BT-yU9" secondAttribute="height" multiplier="236:171" id="5sg-84-D17"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yjp-kx-khx">
-                                        <rect key="frame" x="70.5" y="47" width="95" height="95"/>
+                                        <rect key="frame" x="119.5" y="73.5" width="161" height="161"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Yjp-kx-khx" secondAttribute="height" multiplier="1:1" id="Xs2-iW-OWd"/>
                                         </constraints>
@@ -273,11 +271,11 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController storyboardIdentifier="GameloopVC" id="6lI-y1-tcW" customClass="GameloopVC" customModule="VacationChallenge_ML" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XaS-lp-nbJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOq-zD-ncY" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                <rect key="frame" x="300" y="20" width="45" height="45"/>
+                                <rect key="frame" x="525" y="20" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="YuL-WX-gNu"/>
                                 </constraints>
@@ -288,7 +286,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5A-YL-1u3" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                <rect key="frame" x="60" y="602" width="255" height="45"/>
+                                <rect key="frame" x="60" y="535" width="480" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="FzG-eN-M69"/>
                                 </constraints>
@@ -297,11 +295,11 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                     <color key="titleColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="takePicture:" destination="6lI-y1-tcW" eventType="touchUpInside" id="A4F-2K-U2T"/>
+                                    <action selector="beginTurn:" destination="6lI-y1-tcW" eventType="touchUpInside" id="A4F-2K-U2T"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zro-N6-7Tj" customClass="PlayerTurn" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                <rect key="frame" x="112.5" y="20" width="150" height="45"/>
+                                <rect key="frame" x="225" y="20" width="150" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="8ck-fo-0A4"/>
@@ -314,17 +312,17 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDy-7X-hzz">
-                                <rect key="frame" x="0.0" y="542" width="375" height="20"/>
+                                <rect key="frame" x="0.0" y="475" width="600" height="20"/>
                                 <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="2Yj-jw-9PB"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gOS-gB-TOc">
-                                <rect key="frame" x="20" y="85" width="335" height="110"/>
+                                <rect key="frame" x="20" y="85" width="560" height="110"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-w0-lds" customClass="ShadowedLabel" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                        <rect key="frame" x="162.5" y="0.0" width="10.5" height="30"/>
+                                        <rect key="frame" x="275.5" y="0.0" width="9.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="1kd-Q1-PZi"/>
                                             <constraint firstAttribute="height" constant="30" id="c1c-9Y-wYW"/>
@@ -334,7 +332,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Js-Dv-Xh3" customClass="ShadowedLabel" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                        <rect key="frame" x="162.5" y="40" width="10.5" height="30"/>
+                                        <rect key="frame" x="275.5" y="40" width="9.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="6lN-n6-F8p"/>
                                         </constraints>
@@ -343,7 +341,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YF9-jh-Qh8" customClass="ShadowedLabel" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                        <rect key="frame" x="162.5" y="80" width="10.5" height="30"/>
+                                        <rect key="frame" x="275.5" y="80" width="9.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="plY-0P-Lmw"/>
                                         </constraints>
@@ -392,11 +390,11 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                     <connections>
                         <outlet property="baseView" destination="xDy-7X-hzz" id="tGv-eM-FDj"/>
                         <outlet property="beginTurnButton" destination="y5A-YL-1u3" id="fL8-Px-BgA"/>
+                        <outlet property="easyWordLabel" destination="QEf-w0-lds" id="e7c-9g-5cV"/>
                         <outlet property="exitButton" destination="QzC-ka-Bl3" id="jR8-qc-cpF"/>
+                        <outlet property="hardWordLabel" destination="YF9-jh-Qh8" id="5kL-Yg-4Kr"/>
+                        <outlet property="mediumWordLabel" destination="6Js-Dv-Xh3" id="WMn-jt-3Jm"/>
                         <outlet property="playerTurnView" destination="Zro-N6-7Tj" id="mCv-iL-Xww"/>
-                        <outlet property="testLabel" destination="QEf-w0-lds" id="e7c-9g-5cV"/>
-                        <outlet property="testLabel1" destination="6Js-Dv-Xh3" id="WMn-jt-3Jm"/>
-                        <outlet property="testLabel2" destination="YF9-jh-Qh8" id="5kL-Yg-4Kr"/>
                     </connections>
                 </viewController>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dir-8g-haH" customClass="PlayerScore" customModule="VacationChallenge_ML" customModuleProvider="target">
@@ -416,11 +414,11 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController id="gcp-cn-eHC" customClass="WinnerVC" customModule="VacationChallenge_ML" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="68u-xX-ih4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkP-Wf-8zK" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                <rect key="frame" x="40" y="602" width="295" height="45"/>
+                                <rect key="frame" x="40" y="535" width="520" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="wxm-jE-Xid"/>
                                 </constraints>
@@ -433,7 +431,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="player x won!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USA-v2-7uc" customClass="ShadowedLabel" customModule="VacationChallenge_ML" customModuleProvider="target">
-                                <rect key="frame" x="20" y="309.5" width="335" height="48"/>
+                                <rect key="frame" x="20" y="276.5" width="560" height="47"/>
                                 <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="40"/>
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -470,7 +468,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController id="8Aa-7q-dgK" customClass="CameraVideoVC" customModule="VacationChallenge_ML" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e5k-pz-EBb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="5dA-1K-bFy"/>
@@ -488,7 +486,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController id="9Do-jj-HzV" customClass="VisionRecognitionVC" customModule="VacationChallenge_ML" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DFf-bV-hYD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="DIZ-5o-1xn"/>
@@ -507,7 +505,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController storyboardIdentifier="VisionRecognitionVC" id="ucb-mA-nOp" customClass="VisionRecognitionVC" customModule="VacationChallenge_ML" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="clX-F3-dEN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="eng-ai-ecv"/>
@@ -522,7 +520,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController storyboardIdentifier="tutorial_1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3BN-MF-QE7" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tz5-fj-owG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkN-Uq-zU8" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
@@ -538,7 +536,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_0" translatesAutoresizingMaskIntoConstraints="NO" id="tze-Tu-rfl">
-                                <rect key="frame" x="0.0" y="73" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="73" width="600" height="447"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -563,7 +561,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController storyboardIdentifier="tutorial_2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sJe-A4-kHR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WBV-c5-UNv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OlP-Ae-3Yt" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
@@ -579,7 +577,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_1" translatesAutoresizingMaskIntoConstraints="NO" id="Y4v-pF-I6Z">
-                                <rect key="frame" x="0.0" y="73" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="73" width="600" height="447"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -604,7 +602,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
             <objects>
                 <viewController storyboardIdentifier="tutorial_3" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Eel-2G-7dx" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9KR-Zp-zWC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCj-Z4-dfd" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
@@ -620,7 +618,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_2" translatesAutoresizingMaskIntoConstraints="NO" id="b3L-tk-Wi9">
-                                <rect key="frame" x="0.0" y="73" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="73" width="600" height="447"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
