@@ -36,6 +36,12 @@ enum GameState {
     case gameloop
     case ranking
     case visualRecognition
+    case endTurn
+    case showWinner
+}
+
+enum Constants: Int {
+    case finalScore = 300
 }
 
 enum ViewController: String {
@@ -43,6 +49,7 @@ enum ViewController: String {
     case gameloop = "GameloopVC"
     case ranking = "RankingVC"
     case visionRecognition = "VisionRecognitionVC"
+    case winner = "WinnerVC"
 }
 
 func getImage(_ image: Image) -> UIImage? {

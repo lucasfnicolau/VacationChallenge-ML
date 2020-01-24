@@ -13,6 +13,7 @@
 		B6075C2322D67AC800728A41 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C2122D67AC800728A41 /* HelpVC.swift */; };
 		B6075C2622D67B0A00728A41 /* RoundedPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6075C2522D67B0A00728A41 /* RoundedPopupView.swift */; };
 		B627830B23C78E5B00030D63 /* ShadowedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B627830A23C78E5B00030D63 /* ShadowedViews.swift */; };
+		B635B68D23D8E39900F49645 /* ScoreEarnedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635B68C23D8E39900F49645 /* ScoreEarnedView.swift */; };
 		B6416DCD22DFC47E00620C43 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6416DCC22DFC47E00620C43 /* UIViewExtension.swift */; };
 		B64594E222E294B000A6D12F /* CVObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64594E022E294B000A6D12F /* CVObject+CoreDataClass.swift */; };
 		B64594E322E294B000A6D12F /* CVObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64594E122E294B000A6D12F /* CVObject+CoreDataProperties.swift */; };
@@ -24,7 +25,6 @@
 		B65D829D22F385B500B2C8DD /* RankingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65D829C22F385B500B2C8DD /* RankingVC.swift */; };
 		B660A25222FA610500169F4B /* TutorialPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B660A25122FA610500169F4B /* TutorialPageVC.swift */; };
 		B690033E22D6922000463FA3 /* PlayerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690033D22D6922000463FA3 /* PlayerTurn.swift */; };
-		B690034422D6AAD900463FA3 /* BeginTurnVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B690034222D6AAD900463FA3 /* BeginTurnVC.xib */; };
 		B69EAF2423C77FD600C589A2 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69EAF2323C77FD600C589A2 /* UIViewControllerExtension.swift */; };
 		B6C9753F22F8DA3400E24579 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C9753D22F8DA3400E24579 /* HelpVC.xib */; };
 		B6CE39BF22DFC5BA00381792 /* PlayerScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */; };
@@ -46,6 +46,7 @@
 		B6075C2122D67AC800728A41 /* HelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		B6075C2522D67B0A00728A41 /* RoundedPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedPopupView.swift; sourceTree = "<group>"; };
 		B627830A23C78E5B00030D63 /* ShadowedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowedViews.swift; sourceTree = "<group>"; };
+		B635B68C23D8E39900F49645 /* ScoreEarnedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEarnedView.swift; sourceTree = "<group>"; };
 		B64035E422F39083005A5ECB /* CDPlayer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDPlayer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B64035E522F39083005A5ECB /* CDPlayer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDPlayer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B6416DCC22DFC47E00620C43 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -58,7 +59,6 @@
 		B65D829C22F385B500B2C8DD /* RankingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingVC.swift; sourceTree = "<group>"; };
 		B660A25122FA610500169F4B /* TutorialPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageVC.swift; sourceTree = "<group>"; };
 		B690033D22D6922000463FA3 /* PlayerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurn.swift; sourceTree = "<group>"; };
-		B690034222D6AAD900463FA3 /* BeginTurnVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BeginTurnVC.xib; path = ../Controller/BeginTurnVC.xib; sourceTree = "<group>"; };
 		B69EAF2323C77FD600C589A2 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		B6C9753D22F8DA3400E24579 /* HelpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HelpVC.xib; path = ../Controller/HelpVC.xib; sourceTree = "<group>"; };
 		B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerScore.swift; sourceTree = "<group>"; };
@@ -115,7 +115,6 @@
 		B6075C2022D67A8B00728A41 /* XIB's */ = {
 			isa = PBXGroup;
 			children = (
-				B690034222D6AAD900463FA3 /* BeginTurnVC.xib */,
 				B6C9753D22F8DA3400E24579 /* HelpVC.xib */,
 			);
 			path = "XIB's";
@@ -147,6 +146,7 @@
 				B690033D22D6922000463FA3 /* PlayerTurn.swift */,
 				B6CE39BE22DFC5BA00381792 /* PlayerScore.swift */,
 				B627830A23C78E5B00030D63 /* ShadowedViews.swift */,
+				B635B68C23D8E39900F49645 /* ScoreEarnedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -277,7 +277,6 @@
 				B647740422D662C600450B19 /* LaunchScreen.storyboard in Resources */,
 				B647740722D663FF00450B19 /* norwester.otf in Resources */,
 				B6F9F28322C41B0C000E95A4 /* Assets.xcassets in Resources */,
-				B690034422D6AAD900463FA3 /* BeginTurnVC.xib in Resources */,
 				B6F9F27E22C41B09000E95A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +292,7 @@
 				B6075C1D22D6773500728A41 /* GameloopVC.swift in Sources */,
 				B6F9F27B22C41B09000E95A4 /* MainMenuVC.swift in Sources */,
 				B6416DCD22DFC47E00620C43 /* UIViewExtension.swift in Sources */,
+				B635B68D23D8E39900F49645 /* ScoreEarnedView.swift in Sources */,
 				B6FFD31A22EE0B5F006631FC /* WinnerVC.swift in Sources */,
 				B64594E222E294B000A6D12F /* CVObject+CoreDataClass.swift in Sources */,
 				B64594E322E294B000A6D12F /* CVObject+CoreDataProperties.swift in Sources */,
@@ -459,6 +459,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87G2Y58K9U;
 				INFOPLIST_FILE = "VacationChallenge-ML/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -466,6 +467,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.academy.VacationChallenge-ML";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -478,6 +480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87G2Y58K9U;
 				INFOPLIST_FILE = "VacationChallenge-ML/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -485,6 +488,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.academy.VacationChallenge-ML";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

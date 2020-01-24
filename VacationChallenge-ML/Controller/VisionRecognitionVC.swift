@@ -13,35 +13,49 @@ import Vision
 class VisionRecognitionVC: UIViewController { // CameraVideoVC {
 
     var cameraVideoVC: CameraVideoVC!
-    private var detectionOverlay: CALayer! = nil
+    private var detectionOverlay: CALayer? = nil
     var gameHandlerDelegate: GameHandlerDelegate?
+    var score = 0
     var currentPlayer = 0
-    var currentTime = 60
+    var currentTime = 61
     var turnTimer: Timer?
+    var words: [String] = []
+    var correctObjectsRecognized = [false, false, false]
+    private var requests = [VNRequest]()
+    var playerImageView: UIImageView?
     var timerLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "60"
         label.font = UIFont(name: Font.norwester.rawValue, size: 28)
         return label
     }()
     var closeButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        if #available(iOS 13.0, *) {
-            button.setBackgroundImage(UIImage(systemName: "multiply.circle"), for: .normal)
-        } else {
-            // Fallback on earlier versions
-        }
+        button.setBackgroundImage(UIImage(named: "close"), for: .normal)
         return button
     }()
-
-    // Vision parts
-    private var requests = [VNRequest]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .clear
+    }
+
+    /**
+     Configures the start of a turn, reseting the timer and setting the top view elements.
+
+     - Version:
+     1.0
+     */
+    func startTurn() {
+        setupLayers()
+        correctObjectsRecognized = [false, false, false]
+        score = 0
+        timerLabel.text = "60"
+        currentTime = 61
+        setTopViewElements()
+        turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerHandler), userInfo: nil, repeats: true)
+        turnTimer?.fire()
     }
 
     /**
@@ -80,7 +94,7 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
      Draw on the view the boxes around the elements recognized by the ML Model.
 
      - parameters:
-        - results: An array containing all results given by the model. Can not be empty.
+        - results: An array containing all results given by the model.
 
      - Version:
      1.0
@@ -88,7 +102,8 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
     func drawVisionRequestResults(_ results: [Any]) {
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-        detectionOverlay.sublayers = nil // remove all the old recognized objects
+        detectionOverlay?.sublayers = nil // remove all the old recognized objects
+
         for observation in results where observation is VNRecognizedObjectObservation {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else {
                 continue
@@ -97,25 +112,14 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
             let topLabelObservation = objectObservation.labels[0]
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(cameraVideoVC.bufferSize.width), Int(cameraVideoVC.bufferSize.height))
 
-            let shapeLayer = self.createRoundedRectLayerWithBounds(objectBounds)
-
-            let textLayer = self.createTextSubLayerInBounds(objectBounds,
-                                                            identifier: topLabelObservation.identifier,
-                                                            confidence: topLabelObservation.confidence)
-//            let textBoxLayer = CAShapeLayer()
-//            textBoxLayer.bounds = textLayer.bounds
-//            textBoxLayer.position = textLayer.position
-//            textBoxLayer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 1.0, 0.0, 1.0])
-//            textBoxLayer.addSublayer(textLayer)
-
-            shapeLayer.addSublayer(textLayer)
-            detectionOverlay.addSublayer(shapeLayer)
+            let shapeLayer = self.createRoundedRectLayerWithBounds(objectBounds, identifier: topLabelObservation.identifier)
+            detectionOverlay?.addSublayer(shapeLayer)
         }
         self.updateLayerGeometry()
         CATransaction.commit()
     }
 
-    /*override*/ func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
 
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
@@ -131,16 +135,16 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
         }
     }
 
-    /*override*/ func setupAVCapture() {
-//        super.setupAVCapture()
+    /**
+     Call all of the needed setup functions.
 
-        // setup Vision parts
+     - Version:
+     1.0
+     */
+    func setupAVCapture() {
         setupLayers()
         updateLayerGeometry()
         setupVision()
-
-        // start the capture
-//        startCaptureSession()
     }
 
     /**
@@ -150,18 +154,18 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
      1.0
      */
     func setupLayers() {
-        detectionOverlay = CALayer() // container layer that has all the renderings of the observations
-        detectionOverlay.name = "DetectionOverlay"
-        detectionOverlay.bounds = CGRect(x: 0.0,
-                                         y: 0.0,
-                                         width: cameraVideoVC.bufferSize.width,
-                                         height: cameraVideoVC.bufferSize.height)
+        if detectionOverlay == nil {
+            detectionOverlay = CALayer() // container layer that has all the renderings of the observations
+            detectionOverlay?.name = "DetectionOverlay"
+            detectionOverlay?.bounds = CGRect(x: 0.0,
+                                             y: 0.0,
+                                             width: cameraVideoVC.bufferSize.width,
+                                             height: cameraVideoVC.bufferSize.height)
 
-        guard let rootLayer = cameraVideoVC.rootLayer else { return }
-        detectionOverlay.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
-        rootLayer.addSublayer(detectionOverlay)
-
-        setTopViewElements()
+            guard let rootLayer = cameraVideoVC.rootLayer else { return }
+            detectionOverlay?.position = CGPoint(x: rootLayer.bounds.midX, y: rootLayer.bounds.midY)
+            rootLayer.addSublayer(detectionOverlay ?? CALayer())
+        }
     }
 
     /**
@@ -171,8 +175,12 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
      1.0
      */
     func setTopViewElements() {
+        playerImageView?.removeFromSuperview()
+        timerLabel.removeFromSuperview()
+        closeButton.removeFromSuperview()
 
-        let playerImageView = UIImageView(image: UIImage(named: "\(currentPlayer)"))
+        playerImageView = UIImageView(image: UIImage(named: "\(currentPlayer)"))
+        guard let playerImageView = playerImageView else { return }
         guard let image = playerImageView.image else { return }
         let size = (image.size.width, image.size.height)
 
@@ -184,24 +192,23 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playerImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 8),
-            playerImageView.topAnchor.constraint(equalTo:  self.view.safeAreaLayoutGuide.topAnchor, constant: 4),
+            playerImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
+//            playerImageView.topAnchor.constraint(equalTo:  self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
             playerImageView.widthAnchor.constraint(equalToConstant: size.0 * 0.95),
             playerImageView.heightAnchor.constraint(equalToConstant: size.1 * 0.95),
 
-            timerLabel.centerYAnchor.constraint(equalTo: playerImageView.centerYAnchor),
             timerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 
-            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8),
-            closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
+            closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
             closeButton.widthAnchor.constraint(equalToConstant: 45),
-            closeButton.heightAnchor.constraint(equalToConstant: 45)
+            closeButton.heightAnchor.constraint(equalToConstant: 45),
+
+            playerImageView.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
+            timerLabel.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
         ])
 
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
-
-        turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerHandler), userInfo: nil, repeats: true)
-        turnTimer?.fire()
     }
 
     /**
@@ -216,7 +223,10 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
 
         if currentTime <= 0 {
             turnTimer?.invalidate()
-            dismiss(animated: true, completion: nil)
+            turnTimer = nil
+            detectionOverlay?.removeFromSuperlayer()
+            detectionOverlay = nil
+            gameHandlerDelegate?.endTurn(withScore: score)
         }
     }
 
@@ -227,8 +237,17 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
      1.0
      */
     @objc func close() {
-        // TODO: Notificate
-        self.dismiss(animated: true, completion: nil)
+        let alertController = UIAlertController(title: "End Turn", message: "Do you really want to abandon your turn?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let exitAction = UIAlertAction(title: "Exit", style: .destructive) { (action) in
+            self.turnTimer?.invalidate()
+            self.detectionOverlay?.removeFromSuperlayer()
+            self.detectionOverlay = nil
+            self.gameHandlerDelegate?.endTurn(withScore: self.score)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(exitAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func updateLayerGeometry() {
@@ -247,46 +266,21 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
 
         // rotate the layer into screen orientation and scale and mirror
-        detectionOverlay.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)).scaledBy(x: scale, y: -scale))
+        detectionOverlay?.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)).scaledBy(x: scale, y: -scale))
         // center the layer
-        detectionOverlay.position = CGPoint (x: bounds.midX, y: bounds.midY)
+        detectionOverlay?.position = CGPoint (x: bounds.midX, y: bounds.midY)
 
         CATransaction.commit()
-
-    }
-
-    /**
-     Create the text layer to fit in the bounds of the image recognized with all the customizations of the text.
-
-     - Version:
-     1.0
-     */
-    func createTextSubLayerInBounds(_ bounds: CGRect, identifier: String, confidence: VNConfidence) -> CATextLayer {
-        let textLayer = CATextLayer()
-        textLayer.name = "Object Label"
-        let formattedString = NSMutableAttributedString(string: String(format: "\(identifier)\nConfidence:  %.2f", confidence))
-        let largeFont = UIFont(name: Font.norwester.rawValue, size: 24.0)!
-        formattedString.addAttributes([NSAttributedString.Key.font: largeFont], range: NSRange(location: 0, length: identifier.count))
-        textLayer.string = formattedString
-        textLayer.bounds = CGRect(x: 0, y: 0, width: bounds.size.height - 10, height: bounds.size.width - 10)
-        textLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
-        textLayer.shadowOpacity = 0.7
-        textLayer.shadowOffset = CGSize(width: 2, height: 2)
-        textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
-        textLayer.foregroundColor = UIColor.white.cgColor
-        textLayer.contentsScale = 2.0 // retina rendering
-        // rotate the layer into screen orientation and scale and mirror
-        textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)).scaledBy(x: 1.0, y: -1.0))
-        return textLayer
     }
 
     /**
      Create a rounded rectangle with colored borders to highlight the recognized object.
+     If the recognized object is one of the words from the current turn, the rectangle will have green borders, otherwise it will have red borders.
 
      - Version:
      1.0
      */
-    func createRoundedRectLayerWithBounds(_ bounds: CGRect) -> CALayer {
+    func createRoundedRectLayerWithBounds(_ bounds: CGRect, identifier: String) -> CALayer {
         let shapeLayer = CAShapeLayer()
         shapeLayer.bounds = bounds
         shapeLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -294,9 +288,59 @@ class VisionRecognitionVC: UIViewController { // CameraVideoVC {
         shapeLayer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.0])
         shapeLayer.cornerRadius = 7
         shapeLayer.borderWidth = 1
-        shapeLayer.borderColor = UIColor.green.cgColor
+
+        if identifier.lowercased() == words[0] {
+            shapeLayer.borderColor = UIColor.green.cgColor
+            if !correctObjectsRecognized[0] {
+                showEarnedScore(score: 10)
+                correctObjectsRecognized[0] = true
+                score += 10
+            }
+
+        } else if identifier.lowercased() == words[1] {
+            shapeLayer.borderColor = UIColor.green.cgColor
+            if !correctObjectsRecognized[1] {
+                showEarnedScore(score: 25)
+                correctObjectsRecognized[1] = true
+                score += 25
+            }
+
+        } else if identifier.lowercased() == words[2] {
+            shapeLayer.borderColor = UIColor.green.cgColor
+            if !correctObjectsRecognized[2] {
+                showEarnedScore(score: 50)
+                correctObjectsRecognized[2] = true
+                score += 50
+            }
+
+        } else {
+            shapeLayer.borderColor = UIColor.red.cgColor
+        }
 
         return shapeLayer
     }
 
+    /**
+     Adds a label showing how much score was earned by finding one of the corrects objects.
+
+     - parameters:
+        - score: The score earned by the player when correctly recognizing an object.
+
+     - Version:
+     1.0
+     */
+    func showEarnedScore(score: Int) {
+        let scoreEarnedView = ScoreEarnedView()
+        view.addSubview(scoreEarnedView)
+        scoreEarnedView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scoreEarnedView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scoreEarnedView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            scoreEarnedView.widthAnchor.constraint(equalToConstant: 100),
+            scoreEarnedView.heightAnchor.constraint(equalToConstant: 100)
+        ])
+        scoreEarnedView.show(score: score) {
+            scoreEarnedView.removeFromSuperview()
+        }
+    }
 }
