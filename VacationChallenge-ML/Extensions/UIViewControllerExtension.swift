@@ -10,9 +10,11 @@ import UIKit
 
 extension UIViewController {
     func add(_ child: UIViewController) {
-        addChild(child)
-        view.addSubview(child.view)
-        child.didMove(toParent: self)
+        if !children.contains(child) {
+            addChild(child)
+            view.addSubview(child.view)
+            child.didMove(toParent: self)
+        }
     }
 
     func remove() {

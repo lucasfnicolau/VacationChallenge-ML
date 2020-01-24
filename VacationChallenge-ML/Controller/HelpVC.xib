@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="norwester.otf">
+            <string>Norwester-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HelpVC" customModule="VacationChallenge_ML" customModuleProvider="target">
             <connections>
@@ -20,34 +24,50 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIs-rj-N4b" customClass="RoundedPopupView" customModule="VacationChallenge_ML" customModuleProvider="target">
-                    <rect key="frame" x="20" y="96.5" width="335" height="474.5"/>
+                    <rect key="frame" x="20" y="117.5" width="335" height="432.5"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cbe-Xd-std">
-                            <rect key="frame" x="20" y="20" width="295" height="434.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="cbe-Xd-std">
+                            <rect key="frame" x="20" y="20" width="295" height="307.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neM-lD-zCd">
-                                    <rect key="frame" x="0.0" y="0.0" width="295" height="227.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="295" height="151.5"/>
                                     <string key="text">CaptureML is a game that uses Machine Learning in its core.
 You’ll compete against your friends, and to be able to score you’ll have to take pictures of real world objects.</string>
-                                    <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
+                                    <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="21"/>
                                     <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIn-S8-bLi">
-                                    <rect key="frame" x="0.0" y="235.5" width="295" height="199"/>
-                                    <string key="text">Each player will have up to 90 seconds to find and capture a photo of an object chosen by the game. The first one that reaches 250 points wins the game. Good luck!</string>
-                                    <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="25"/>
+                                    <rect key="frame" x="0.0" y="181.5" width="295" height="126"/>
+                                    <string key="text">Each player will have up to 60 seconds to find the objects chosen by the game. The first one that reaches 300 points wins the game. Good luck!</string>
+                                    <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="21"/>
                                     <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-JN-kNC" customClass="RoundedButton" customModule="VacationChallenge_ML" customModuleProvider="target">
+                            <rect key="frame" x="92.5" y="357.5" width="150" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="XVv-u2-TZK"/>
+                                <constraint firstAttribute="width" constant="150" id="qzl-DU-9WG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Norwester-Regular" family="Norwester" pointSize="21"/>
+                            <state key="normal" title="OK">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="okButtonTouched:" destination="-1" eventType="touchUpInside" id="O3c-eZ-bwh"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="cbe-Xd-std" secondAttribute="bottom" constant="20" id="6rk-yX-rI8"/>
                         <constraint firstItem="cbe-Xd-std" firstAttribute="leading" secondItem="PIs-rj-N4b" secondAttribute="leading" constant="20" id="MXD-hg-Zxk"/>
+                        <constraint firstAttribute="bottom" secondItem="AKV-JN-kNC" secondAttribute="bottom" constant="30" id="RFP-ft-jmr"/>
+                        <constraint firstItem="AKV-JN-kNC" firstAttribute="centerX" secondItem="PIs-rj-N4b" secondAttribute="centerX" id="URg-AB-sb6"/>
                         <constraint firstItem="cbe-Xd-std" firstAttribute="top" secondItem="PIs-rj-N4b" secondAttribute="top" constant="20" id="Wmb-TZ-6zC"/>
+                        <constraint firstItem="AKV-JN-kNC" firstAttribute="top" secondItem="cbe-Xd-std" secondAttribute="bottom" constant="30" id="hgc-UM-oX4"/>
                         <constraint firstAttribute="trailing" secondItem="cbe-Xd-std" secondAttribute="trailing" constant="20" id="pTW-M2-AA3"/>
                     </constraints>
                 </view>
@@ -60,6 +80,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                 <constraint firstAttribute="trailing" secondItem="PIs-rj-N4b" secondAttribute="trailing" constant="20" id="yv4-Iy-d62"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="136.80000000000001" y="134.48275862068968"/>
         </view>
     </objects>
 </document>

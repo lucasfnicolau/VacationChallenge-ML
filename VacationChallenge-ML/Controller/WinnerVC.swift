@@ -9,20 +9,23 @@
 import UIKit
 
 class WinnerVC: UIViewController {
+    var gameHandlerDelegate: GameHandlerDelegate?
 
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
-    @IBOutlet var winnerLabel: UILabel!
+    @IBOutlet var winnerImageView: ShadowedImageView!
+    @IBOutlet var winnerLabel: ShadowedLabel!
     var player = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        winnerLabel.text = "player \(player) won!"
+        winnerImageView.image = UIImage(named: "\(player)")
+        winnerLabel.text = "player \(player + 1) won!"
     }
 
     @IBAction func exit() {
-        self.performSegue(withIdentifier: "unwindSegueToMainMenu", sender: self)
+        gameHandlerDelegate?.changeGameState(to: .mainMenu)
     }
 }

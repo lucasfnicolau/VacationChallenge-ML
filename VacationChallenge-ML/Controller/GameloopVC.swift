@@ -35,11 +35,16 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
     var playersNumber = 2
     var players = [PlayerScore]()
     var playersColors = [#colorLiteral(red: 0.9490196078, green: 0.3529411765, blue: 0.3529411765, alpha: 1), #colorLiteral(red: 0.3960784314, green: 0.3215686275, blue: 0.3019607843, alpha: 1), #colorLiteral(red: 0.6666666667, green: 0.6509803922, blue: 0.5803921569, alpha: 1), #colorLiteral(red: 1, green: 0.7843137255, blue: 0.4509803922, alpha: 1)]
+    var easyWord = ""
+    var mediumWord = ""
+    var hardWord = ""
+    var winner = 0
+    var turnTimer: Timer!
     var currentPlayer = 0 {
         didSet {
             self.playerTurnView.nameLabel?.text = "player \(self.currentPlayer + 1) turn"
             self.playerTurnView.colorView?.backgroundColor = self.playersColors[self.currentPlayer]
-            
+
             if players.count > 0 {
                 for i in 0 ... players.count - 1 {
                     if i != currentPlayer {
@@ -50,18 +55,12 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
                     }
                 }
             }
-            
+
             if beginTurnButton != nil {
                 beginTurnButton.focus()
             }
         }
     }
-    
-    var easyWord = ""
-    var mediumWord = "joystick"
-    var hardWord = ""
-    var winner = 0
-    var turnTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,161 +149,95 @@ class GameloopVC: UIViewController, GameloopVCDelegate {
         }
     }
 
-    // MARK: - Image Classification
-    
-    /// - Tag: MLModelSetup
-    lazy var classificationRequest: VNCoreMLRequest = {
-        do {
-            let model = try VNCoreMLModel(for: Resnet50().model)
-            
-            let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
-                self?.processClassifications(for: request, error: error)
-            })
-            request.imageCropAndScaleOption = VNImageCropAndScaleOption.scaleFit
-            return request
-        } catch {
-            fatalError("Failed to load Vision ML model: \(error)")
-        }
-    }()
-    
-    /// - Tag: PerformRequests
-    func updateClassifications(for image: UIImage) {
-        
-        let orientation = CGImagePropertyOrientation(image.imageOrientation)
-        guard let ciImage = CIImage(image: image) else { fatalError("Unable to create \(CIImage.self) from \(image).") }
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            let handler = VNImageRequestHandler(ciImage: ciImage, orientation: orientation)
-            do {
-                try handler.perform([self.classificationRequest])
-            } catch {
-                /*
-                 This handler catches general image processing errors. The `classificationRequest`'s
-                 completion handler `processClassifications(_:error:)` catches errors specific
-                 to processing that request.
-                 */
-                print("Failed to perform classification.\n\(error.localizedDescription)")
-            }
-        }
-    }
-    
-    /// Updates the UI with the results of the classification.
-    /// - Tag: ProcessClassifications
-    func processClassifications(for request: VNRequest, error: Error?) {
-        DispatchQueue(label: "Image Processing Queue").async {
-            
-            DispatchQueue.main.async {
-                guard let results = request.results else { return }
-                
-                let classifications = results as! [VNClassificationObservation]
-                
-                if classifications.isEmpty {
-                    self.players[self.currentPlayer].shake()
-                    self.setNewTurn()
-                } else {
-                    
-                    // Display top classifications ranked by confidence in the UI.
-                    let topClassifications = classifications.prefix(7)
-                    let descriptions = topClassifications.map { classification in
-                        // Formats the classification for display; e.g. "(0.37) cliff, drop, drop-off".
-                        return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
-                    }
-                    
-//                    print(descriptions)
-                    
-                    var matched = false
-                    for description in descriptions {
-                        
-                        if description.lowercased().contains(self.hardWord.lowercased()) {
-                            self.players[self.currentPlayer].addScore(50)
-                            matched = true
-                            break
-                        } else if description.lowercased().contains(self.mediumWord.lowercased()) {
-                            self.players[self.currentPlayer].addScore(25)
-                            matched = true
-                            break
-                        } else if description.lowercased().contains(self.easyWord.lowercased()) {
-                            self.players[self.currentPlayer].addScore(10)
-                            matched = true
-                            break
-                        }
-                    }
-                    
-                    if !matched {
-                        self.players[self.currentPlayer].shake()
-                    }
-                    
-                    if self.turnTimer != nil { self.turnTimer.invalidate() }
-                    self.turnTimer = nil
-                    
-                    self.setNewTurn()
-                }
-            }
-        }
-    }
-    
+    /**
+     Passes the turn to the next player.
+
+     - Version:
+     1.0
+     */
     func setNewTurn() {
-        self.currentPlayer = self.currentPlayer < self.playersNumber - 1 ? self.currentPlayer + 1 : 0
-        
-        var tempWords = allWords
-        
-        self.easyWord = (tempWords.randomElement() ?? "").lowercased()
-        tempWords.remove(at: tempWords.firstIndex(of: self.easyWord) ?? 0)
-        
-        self.mediumWord = (tempWords.randomElement() ?? "").lowercased()
-        tempWords.remove(at: tempWords.firstIndex(of: self.mediumWord) ?? 0)
-        
-        self.hardWord = (tempWords.randomElement() ?? "").lowercased()
-        
-        self.easyWordLabel.text = "\(self.hardWord) – 50 pts"
-        self.mediumWordLabel.text = "\(self.mediumWord) – 25 pts"
-        self.hardWordLabel.text = "\(self.easyWord) – 10 pts"
+        if players[currentPlayer].score >= Constants.finalScore.rawValue {
+            showWinner(player: currentPlayer)
+
+        } else {
+            self.currentPlayer = self.currentPlayer < self.playersNumber - 1 ? self.currentPlayer + 1 : 0
+
+            var tempWords = allWords
+
+            self.easyWord = (tempWords.randomElement() ?? "").lowercased()
+            tempWords.remove(at: tempWords.firstIndex(of: self.easyWord) ?? 0)
+
+            self.mediumWord = (tempWords.randomElement() ?? "").lowercased()
+            tempWords.remove(at: tempWords.firstIndex(of: self.mediumWord) ?? 0)
+
+            self.hardWord = (tempWords.randomElement() ?? "").lowercased()
+
+            self.easyWordLabel.text = "\(self.hardWord) – 50 pts"
+            self.mediumWordLabel.text = "\(self.mediumWord) – 25 pts"
+            self.hardWordLabel.text = "\(self.easyWord) – 10 pts"
+        }
     }
 
+    /**
+     Opens the view controller that recongizes the objects on the screen.
+
+     - parameters:
+        - sender: The touched RoundedButton.
+
+     - Version:
+     1.0
+     */
     @IBAction func beginTurn(_ sender: RoundedButton) {
-        gameHandlerDelegate?.changeGameState(to: .visualRecognition)
+        gameHandlerDelegate?.beginTurn(for: [easyWord, mediumWord, hardWord],
+                                       andCurrentPlayer: currentPlayer)
     }
-    
+
+    /**
+     Ends the game and shows the winner.
+
+     - parameters:
+        - player: The player that won the match.
+
+     - Version:
+     1.0
+     */
     func showWinner(player: Int) {
-        cdPlayers[player - 1].victories += 1
+        cdPlayers[player].victories += 1
         getAppDelegate().saveContext()
         
         winner = player
-        performSegue(withIdentifier: "goToWinnerVC", sender: self)
+        gameHandlerDelegate?.showWinner(player: player)
     }
-    
+
+    /**
+     Return to the Main Menu.
+
+     - Version:
+     1.0
+     */
     @IBAction func exitButtonTouched() {
         let alertController = UIAlertController(title: "End Game", message: "Do you really want to exit the game?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let exitAction = UIAlertAction(title: "Exit", style: .destructive) { (action) in
-            self.dismiss(animated: true, completion: nil)
+            self.gameHandlerDelegate?.changeGameState(to: .mainMenu)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(exitAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    @objc func endTurn() {
-        if turnTimer != nil {
-            setNewTurn()
-            turnTimer.invalidate()
-            turnTimer = nil
-        }
-    }
 }
 
 extension GameloopVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: - Handling Image Picker Selection
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        picker.dismiss(animated: true)
-        
-        // We always expect `imagePickerController(:didFinishPickingMediaWithInfo:)` to supply the original image.
-        //        let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
-        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        updateClassifications(for: image)
-    }
-    
+
+    /**
+     Show a help to the player.
+
+     - parameters:
+        - sender: The touched RoundedButton.
+
+     - Version:
+     1.0
+     */
     @IBAction func showHelp(_ sender: RoundedButton) {
         showDarkTranslucentBG(on: self)
         let mainMenuHelpVC = HelpVC()
@@ -312,77 +245,4 @@ extension GameloopVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         mainMenuHelpVC.modalTransitionStyle = .crossDissolve
         self.present(mainMenuHelpVC, animated: true, completion: nil)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let winnerVC = segue.destination as? WinnerVC {
-            winnerVC.modalPresentationStyle = .fullScreen
-            winnerVC.player = winner
-        } else if let rankingVC = segue.destination as? RankingVC {
-            rankingVC.modalPresentationStyle = .fullScreen
-        } else if let visualRecognitionVC = segue.destination as? VisionRecognitionVC {
-            visualRecognitionVC.currentPlayer = currentPlayer
-        }
-    }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-    return input.rawValue
-}
-
-extension GameloopVC: UNUserNotificationCenterDelegate {
-    func setNotification(withTitle title: String, andBody body: String, inSeconds seconds: TimeInterval, usingOptions options: [Bool]) {
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.delegate = self
-        
-        let generalCategory = UNNotificationCategory(identifier: "generalCatID",
-                                                     actions: [],
-                                                     intentIdentifiers: [],
-                                                     options: [.customDismissAction])
-        
-        notificationCenter.setNotificationCategories([generalCategory])
-        
-        notificationCenter.getNotificationSettings { (settings) in
-            if settings.authorizationStatus == .authorized {
-                
-                let content = UNMutableNotificationContent()
-                content.title = NSString.localizedUserNotificationString(forKey: title, arguments: nil)
-                content.body = NSString.localizedUserNotificationString(forKey: body, arguments: nil)
-                content.sound = options[0] ? UNNotificationSound.default : nil
-                content.badge = options[1] ? 1 : 0
-                content.categoryIdentifier = "generalCatID"
-                
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
-                let request = UNNotificationRequest(identifier: "EndTurnNotification", content: content, trigger: trigger)
-                
-                notificationCenter.add(request) { (error : Error?) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }
-                }
-                
-            } else {
-                print("Impossível mandar notificação - permissão negada")
-            }
-        }
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.removeAllDeliveredNotifications()
-        notificationCenter.removeAllPendingNotificationRequests()
-        
-        self.dismiss(animated: true, completion: nil)
-        
-        setNewTurn()
-        
-        completionHandler()
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        completionHandler([.alert, .sound])
-    }
-    
 }

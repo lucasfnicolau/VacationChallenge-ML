@@ -11,6 +11,9 @@ import AVFoundation
 
 protocol GameHandlerDelegate: GameStateDelegate {
     func startGame(numOfPlayers: Int)
+    func beginTurn(for words: [String], andCurrentPlayer player: Int)
+    func endTurn(withScore score: Int)
+    func showWinner(player: Int)
 }
 
 protocol GameStateDelegate {
@@ -24,6 +27,11 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
     var rootLayer: CALayer?
     var gameState: GameState = .mainMenu
     var viewControllers = [ViewController: UIViewController]()
+    var words: [String] = []
+    var currentPlayer = 0
+    var numOfPlayers = 2
+    var score = 0
+    var winner = 0
 
     @IBOutlet weak private var previewView: UIView!
     private let session = AVCaptureSession()
@@ -51,6 +59,12 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
         }
     }
 
+    /**
+     Instantiate the MainMenuVC to start a new game.
+
+     - Version:
+     1.0
+     */
     func initiateGame() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let mainMenuVC = storyboard.instantiateViewController(withIdentifier: ViewController.mainMenu.rawValue) as? MainMenuVC {
@@ -178,11 +192,74 @@ class CameraVideoVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDeleg
 }
 
 extension CameraVideoVC: GameHandlerDelegate, GameStateDelegate {
+
+    /**
+     Starts a new game with the given number of players.
+
+     - parameters:
+        - numOfPlayer: The number of players that will play the game.
+
+     - Version:
+     1.0
+     */
     func startGame(numOfPlayers: Int) {
-        // TODO
+        self.numOfPlayers = numOfPlayers
         changeGameState(to: .gameloop)
     }
 
+    /**
+     Begins a new turn by getting the words of the current turn and the current player. This functions also calls 'changeGameState(to: .visualRecognition)'.
+
+     - parameters:
+        - words: The words that will be used in the current turn.
+        - player: The current player.
+
+     - Version:
+     1.0
+     */
+    func beginTurn(for words: [String], andCurrentPlayer player: Int) {
+        self.words = words
+        self.currentPlayer = player
+        changeGameState(to: .visualRecognition)
+    }
+
+    /**
+     Ends the current turn and update the score earned in it.
+
+     - parameters:
+         - score: The score achieved by the player.
+
+     - Version:
+     1.0
+     */
+    func endTurn(withScore score: Int) {
+        self.score = score
+        changeGameState(to: .endTurn)
+    }
+
+    /**
+     Ends the match and shows the winner player.
+
+     - parameters:
+        - player: The player that won the match.
+
+     - Version:
+     1.0
+     */
+    func showWinner(player: Int) {
+        winner = player
+        changeGameState(to: .showWinner)
+    }
+
+    /**
+     Changes the Game State to the one desired.
+
+     - parameters:
+        - gameState: The game state to be transitioned to.
+
+     - Version:
+     1.0
+     */
     func changeGameState(to gameState: GameState) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         self.gameState = gameState
@@ -201,6 +278,7 @@ extension CameraVideoVC: GameHandlerDelegate, GameStateDelegate {
             viewControllers[.mainMenu]?.view.isHidden = true
             if let gameloopVC = storyboard.instantiateViewController(withIdentifier: ViewController.gameloop.rawValue) as? GameloopVC {
                 gameloopVC.gameHandlerDelegate = self
+                gameloopVC.playersNumber = numOfPlayers
                 viewControllers[.gameloop] = gameloopVC
                 self.add(gameloopVC)
             }
@@ -216,11 +294,35 @@ extension CameraVideoVC: GameHandlerDelegate, GameStateDelegate {
         case .visualRecognition:
             viewControllers[.gameloop]?.view.isHidden = true
             if let visionRecognitionVC = viewControllers[.visionRecognition] as? VisionRecognitionVC {
-//                visionRecognitionVC.cameraVideoVC = self
-//                visionRecognitionVC.gameHandlerDelegate = self
-//                viewControllers[.visionRecognition] = visionRecognitionVC
-//                visionRecognitionVC.setupVision()
+                visionRecognitionVC.view.isHidden = false
+                visionRecognitionVC.words = self.words
+                visionRecognitionVC.currentPlayer = self.currentPlayer
+                visionRecognitionVC.startTurn()
+                visionRecognitionVC.gameHandlerDelegate = self
                 self.add(visionRecognitionVC)
+            }
+
+        case .endTurn:
+            viewControllers[.visionRecognition]?.view.isHidden = true
+            if let gameloopVC = viewControllers[.gameloop] as? GameloopVC {
+                gameloopVC.view.isHidden = false
+                gameloopVC.players[currentPlayer].addScore(score)
+                score = 0
+                gameloopVC.setNewTurn()
+            }
+
+            case .showWinner:
+                currentPlayer = 0
+                numOfPlayers = 2
+                score = 0
+                viewControllers.values.forEach { (vc) in
+                    vc.view.isHidden = true
+                }
+                if let winnerVC = storyboard.instantiateViewController(withIdentifier: ViewController.winner.rawValue) as? WinnerVC {
+                    winnerVC.gameHandlerDelegate = self
+                    winnerVC.player = winner
+                    viewControllers[.winner] = winnerVC
+                    self.add(winnerVC)
             }
         }
     }
