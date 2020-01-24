@@ -9,10 +9,20 @@
 import UIKit
 
 @IBDesignable
-class PlayerTurn: UIView {
+class PlayerTurn: ShadowedView {
     var nameLabel: UILabel?
     var colorView: UIView?
-    
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setLayout()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setLayout()
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setLayout()
@@ -23,7 +33,7 @@ class PlayerTurn: UIView {
         setLayout()
     }
     
-    func setLayout() {
+    override func setLayout() {
         self.backgroundColor = UIColor.clear
         
         let frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 30)
@@ -43,5 +53,7 @@ class PlayerTurn: UIView {
         
         self.addSubview(nameLabel)
         self.addSubview(colorView)
+
+        super.setLayout()
     }
 }

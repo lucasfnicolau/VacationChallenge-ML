@@ -22,12 +22,10 @@ class RankingVC: UIViewController {
     var cdPlayers = [CDPlayer]()
     var players = [PlayerScore]()
     var playersColors = [#colorLiteral(red: 0.9490196078, green: 0.3529411765, blue: 0.3529411765, alpha: 1), #colorLiteral(red: 0.3960784314, green: 0.3215686275, blue: 0.3019607843, alpha: 1), #colorLiteral(red: 0.6666666667, green: 0.6509803922, blue: 0.5803921569, alpha: 1), #colorLiteral(red: 1, green: 0.7843137255, blue: 0.4509803922, alpha: 1)]
+    var gameHandlerDelegate: GameHandlerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        exitButton.tintColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
-        exitButton.setImage(#imageLiteral(resourceName: "close").withRenderingMode(.alwaysTemplate), for: .normal)
 
         do {
             self.cdPlayers = try getContext().fetch(CDPlayer.fetchRequest())
@@ -78,6 +76,6 @@ class RankingVC: UIViewController {
     }
     
     @IBAction func exitButtonTouched() {
-        self.dismiss(animated: true, completion: nil)
+        gameHandlerDelegate?.changeGameState(to: .mainMenu)
     }
 }

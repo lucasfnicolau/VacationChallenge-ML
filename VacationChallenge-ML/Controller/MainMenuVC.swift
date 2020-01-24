@@ -20,6 +20,7 @@ class MainMenuVC: UIViewController {
     var appHasBeenOpenedBefore = false
     var defaults: UserDefaults?
     var cdPlayers = [CDPlayer]()
+    var gameHandlerDelegate: GameHandlerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,10 @@ class MainMenuVC: UIViewController {
         }
     }
 
+    @IBAction func startGame() {
+        gameHandlerDelegate?.startGame(numOfPlayers: Int(playersNumberLabel.text ?? "2") ?? 2)
+    }
+
     @IBAction func playersNumberChanged(_ sender: UIStepper) {
         playersNumberLabel.text = "\(Int(sender.value))"
     }
@@ -65,16 +70,9 @@ class MainMenuVC: UIViewController {
         mainMenuHelpVC.modalTransitionStyle = .crossDissolve
         self.present(mainMenuHelpVC, animated: true, completion: nil)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let gameloopVC = segue.destination as? GameloopVC {
-            gameloopVC.playersNumber = Int(playersNumberLabel.text ?? "2") ?? 2
-            gameloopVC.modalPresentationStyle = .fullScreen
-        } else if let rankingVC = segue.destination as? RankingVC {
-            rankingVC.modalPresentationStyle = .fullScreen
-        }
+
+    @IBAction func openRanking() {
+        gameHandlerDelegate?.changeGameState(to: .ranking)
     }
-    
-    @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) { }
 }
 

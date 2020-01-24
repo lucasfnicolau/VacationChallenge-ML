@@ -21,4 +21,8 @@ class HelpVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
         dismissDarkTranslucentBG()
     }
+
+    @IBAction func okButtonTouched(_ sender: Any) {
+        dismissVC()
+    }
 }

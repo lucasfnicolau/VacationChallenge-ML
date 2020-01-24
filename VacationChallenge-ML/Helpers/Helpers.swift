@@ -31,6 +31,27 @@ enum Font: String {
     case norwester = "Norwester-Regular"
 }
 
+enum GameState {
+    case mainMenu
+    case gameloop
+    case ranking
+    case visualRecognition
+    case endTurn
+    case showWinner
+}
+
+enum Constants: Int {
+    case finalScore = 300
+}
+
+enum ViewController: String {
+    case mainMenu = "MainMenuVC"
+    case gameloop = "GameloopVC"
+    case ranking = "RankingVC"
+    case visionRecognition = "VisionRecognitionVC"
+    case winner = "WinnerVC"
+}
+
 func getImage(_ image: Image) -> UIImage? {
     return UIImage(named: image.rawValue)
 }
