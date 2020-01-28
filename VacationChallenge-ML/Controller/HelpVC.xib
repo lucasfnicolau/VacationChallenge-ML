@@ -61,7 +61,7 @@ You’ll compete against your friends, and to be able to score you’ll have to 
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.3921568627" green="0.74901960779999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.47843137254901957" green="0.67450980392156867" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="cbe-Xd-std" firstAttribute="leading" secondItem="PIs-rj-N4b" secondAttribute="leading" constant="20" id="MXD-hg-Zxk"/>
                         <constraint firstAttribute="bottom" secondItem="AKV-JN-kNC" secondAttribute="bottom" constant="30" id="RFP-ft-jmr"/>
